@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "files.eol": "\n",
+  "editor.fontSize": 14
+}
