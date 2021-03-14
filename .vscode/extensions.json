@@ -4,6 +4,7 @@
         "mgmcdermott.vscode-language-babel",
         "esbenp.prettier-vscode",
         "ijs.reactnextjssnippets",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss"
     ]
 }

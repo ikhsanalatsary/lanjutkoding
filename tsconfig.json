@@ -67,7 +67,9 @@
     "node_modules",
     "apollo.config.js",
     "prettier.config.js",
-    "codegen.js"
+    "codegen.js",
+    "postcss.config.js",
+    "tailwind.config.js"
   ],
   "include": [
     "next-env.d.ts",
