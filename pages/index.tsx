@@ -1,38 +1,141 @@
+import { gql } from '@apollo/client';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
+import dayjs from 'dayjs';
+import { RootQuery } from '../generated/graphql';
+import { initializeApollo } from '../lib/apolloClient';
 
-export default function Home() {
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+export default function Home({ posts }: Props) {
   return (
-    <div className="min-h-screen flex flex-col justify-center">
+    <>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-        <div className="md:flex">
-          <div className="md:flex-shrink-0">
-            <img
-              className="h-48 w-full object-cover md:w-48"
-              src="https://images.unsplash.com/photo-1515711660811-48832a4c6f69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80"
-              alt="Man looking at item at a store"
-            />
-          </div>
-          <div className="p-8">
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-              Case study
-            </div>
-            <a
-              href="#"
-              className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+      <div className="flex flex-wrap -mx-1 lg:-mx-4">
+        {posts!.edges!.map((post) => {
+          return (
+            <div
+              className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 "
+              key={post!.cursor}
             >
-              Finding customers for your new business
-            </a>
-            <p className="mt-2 text-gray-500">
-              Getting a new business off the ground is a lot of hard work. Here
-              are five ideas you can use to find your first customers.
-            </p>
-          </div>
-        </div>
+              <article className="overflow-hidden rounded-lg shadow-lg bg-white">
+                <a href="#">
+                  <Image
+                    alt={
+                      post!.node!.featuredImage!.node!.altText ??
+                      post!.node!.title!
+                    }
+                    className="block h-auto w-full"
+                    src={post!.node!.featuredImage!.node!.sourceUrl!}
+                    width={600}
+                    height={400}
+                  />
+                </a>
+
+                <header className="flex items-center justify-between leading-tight p-2 md:p-4">
+                  <h1 className="text-lg">
+                    <a
+                      className="no-underline hover:underline text-black"
+                      href="#"
+                    >
+                      {post!.node!.title}
+                    </a>
+                  </h1>
+                  <p className=" text-sm text-gray-500">
+                    {dayjs(post!.node!.date!).format('DD/MM/YYYY')}
+                  </p>
+                </header>
+
+                <footer className="flex items-center justify-between leading-none p-2 md:p-4">
+                  <a
+                    className="flex items-center no-underline hover:underline text-gray-500"
+                    href="#"
+                  >
+                    <Image
+                      alt={post!.node!.author!.node!.name!}
+                      className="block rounded-full"
+                      src={post!.node!.author!.node!.avatar!.url!}
+                      width={32}
+                      height={32}
+                    />
+                    <p className="ml-2 text-sm">
+                      {post!.node!.author!.node!.name!}
+                    </p>
+                  </a>
+                  <a
+                    className="no-underline hover:text-red-dark text-gray-500"
+                    href="#"
+                  >
+                    <span className="hidden">Like</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      />
+                    </svg>
+                  </a>
+                </footer>
+              </article>
+            </div>
+          );
+        })}
       </div>
-    </div>
+    </>
   );
 }
+
+export const getStaticProps = async (_context: GetStaticPropsContext) => {
+  let client = initializeApollo();
+  let result = await client.query<RootQuery>({
+    query: gql`
+      query AllPosts {
+        posts {
+          edges {
+            cursor
+            node {
+              slug
+              title
+              date
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
+              author {
+                node {
+                  slug
+                  name
+                  avatar {
+                    url
+                  }
+                }
+              }
+              categories {
+                nodes {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+
+  return {
+    props: { posts: result.data.posts },
+    revalidate: 1,
+  };
+};

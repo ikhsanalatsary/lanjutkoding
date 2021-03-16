@@ -5,6 +5,8 @@
         "esbenp.prettier-vscode",
         "ijs.reactnextjssnippets",
         "dbaeumer.vscode-eslint",
-        "bradlc.vscode-tailwindcss"
+        "bradlc.vscode-tailwindcss",
+        "kevinkyang.auto-comment-blocks",
+        "ms-azuretools.vscode-docker"
     ]
 }
