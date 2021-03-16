@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import dayjs from 'dayjs';
 import { RootQuery } from '../generated/graphql';
 import { initializeApollo } from '../lib/apolloClient';
@@ -22,27 +23,28 @@ export default function Home({ posts }: Props) {
               key={post!.cursor}
             >
               <article className="overflow-hidden rounded-lg shadow-lg bg-white">
-                <a href="#">
-                  <Image
-                    alt={
-                      post!.node!.featuredImage!.node!.altText ??
-                      post!.node!.title!
-                    }
-                    className="block h-auto w-full"
-                    src={post!.node!.featuredImage!.node!.sourceUrl!}
-                    width={600}
-                    height={400}
-                  />
-                </a>
+                <Link href={`/blog/${post!.node!.slug!}`}>
+                  <a>
+                    <Image
+                      alt={
+                        post!.node!.featuredImage!.node!.altText ??
+                        post!.node!.title!
+                      }
+                      className="block h-auto w-full"
+                      src={post!.node!.featuredImage!.node!.sourceUrl!}
+                      width={600}
+                      height={400}
+                    />
+                  </a>
+                </Link>
 
                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                   <h1 className="text-lg">
-                    <a
-                      className="no-underline hover:underline text-black"
-                      href="#"
-                    >
-                      {post!.node!.title}
-                    </a>
+                    <Link href={`/blog/${post!.node!.slug!}`}>
+                      <a className="no-underline hover:underline text-black">
+                        {post!.node!.title}
+                      </a>
+                    </Link>
                   </h1>
                   <p className=" text-sm text-gray-500">
                     {dayjs(post!.node!.date!).format('DD/MM/YYYY')}
@@ -121,7 +123,7 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
                   }
                 }
               }
-              categories {
+              tags {
                 nodes {
                   id
                   name
