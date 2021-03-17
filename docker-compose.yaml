@@ -19,12 +19,17 @@ services:
       - db
     image: wordpress:latest
     ports:
-      - '8000:80'
+      - '80:80'
+    extra_hosts:
+      - lanjutkoding.local:192.168.88.73
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306 # change to existing db if necessary
       WORDPRESS_DB_USER: lanjutkoding
       WORDPRESS_DB_PASSWORD: lanjutkoding
       WORDPRESS_DB_NAME: lanjutkoding
+    volumes:
+      - wordpress_files:/var/www/html
 volumes:
   db_data: {}
+  wordpress_files: {}
