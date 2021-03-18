@@ -22,10 +22,21 @@ export default function PostDetail({ post }: Props) {
       <div className="w-full">
         <div className="max-w-screen-xl py-12 mx-auto flex flex-wrap">
           <div className="w-full md:w-2/3 md:pl-3 md:pr-5">
-            <div
-              className="bg-white rounded-lg shadow-lg px-4 sm:px-16 py-8 text-gray-800"
-              dangerouslySetInnerHTML={{ __html: post!.content }}
-            />
+            <div className="bg-white rounded-lg shadow-lg px-4 sm:px-16 py-8">
+              <article
+                className="text-gray-800 prose lg:prose-xl"
+                dangerouslySetInnerHTML={{ __html: post!.content }}
+              />
+              <div className="mt-4 flex flex-wrap space-x-2">
+                {post!.tags!.nodes!.map((tag) => {
+                  return (
+                    <div className="bg-[#d8e0e8] rounded-md px-3 py-1 text-sm font-semibold leading-6 text-gray-800">
+                      #{tag!.name}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
           <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5">
             <div className="mb-10 first:mt-10">
