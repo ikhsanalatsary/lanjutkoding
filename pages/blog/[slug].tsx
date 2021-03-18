@@ -44,56 +44,6 @@ export default function PostDetail({ post, categories }: Props) {
           <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5">
             <div className="mb-10 first:mt-10">
               <div className="text-gray-600 text-lg text-center">
-                Related Posts
-              </div>
-              <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
-              <div className="leading-7 text-gray-600 text-base">
-                <ul>
-                  <li className="my-4">
-                    <a
-                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
-                      href="#"
-                    >
-                      Hello World 2
-                    </a>
-                  </li>
-                  <li className="my-4">
-                    <a
-                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
-                      href="#"
-                    >
-                      Love this design alot
-                    </a>
-                  </li>
-                  <li className="my-4">
-                    <a
-                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
-                      href="#"
-                    >
-                      Become Expert in few minutes
-                    </a>
-                  </li>
-                  <li className="my-4">
-                    <a
-                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
-                      href="#"
-                    >
-                      Maybe Next Journey
-                    </a>
-                  </li>
-                  <li className="my-4">
-                    <a
-                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
-                      href="#"
-                    >
-                      Done is better than Perfect
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="mb-10 first:mt-10">
-              <div className="text-gray-600 text-lg text-center">
                 Categories
               </div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
