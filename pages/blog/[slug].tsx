@@ -9,7 +9,7 @@ import { RootQuery } from '../../generated/graphql';
 import { initializeApollo } from '../../lib/apolloClient';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function PostDetail({ post }: Props) {
+export default function PostDetail({ post, categories }: Props) {
   return (
     <>
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
@@ -30,7 +30,10 @@ export default function PostDetail({ post }: Props) {
               <div className="mt-4 flex flex-wrap space-x-2">
                 {post!.tags!.nodes!.map((tag) => {
                   return (
-                    <div className="bg-[#d8e0e8] rounded-md px-3 py-1 text-sm font-semibold leading-6 text-gray-800">
+                    <div
+                      key={tag!.id}
+                      className="bg-[#d8e0e8] rounded-md px-3 py-1 text-sm font-semibold leading-6 text-gray-800"
+                    >
                       #{tag!.name}
                     </div>
                   );
@@ -41,14 +44,14 @@ export default function PostDetail({ post }: Props) {
           <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5">
             <div className="mb-10 first:mt-10">
               <div className="text-gray-600 text-lg text-center">
-                You may also like
+                Related Posts
               </div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
               <div className="leading-7 text-gray-600 text-base">
                 <ul>
                   <li className="my-4">
                     <a
-                      className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
+                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
                       href="#"
                     >
                       Hello World 2
@@ -56,7 +59,7 @@ export default function PostDetail({ post }: Props) {
                   </li>
                   <li className="my-4">
                     <a
-                      className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
+                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
                       href="#"
                     >
                       Love this design alot
@@ -64,7 +67,7 @@ export default function PostDetail({ post }: Props) {
                   </li>
                   <li className="my-4">
                     <a
-                      className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
+                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
                       href="#"
                     >
                       Become Expert in few minutes
@@ -72,7 +75,7 @@ export default function PostDetail({ post }: Props) {
                   </li>
                   <li className="my-4">
                     <a
-                      className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
+                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
                       href="#"
                     >
                       Maybe Next Journey
@@ -80,7 +83,7 @@ export default function PostDetail({ post }: Props) {
                   </li>
                   <li className="my-4">
                     <a
-                      className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
+                      className="text-gray-600 border-b-2 border-blue-300 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
                       href="#"
                     >
                       Done is better than Perfect
@@ -89,7 +92,33 @@ export default function PostDetail({ post }: Props) {
                 </ul>
               </div>
             </div>
+            <div className="mb-10 first:mt-10">
+              <div className="text-gray-600 text-lg text-center">
+                Categories
+              </div>
+              <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
+              <div className="leading-7 text-gray-600 text-base">
+                <ul>
+                  {categories!.nodes!.map((category) => {
+                    return (
+                      <li
+                        key={category!.id}
+                        className="py-4 border-b border-gray-400 last:border-none"
+                      >
+                        <a
+                          className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
+                          href="#"
+                        >
+                          {category!.name!}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
           </div>
+          <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5"></div>
         </div>
       </div>
     </>
@@ -146,12 +175,12 @@ export const getStaticProps = async (
               name
             }
           }
-          categories {
-            nodes {
-              id
-              slug
-              name
-            }
+        }
+        categories {
+          nodes {
+            id
+            slug
+            name
           }
         }
       }
@@ -161,6 +190,9 @@ export const getStaticProps = async (
     },
   });
   return {
-    props: { post: result.data.post },
+    props: {
+      post: result.data.post,
+      categories: result.data.categories,
+    },
   };
 };
