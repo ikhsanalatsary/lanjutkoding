@@ -33,7 +33,7 @@ export default function PostDetail({ post, categories }: Props) {
                   return (
                     <div
                       key={tag!.id}
-                      className="bg-[#d8e0e8] rounded-md px-3 py-1 text-sm font-semibold leading-6 text-gray-800"
+                      className="bg-[#b0b8c8] rounded-md px-3 py-1 text-sm font-semibold leading-6 text-gray-800"
                     >
                       #{tag!.name}
                     </div>
@@ -68,7 +68,6 @@ export default function PostDetail({ post, categories }: Props) {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5"></div>
         </div>
       </div>
     </>
