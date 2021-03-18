@@ -1,7 +1,11 @@
 import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
+import dayjs from 'dayjs';
 import { useApollo } from '../lib/apolloClient';
 import '../styles/globals.css';
+import 'dayjs/locale/id';
+
+dayjs.locale('id');
 
 type Props = {
   Component: import('react').JSXElementConstructor<Record<string, any>>;
