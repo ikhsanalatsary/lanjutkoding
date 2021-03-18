@@ -1,26 +1,30 @@
 import { gql } from '@apollo/client';
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import {
+  GetStaticPaths,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { RootQuery } from '../generated/graphql';
-import { initializeApollo } from '../lib/apolloClient';
+import { RootQuery } from '../../generated/graphql';
+import { initializeApollo } from '../../lib/apolloClient';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Home({ posts }: Props) {
+export default function CategoryList({ posts, category }: Props) {
   return (
     <>
       <Head>
-        <title>Lanjutkoding.com</title>
+        <title>{category!.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
+      <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
-          Lanjutkoding.com
+          {category!.name}
         </h1>
       </header>
-      <div className="flex flex-wrap -mx-1 lg:-mx-4 py-8">
+      <div className="flex flex-wrap -mx-1 lg:-mx-4 py-12">
         {posts!.edges!.map((post) => {
           return (
             <div
@@ -101,12 +105,43 @@ export default function Home({ posts }: Props) {
   );
 }
 
-export const getStaticProps = async (_context: GetStaticPropsContext) => {
-  let client = initializeApollo();
+let client = initializeApollo();
+export const getStaticPaths: GetStaticPaths = async () => {
   let result = await client.query<RootQuery>({
     query: gql`
-      query AllPosts {
-        posts {
+      query GetAllCategorySlugs {
+        categories {
+          nodes {
+            id
+            slug
+          }
+        }
+      }
+    `,
+  });
+  return {
+    paths: result.data.categories!.nodes!.map((node) => {
+      return {
+        params: { slug: node!.slug! },
+      };
+    }),
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async (
+  context: GetStaticPropsContext<{ slug: string }>
+) => {
+  let { params } = context;
+  let result = await client.query<RootQuery>({
+    query: gql`
+      query AllPostsByCategory($categoryName: String) {
+        categories(where: { slug: [$categoryName] }) {
+          nodes {
+            name
+          }
+        }
+        posts(where: { categoryName: $categoryName }) {
           edges {
             cursor
             node {
@@ -139,10 +174,16 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
         }
       }
     `,
+    variables: {
+      categoryName: params?.slug,
+    },
   });
 
   return {
-    props: { posts: result.data.posts },
+    props: {
+      posts: result.data.posts,
+      category: result.data.categories!.nodes![0],
+    },
     revalidate: 1,
   };
 };

@@ -4,6 +4,7 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
+import Link from 'next/link';
 import dayjs from 'dayjs';
 import { RootQuery } from '../../generated/graphql';
 import { initializeApollo } from '../../lib/apolloClient';
@@ -25,7 +26,7 @@ export default function PostDetail({ post, categories }: Props) {
             <div className="bg-white rounded-lg shadow-lg px-4 sm:px-16 py-8">
               <article
                 className="text-gray-800 prose lg:prose-xl"
-                dangerouslySetInnerHTML={{ __html: post!.content }}
+                dangerouslySetInnerHTML={{ __html: post!.content! }}
               />
               <div className="mt-4 flex flex-wrap space-x-2">
                 {post!.tags!.nodes!.map((tag) => {
@@ -55,12 +56,11 @@ export default function PostDetail({ post, categories }: Props) {
                         key={category!.id}
                         className="py-4 border-b border-gray-400 last:border-none"
                       >
-                        <a
-                          className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500"
-                          href="#"
-                        >
-                          {category!.name!}
-                        </a>
+                        <Link href={`/category/${category!.slug!}`}>
+                          <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
+                            {category!.name!}
+                          </a>
+                        </Link>
                       </li>
                     );
                   })}
