@@ -7,7 +7,6 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "airbnb",
         "plugin:@typescript-eslint/recommended",
         "prettier",
         "plugin:react-hooks/recommended"
@@ -25,5 +24,27 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-    }
+        "react/react-in-jsx-scope": "off",
+        "prefer-const": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+    },
+    "settings": {
+        "react": {
+          "pragma": "React",  // Pragma to use, default to "React"
+          "fragment": "Fragment",  // Fragment to use (may be a property of <pragma>), default to "Fragment"
+          "version": "detect",
+        },
+        "propWrapperFunctions": [
+            // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
+            // "forbidExtraProps",
+            // {"property": "freeze", "object": "Object"},
+            // {"property": "myFavoriteWrapper"}
+        ],
+        "linkComponents": [
+          // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+          "Hyperlink",
+          {"name": "Link", "linkAttribute": "href"}
+        ]
+      }
 };
