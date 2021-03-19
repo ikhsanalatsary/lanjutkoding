@@ -3,7 +3,6 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
@@ -15,15 +14,23 @@ import {
   CategorySlugsDocument,
   CategorySlugsQuery,
 } from '../../lib/graphql';
+import { Header } from '../../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function CategoryList({ posts, category }: Props) {
+export default function CategoryList({
+  posts,
+  category,
+  header,
+  menuItems,
+}: Props) {
   return (
     <>
-      <Head>
-        <title>{category!.name}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Header
+        siteTitle={header?.siteTitle}
+        title={category?.name}
+        logo={header?.siteLogoUrl}
+        menuItems={menuItems?.nodes}
+      />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
           {category!.name}
@@ -140,6 +147,8 @@ export const getStaticProps = async (
     props: {
       posts: result.data.posts,
       category: result.data.categories!.nodes![0],
+      header: result.data.getHeader,
+      menuItems: result.data.menuItems,
     },
     revalidate: 1,
   };

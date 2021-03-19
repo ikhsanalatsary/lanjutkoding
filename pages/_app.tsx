@@ -4,13 +4,12 @@ import dayjs from 'dayjs';
 import { useApollo } from '../lib/apolloClient';
 import '../styles/globals.css';
 import 'dayjs/locale/id';
-import Link from 'next/link';
 
 dayjs.locale('id');
 
 type Props = {
-  Component: import('react').JSXElementConstructor<Record<string, any>>;
-  pageProps: Record<string, any>;
+  Component: import('react').JSXElementConstructor<Record<string, unknown>>;
+  pageProps: Record<string, never>;
 };
 function MyApp({ Component, pageProps }: Props) {
   let apolloClient = useApollo(pageProps.initialApolloState);
@@ -25,27 +24,29 @@ function MyApp({ Component, pageProps }: Props) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#2b5797" />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
       <div className="container mt-4 mx-auto px-4 md:px-12">
-        <div className="max-w-screen-xl flex flex-wrap justify-between items-baseline py-2 pl-3 mx-auto">
-          <div className="font-bold text-xl">
-            <Link href="/">
-              <a className="text-gray-800">Lanjutkoding.com</a>
-            </Link>
-          </div>
-          <nav>
-            <ul className="flex items-center font-extrabold">
-              <li className="mr-3">
-                <a
-                  className="text-gray-800 hover:border-b-2 hover:border-primary-500"
-                  href="#"
-                >
-                  About
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
         <Component {...pageProps} />
       </div>
     </ApolloProvider>

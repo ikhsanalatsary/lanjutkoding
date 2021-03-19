@@ -3468,6 +3468,7 @@ type PostTypeSEO {
   opengraphTitle: String
   opengraphType: String
   opengraphUrl: String
+  readingTime: Float
   schema: SEOPostTypeSchema
 
   # Yoast SEO Schema
@@ -7151,10 +7152,21 @@ type SEOContentTypes {
 
 # he Yoast SEO search appearance content types fields
 type SEOContentType {
+  archive: SEOContentTypeArchive
   metaDesc: String
   metaRobotsNoindex: Boolean
   schema: SEOPageInfoSchema
   schemaType: String
+  title: String
+}
+
+# he Yoast SEO search appearance content types fields
+type SEOContentTypeArchive {
+  archiveLink: String
+  breadcrumbTitle: String
+  hasArchive: Boolean
+  metaDesc: String
+  metaRobotsNoindex: Boolean
   title: String
 }
 

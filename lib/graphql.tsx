@@ -1941,6 +1941,7 @@ export type PostTypeSeo = {
   opengraphTitle: Maybe<Scalars['String']>;
   opengraphType: Maybe<Scalars['String']>;
   opengraphUrl: Maybe<Scalars['String']>;
+  readingTime: Maybe<Scalars['Float']>;
   schema: Maybe<SeoPostTypeSchema>;
   schemaDetails: Maybe<Scalars['String']>;
   title: Maybe<Scalars['String']>;
@@ -3774,10 +3775,21 @@ export type SeoContentTypes = {
 
 export type SeoContentType = {
   __typename?: 'SEOContentType';
+  archive: Maybe<SeoContentTypeArchive>;
   metaDesc: Maybe<Scalars['String']>;
   metaRobotsNoindex: Maybe<Scalars['Boolean']>;
   schema: Maybe<SeoPageInfoSchema>;
   schemaType: Maybe<Scalars['String']>;
+  title: Maybe<Scalars['String']>;
+};
+
+export type SeoContentTypeArchive = {
+  __typename?: 'SEOContentTypeArchive';
+  archiveLink: Maybe<Scalars['String']>;
+  breadcrumbTitle: Maybe<Scalars['String']>;
+  hasArchive: Maybe<Scalars['Boolean']>;
+  metaDesc: Maybe<Scalars['String']>;
+  metaRobotsNoindex: Maybe<Scalars['Boolean']>;
   title: Maybe<Scalars['String']>;
 };
 
@@ -5389,6 +5401,22 @@ export type HomeQuery = (
         )> }
       )> }
     )>>> }
+  )>, getHeader: Maybe<(
+    { __typename?: 'HCMSHeader' }
+    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+  )>, getFooter: Maybe<(
+    { __typename?: 'HCMSFooter' }
+    & Pick<HcmsFooter, 'copyrightText'>
+    & { socialLinks: Maybe<Array<Maybe<(
+      { __typename?: 'HCMSSocialLinks' }
+      & Pick<HcmsSocialLinks, 'iconName' | 'iconUrl'>
+    )>>> }
+  )>, menuItems: Maybe<(
+    { __typename?: 'RootQueryToMenuItemConnection' }
+    & { nodes: Maybe<Array<Maybe<(
+      { __typename?: 'MenuItem' }
+      & Pick<MenuItem, 'id' | 'label' | 'path'>
+    )>>> }
   )> }
 );
 
@@ -5424,6 +5452,22 @@ export type PostDetailQuery = (
     & { nodes: Maybe<Array<Maybe<(
       { __typename?: 'Category' }
       & Pick<Category, 'id' | 'slug' | 'name'>
+    )>>> }
+  )>, getHeader: Maybe<(
+    { __typename?: 'HCMSHeader' }
+    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+  )>, getFooter: Maybe<(
+    { __typename?: 'HCMSFooter' }
+    & Pick<HcmsFooter, 'copyrightText'>
+    & { socialLinks: Maybe<Array<Maybe<(
+      { __typename?: 'HCMSSocialLinks' }
+      & Pick<HcmsSocialLinks, 'iconName' | 'iconUrl'>
+    )>>> }
+  )>, menuItems: Maybe<(
+    { __typename?: 'RootQueryToMenuItemConnection' }
+    & { nodes: Maybe<Array<Maybe<(
+      { __typename?: 'MenuItem' }
+      & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
   )> }
 );
@@ -5502,6 +5546,52 @@ export type CategoryDetailQuery = (
         )> }
       )> }
     )>>> }
+  )>, getHeader: Maybe<(
+    { __typename?: 'HCMSHeader' }
+    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+  )>, getFooter: Maybe<(
+    { __typename?: 'HCMSFooter' }
+    & Pick<HcmsFooter, 'copyrightText'>
+    & { socialLinks: Maybe<Array<Maybe<(
+      { __typename?: 'HCMSSocialLinks' }
+      & Pick<HcmsSocialLinks, 'iconName' | 'iconUrl'>
+    )>>> }
+  )>, menuItems: Maybe<(
+    { __typename?: 'RootQueryToMenuItemConnection' }
+    & { nodes: Maybe<Array<Maybe<(
+      { __typename?: 'MenuItem' }
+      & Pick<MenuItem, 'id' | 'label' | 'path'>
+    )>>> }
+  )> }
+);
+
+export type AboutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutQuery = (
+  { __typename?: 'RootQuery' }
+  & { pages: Maybe<(
+    { __typename?: 'RootQueryToPageConnection' }
+    & { nodes: Maybe<Array<Maybe<(
+      { __typename?: 'Page' }
+      & Pick<Page, 'title' | 'content'>
+    )>>> }
+  )>, getHeader: Maybe<(
+    { __typename?: 'HCMSHeader' }
+    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+  )>, getFooter: Maybe<(
+    { __typename?: 'HCMSFooter' }
+    & Pick<HcmsFooter, 'copyrightText'>
+    & { socialLinks: Maybe<Array<Maybe<(
+      { __typename?: 'HCMSSocialLinks' }
+      & Pick<HcmsSocialLinks, 'iconName' | 'iconUrl'>
+    )>>> }
+  )>, menuItems: Maybe<(
+    { __typename?: 'RootQueryToMenuItemConnection' }
+    & { nodes: Maybe<Array<Maybe<(
+      { __typename?: 'MenuItem' }
+      & Pick<MenuItem, 'id' | 'label' | 'path'>
+    )>>> }
   )> }
 );
 
@@ -5539,6 +5629,26 @@ export const HomeDocument = gql`
       }
     }
   }
+  getHeader {
+    favicon
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
 }
     `;
 export type HomeQueryResult = Apollo.QueryResult<HomeQuery, HomeQueryVariables>;
@@ -5570,6 +5680,26 @@ export const PostDetailDocument = gql`
       id
       slug
       name
+    }
+  }
+  getHeader {
+    favicon
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
     }
   }
 }
@@ -5634,6 +5764,57 @@ export const CategoryDetailDocument = gql`
       }
     }
   }
+  getHeader {
+    favicon
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
 }
     `;
 export type CategoryDetailQueryResult = Apollo.QueryResult<CategoryDetailQuery, CategoryDetailQueryVariables>;
+export const AboutDocument = gql`
+    query About {
+  pages(where: {title: "tentang"}) {
+    nodes {
+      title
+      content
+    }
+  }
+  getHeader {
+    favicon
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
+}
+    `;
+export type AboutQueryResult = Apollo.QueryResult<AboutQuery, AboutQueryVariables>;

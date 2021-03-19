@@ -5,15 +5,17 @@ import Link from 'next/link';
 import dayjs from 'dayjs';
 import { initializeApollo } from '../lib/apolloClient';
 import { HomeDocument, HomeQuery } from '../lib/graphql';
+import { Header } from '../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Home({ posts }: Props) {
+export default function Home({ posts, header, menuItems }: Props) {
   return (
     <>
-      <Head>
-        <title>Lanjutkoding.com</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Header
+        siteTile={header?.siteTitle}
+        logo={header?.siteLogoUrl}
+        menuItems={menuItems?.nodes}
+      />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
           Lanjutkoding.com
@@ -100,6 +102,7 @@ export default function Home({ posts }: Props) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getStaticProps = async (_context: GetStaticPropsContext) => {
   let client = initializeApollo();
   let result = await client.query<HomeQuery>({
@@ -107,7 +110,11 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
   });
 
   return {
-    props: { posts: result.data.posts },
+    props: {
+      posts: result.data.posts,
+      header: result.data.getHeader,
+      menuItems: result.data.menuItems,
+    },
     revalidate: 1,
   };
 };

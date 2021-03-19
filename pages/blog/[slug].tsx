@@ -13,11 +13,23 @@ import {
   PostSlugsDocument,
   PostSlugsQuery,
 } from '../../lib/graphql';
+import { Header } from '../../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function PostDetail({ post, categories }: Props) {
+export default function PostDetail({
+  post,
+  categories,
+  header,
+  menuItems,
+}: Props) {
   return (
     <>
+      <Header
+        siteTitle={header?.siteTitle}
+        title={post!.title}
+        logo={header?.siteLogoUrl}
+        menuItems={menuItems?.nodes}
+      />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">{post!.title}</h1>
         <div className="text-2xl text-gray-600 mt-1">
@@ -160,6 +172,8 @@ export const getStaticProps = async (
     props: {
       post: result.data.post,
       categories: result.data.categories,
+      header: result.data.getHeader,
+      menuItems: result.data.menuItems,
     },
   };
 };
