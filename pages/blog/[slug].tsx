@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client';
 import {
   GetStaticPaths,
   GetStaticPropsContext,
@@ -6,8 +5,14 @@ import {
 } from 'next';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { RootQuery } from '../../generated/graphql';
 import { initializeApollo } from '../../lib/apolloClient';
+import {
+  PostDetailDocument,
+  PostDetailQuery,
+  PostDetailQueryVariables,
+  PostSlugsDocument,
+  PostSlugsQuery,
+} from '../../graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({ post, categories }: Props) {
@@ -128,16 +133,8 @@ export default function PostDetail({ post, categories }: Props) {
 
 let client = initializeApollo();
 export const getStaticPaths: GetStaticPaths = async () => {
-  let result = await client.query<RootQuery>({
-    query: gql`
-      query GetAllPostSlugs {
-        posts {
-          nodes {
-            slug
-          }
-        }
-      }
-    `,
+  let result = await client.query<PostSlugsQuery>({
+    query: PostSlugsDocument,
   });
   return {
     paths: result.data.posts!.nodes!.map((node) => {
@@ -150,42 +147,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<{ slug: string }>
+  context: GetStaticPropsContext<PostDetailQueryVariables>
 ) => {
   let { params } = context;
-  let result = await client.query<RootQuery>({
-    query: gql`
-      query GetPostBySlug($slug: ID!) {
-        post(id: $slug, idType: SLUG) {
-          id
-          title
-          content
-          date
-          author {
-            node {
-              slug
-              name
-              avatar {
-                url
-              }
-            }
-          }
-          tags {
-            nodes {
-              id
-              name
-            }
-          }
-        }
-        categories {
-          nodes {
-            id
-            slug
-            name
-          }
-        }
-      }
-    `,
+  let result = await client.query<PostDetailQuery>({
+    query: PostDetailDocument,
     variables: {
       slug: params?.slug,
     },

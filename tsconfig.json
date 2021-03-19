@@ -67,7 +67,8 @@
     "node_modules",
     "apollo.config.js",
     "prettier.config.js",
-    "codegen.js",
+    "scripts/codegen.js",
+    "scripts/updateSchema.js",
     "postcss.config.js",
     "tailwind.config.js"
   ],

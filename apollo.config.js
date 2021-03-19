@@ -1,9 +1,9 @@
 module.exports = {
   client: {
-    includes: ['pages/**', 'components/**'],
+    includes: ['pages/**', 'components/**', 'graphql/**'],
     service: {
       name: 'lanjutkoding',
-      localSchemaFile: './graphql.schema.json',
+      localSchemaFile: './schema/schema.graphql',
     },
   },
 };

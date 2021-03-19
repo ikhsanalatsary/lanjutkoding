@@ -1,11 +1,10 @@
-import { gql } from '@apollo/client';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { RootQuery } from '../generated/graphql';
 import { initializeApollo } from '../lib/apolloClient';
+import { HomeDocument, HomeQuery } from '../graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Home({ posts }: Props) {
@@ -103,42 +102,8 @@ export default function Home({ posts }: Props) {
 
 export const getStaticProps = async (_context: GetStaticPropsContext) => {
   let client = initializeApollo();
-  let result = await client.query<RootQuery>({
-    query: gql`
-      query AllPosts {
-        posts {
-          edges {
-            cursor
-            node {
-              slug
-              title
-              date
-              featuredImage {
-                node {
-                  sourceUrl
-                  altText
-                }
-              }
-              author {
-                node {
-                  slug
-                  name
-                  avatar {
-                    url
-                  }
-                }
-              }
-              tags {
-                nodes {
-                  id
-                  name
-                }
-              }
-            }
-          }
-        }
-      }
-    `,
+  let result = await client.query<HomeQuery>({
+    query: HomeDocument,
   });
 
   return {

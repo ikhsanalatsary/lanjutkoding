@@ -1,4 +1,3 @@
-import { gql } from '@apollo/client';
 import {
   GetStaticPaths,
   GetStaticPropsContext,
@@ -8,8 +7,14 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { RootQuery } from '../../generated/graphql';
 import { initializeApollo } from '../../lib/apolloClient';
+import {
+  CategoryDetailDocument,
+  CategoryDetailQuery,
+  CategoryDetailQueryVariables,
+  CategorySlugsDocument,
+  CategorySlugsQuery,
+} from '../../graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function CategoryList({ posts, category }: Props) {
@@ -107,17 +112,8 @@ export default function CategoryList({ posts, category }: Props) {
 
 let client = initializeApollo();
 export const getStaticPaths: GetStaticPaths = async () => {
-  let result = await client.query<RootQuery>({
-    query: gql`
-      query GetAllCategorySlugs {
-        categories {
-          nodes {
-            id
-            slug
-          }
-        }
-      }
-    `,
+  let result = await client.query<CategorySlugsQuery>({
+    query: CategorySlugsDocument,
   });
   return {
     paths: result.data.categories!.nodes!.map((node) => {
@@ -130,52 +126,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<{ slug: string }>
+  context: GetStaticPropsContext<CategoryDetailQueryVariables>
 ) => {
   let { params } = context;
-  let result = await client.query<RootQuery>({
-    query: gql`
-      query AllPostsByCategory($categoryName: String) {
-        categories(where: { slug: [$categoryName] }) {
-          nodes {
-            name
-          }
-        }
-        posts(where: { categoryName: $categoryName }) {
-          edges {
-            cursor
-            node {
-              slug
-              title
-              date
-              featuredImage {
-                node {
-                  sourceUrl
-                  altText
-                }
-              }
-              author {
-                node {
-                  slug
-                  name
-                  avatar {
-                    url
-                  }
-                }
-              }
-              tags {
-                nodes {
-                  id
-                  name
-                }
-              }
-            }
-          }
-        }
-      }
-    `,
+  let result = await client.query<CategoryDetailQuery>({
+    query: CategoryDetailDocument,
     variables: {
-      categoryName: params?.slug,
+      slug: params?.slug,
     },
   });
 

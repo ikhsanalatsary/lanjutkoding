@@ -506,6 +506,30 @@
             "deprecationReason": null
           },
           {
+            "name": "getFooter",
+            "description": "Get footer",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "HCMSFooter",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getHeader",
+            "description": "Get header",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "HCMSHeader",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "mediaItem",
             "description": "An object of the mediaItem Type. ",
             "args": [
@@ -16244,6 +16268,18 @@
             "deprecationReason": null
           },
           {
+            "name": "schemaDetails",
+            "description": "Yoast SEO Schema",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "title",
             "description": null,
             "args": [],
@@ -16885,6 +16921,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "ID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bodyClasses",
+            "description": "bodyClasses",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -19564,6 +19612,18 @@
             "deprecationReason": null
           },
           {
+            "name": "bodyClasses",
+            "description": "bodyClasses",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "categories",
             "description": "Connection between the post type and the category type",
             "args": [
@@ -19631,6 +19691,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "PostToCategoryConnection",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coAuthors",
+            "description": "Co Authors",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -28962,6 +29034,163 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "HCMSFooter",
+        "description": "Header Type",
+        "fields": [
+          {
+            "name": "copyrightText",
+            "description": "Copyright text",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sidebarOne",
+            "description": "sidebarOne",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sidebarTwo",
+            "description": "sidebarTwo",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "socialLinks",
+            "description": "Social links",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "HCMSSocialLinks",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HCMSSocialLinks",
+        "description": "Social Links Type",
+        "fields": [
+          {
+            "name": "iconName",
+            "description": "Icon name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iconUrl",
+            "description": "Icon url",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "HCMSHeader",
+        "description": "Header Type",
+        "fields": [
+          {
+            "name": "favicon",
+            "description": "favicon",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "siteLogoUrl",
+            "description": "Site logo URL",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "siteTagLine",
+            "description": "Site tagline",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "siteTitle",
+            "description": "Site title",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "MediaItemIdType",
         "description": "The Type of Identifier used to fetch a single resource. Default is ID.",
@@ -29639,6 +29868,18 @@
           },
           {
             "name": "FOOTER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "HCMS_MENU_FOOTER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "HCMS_MENU_HEADER",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -31982,6 +32223,18 @@
                 "name": "ID",
                 "ofType": null
               }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "onlySticky",
+            "description": "The ID of the post object to filter by",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "defaultValue": null,
             "isDeprecated": false,

@@ -1,0 +1,120 @@
+query Home {
+  posts {
+    edges {
+      cursor
+      node {
+        slug
+        title
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        author {
+          node {
+            slug
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
+
+query PostDetail($slug: ID!) {
+  post(id: $slug, idType: SLUG) {
+    id
+    title
+    content
+    date
+    author {
+      node {
+        slug
+        name
+        avatar {
+          url
+        }
+      }
+    }
+    tags {
+      nodes {
+        id
+        name
+      }
+    }
+  }
+  categories {
+    nodes {
+      id
+      slug
+      name
+    }
+  }
+}
+
+query PostSlugs {
+  posts {
+    nodes {
+      slug
+    }
+  }
+}
+
+query CategorySlugs {
+  categories {
+    nodes {
+      id
+      slug
+    }
+  }
+}
+
+query CategoryDetail($slug: String!) {
+  categories(where: { slug: [$slug] }) {
+    nodes {
+      name
+    }
+  }
+  posts(where: { categoryName: $slug }) {
+    edges {
+      cursor
+      node {
+        slug
+        title
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        author {
+          node {
+            slug
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

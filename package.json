@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "codegen": "graphql-codegen --config codegen.js"
+    "codegen": "graphql-codegen --config scripts/codegen.js",
+    "update-schema": "graphql-codegen --config scripts/updateSchema.js",
+    "generate": "npm run update-schema && npm run codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",
@@ -14,12 +16,14 @@
     "dayjs": "^1.10.4",
     "graphql": "^15.5.0",
     "next": "10.0.8",
+    "next-seo": "^4.22.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.2",
     "@graphql-codegen/introspection": "^1.18.1",
+    "@graphql-codegen/schema-ast": "^1.18.1",
     "@graphql-codegen/typescript": "^1.21.1",
     "@graphql-codegen/typescript-operations": "^1.17.15",
     "@graphql-codegen/typescript-react-apollo": "^2.2.2",
@@ -37,6 +41,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "graphql-codegen-apollo-next-ssr": "^1.5.0",
     "postcss": "^8.2.8",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.0.3",
