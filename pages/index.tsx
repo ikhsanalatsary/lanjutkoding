@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import { initializeApollo } from '../lib/apolloClient';
-import { HomeDocument, HomeQuery } from '../graphql';
+import { HomeDocument, HomeQuery } from '../lib/graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Home({ posts }: Props) {

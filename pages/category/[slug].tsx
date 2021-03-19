@@ -14,7 +14,7 @@ import {
   CategoryDetailQueryVariables,
   CategorySlugsDocument,
   CategorySlugsQuery,
-} from '../../graphql';
+} from '../../lib/graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function CategoryList({ posts, category }: Props) {

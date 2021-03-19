@@ -12,7 +12,7 @@ import {
   PostDetailQueryVariables,
   PostSlugsDocument,
   PostSlugsQuery,
-} from '../../graphql';
+} from '../../lib/graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({ post, categories }: Props) {

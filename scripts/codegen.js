@@ -3,7 +3,7 @@ module.exports = {
   documents: 'graphql/query.graphql',
   overwrite: true,
   generates: {
-    './graphql/index.tsx': {
+    './lib/graphql.tsx': {
       plugins: [
         'typescript',
         'typescript-operations',
