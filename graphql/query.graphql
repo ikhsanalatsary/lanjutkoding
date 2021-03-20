@@ -31,7 +31,6 @@ query Home {
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -82,7 +81,6 @@ query PostDetail($slug: ID!) {
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -158,7 +156,6 @@ query CategoryDetail($slug: String!) {
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -187,7 +184,6 @@ query About {
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
