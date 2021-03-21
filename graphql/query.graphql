@@ -49,6 +49,41 @@ query Home {
       path
     }
   }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+  }
 }
 
 query PostDetail($slug: ID!) {
@@ -70,6 +105,35 @@ query PostDetail($slug: ID!) {
       nodes {
         id
         name
+      }
+    }
+    seo {
+      canonical
+      metaKeywords
+      metaDesc
+      metaRobotsNoindex
+      metaRobotsNofollow
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      readingTime
+      schemaDetails
+      title
+      twitterDescription
+      twitterTitle
+      focuskw
+      cornerstone
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
       }
     }
   }
@@ -118,13 +182,35 @@ query CategorySlugs {
   }
 }
 
-query CategoryDetail($slug: String!) {
-  categories(where: { slug: [$slug] }) {
-    nodes {
-      name
+query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
+  category(id: $categoryId, idType: SLUG) {
+    name
+    seo {
+      canonical
+      cornerstone
+      focuskw
+      metaDesc
+      metaRobotsNofollow
+      metaKeywords
+      metaRobotsNoindex
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      schema {
+        raw
+      }
+      title
+      twitterDescription
+      twitterTitle
     }
   }
-  posts(where: { categoryName: $slug }) {
+  posts(where: { categoryName: $categorySlug }) {
     edges {
       cursor
       node {

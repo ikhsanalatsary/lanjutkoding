@@ -5403,7 +5403,7 @@ export type HomeQuery = (
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5417,6 +5417,37 @@ export type HomeQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
+  )>, seo: Maybe<(
+    { __typename?: 'SEOConfig' }
+    & { openGraph: Maybe<(
+      { __typename?: 'SEOOpenGraph' }
+      & { defaultImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+      )>, frontPage: Maybe<(
+        { __typename?: 'SEOOpenGraphFrontPage' }
+        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
+        & { image: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'uri' | 'altText'>
+        )> }
+      )> }
+    )>, webmaster: Maybe<(
+      { __typename?: 'SEOWebmaster' }
+      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
+    )>, social: Maybe<(
+      { __typename?: 'SEOSocial' }
+      & { facebook: Maybe<(
+        { __typename?: 'SEOSocialFacebook' }
+        & Pick<SeoSocialFacebook, 'url'>
+      )>, instagram: Maybe<(
+        { __typename?: 'SEOSocialInstagram' }
+        & Pick<SeoSocialInstagram, 'url'>
+      )>, twitter: Maybe<(
+        { __typename?: 'SEOSocialTwitter' }
+        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
+      )> }
+    )> }
   )> }
 );
 
@@ -5446,6 +5477,13 @@ export type PostDetailQuery = (
         { __typename?: 'Tag' }
         & Pick<Tag, 'id' | 'name'>
       )>>> }
+    )>, seo: Maybe<(
+      { __typename?: 'PostTypeSEO' }
+      & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+      & { opengraphImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+      )> }
     )> }
   )>, categories: Maybe<(
     { __typename?: 'RootQueryToCategoryConnection' }
@@ -5455,7 +5493,7 @@ export type PostDetailQuery = (
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5501,18 +5539,24 @@ export type CategorySlugsQuery = (
 );
 
 export type CategoryDetailQueryVariables = Exact<{
-  slug: Scalars['String'];
+  categorySlug: Scalars['String'];
+  categoryId: Scalars['ID'];
 }>;
 
 
 export type CategoryDetailQuery = (
   { __typename?: 'RootQuery' }
-  & { categories: Maybe<(
-    { __typename?: 'RootQueryToCategoryConnection' }
-    & { nodes: Maybe<Array<Maybe<(
-      { __typename?: 'Category' }
-      & Pick<Category, 'name'>
-    )>>> }
+  & { category: Maybe<(
+    { __typename?: 'Category' }
+    & Pick<Category, 'name'>
+    & { seo: Maybe<(
+      { __typename?: 'TaxonomySEO' }
+      & Pick<TaxonomySeo, 'canonical' | 'cornerstone' | 'focuskw' | 'metaDesc' | 'metaRobotsNofollow' | 'metaKeywords' | 'metaRobotsNoindex' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'title' | 'twitterDescription' | 'twitterTitle'>
+      & { schema: Maybe<(
+        { __typename?: 'SEOTaxonomySchema' }
+        & Pick<SeoTaxonomySchema, 'raw'>
+      )> }
+    )> }
   )>, posts: Maybe<(
     { __typename?: 'RootQueryToPostConnection' }
     & { edges: Maybe<Array<Maybe<(
@@ -5548,7 +5592,7 @@ export type CategoryDetailQuery = (
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5578,7 +5622,7 @@ export type AboutQuery = (
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5630,7 +5674,6 @@ export const HomeDocument = gql`
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5647,6 +5690,41 @@ export const HomeDocument = gql`
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
     }
   }
 }
@@ -5674,6 +5752,35 @@ export const PostDetailDocument = gql`
         name
       }
     }
+    seo {
+      canonical
+      metaKeywords
+      metaDesc
+      metaRobotsNoindex
+      metaRobotsNofollow
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      readingTime
+      schemaDetails
+      title
+      twitterDescription
+      twitterTitle
+      focuskw
+      cornerstone
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
+      }
+    }
   }
   categories {
     nodes {
@@ -5683,7 +5790,6 @@ export const PostDetailDocument = gql`
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5727,13 +5833,35 @@ export const CategorySlugsDocument = gql`
     `;
 export type CategorySlugsQueryResult = Apollo.QueryResult<CategorySlugsQuery, CategorySlugsQueryVariables>;
 export const CategoryDetailDocument = gql`
-    query CategoryDetail($slug: String!) {
-  categories(where: {slug: [$slug]}) {
-    nodes {
-      name
+    query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
+  category(id: $categoryId, idType: SLUG) {
+    name
+    seo {
+      canonical
+      cornerstone
+      focuskw
+      metaDesc
+      metaRobotsNofollow
+      metaKeywords
+      metaRobotsNoindex
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      schema {
+        raw
+      }
+      title
+      twitterDescription
+      twitterTitle
     }
   }
-  posts(where: {categoryName: $slug}) {
+  posts(where: {categoryName: $categorySlug}) {
     edges {
       cursor
       node {
@@ -5765,7 +5893,6 @@ export const CategoryDetailDocument = gql`
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5796,7 +5923,6 @@ export const AboutDocument = gql`
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine

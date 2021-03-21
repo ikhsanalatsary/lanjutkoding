@@ -10,7 +10,6 @@ import { initializeApollo } from '../../lib/apolloClient';
 import {
   CategoryDetailDocument,
   CategoryDetailQuery,
-  CategoryDetailQueryVariables,
   CategorySlugsDocument,
   CategorySlugsQuery,
 } from '../../lib/graphql';
@@ -27,9 +26,11 @@ export default function CategoryList({
     <>
       <Header
         siteTitle={header?.siteTitle}
+        siteDesc={header?.siteTagLine}
         title={category?.name}
         logo={header?.siteLogoUrl}
-        menuItems={menuItems?.nodes}
+        menuItems={menuItems}
+        seo={category?.seo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
@@ -133,20 +134,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async (
-  context: GetStaticPropsContext<CategoryDetailQueryVariables>
+  context: GetStaticPropsContext<{ slug: string }>
 ) => {
   let { params } = context;
   let result = await client.query<CategoryDetailQuery>({
     query: CategoryDetailDocument,
     variables: {
-      slug: params?.slug,
+      categorySlug: params?.slug,
+      categoryId: params?.slug,
     },
   });
 
   return {
     props: {
       posts: result.data.posts,
-      category: result.data.categories!.nodes![0],
+      category: result.data.category,
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
     },
