@@ -5,15 +5,15 @@ import {
 } from 'next';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../lib/apolloClient';
 import {
   PostDetailDocument,
   PostDetailQuery,
   PostDetailQueryVariables,
   PostSlugsDocument,
   PostSlugsQuery,
-} from '../../lib/graphql';
-import { Header } from '../../components/Header';
+} from '../lib/graphql';
+import { Header } from '../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({

@@ -45,7 +45,7 @@ export default function CategoryList({
               key={post!.cursor}
             >
               <article className="overflow-hidden rounded-lg shadow-lg bg-white">
-                <Link href={`/blog/${post!.node!.slug!}`}>
+                <Link href={`/${post!.node!.slug!}`}>
                   <a>
                     <Image
                       alt={

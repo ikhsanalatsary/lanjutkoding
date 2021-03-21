@@ -5480,7 +5480,10 @@ export type PostDetailQuery = (
     )>, seo: Maybe<(
       { __typename?: 'PostTypeSEO' }
       & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
-      & { opengraphImage: Maybe<(
+      & { breadcrumbs: Maybe<Array<Maybe<(
+        { __typename?: 'SEOPostTypeBreadcrumbs' }
+        & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+      )>>>, opengraphImage: Maybe<(
         { __typename?: 'MediaItem' }
         & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
       )> }
@@ -5552,9 +5555,12 @@ export type CategoryDetailQuery = (
     & { seo: Maybe<(
       { __typename?: 'TaxonomySEO' }
       & Pick<TaxonomySeo, 'canonical' | 'cornerstone' | 'focuskw' | 'metaDesc' | 'metaRobotsNofollow' | 'metaKeywords' | 'metaRobotsNoindex' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'title' | 'twitterDescription' | 'twitterTitle'>
-      & { schema: Maybe<(
-        { __typename?: 'SEOTaxonomySchema' }
-        & Pick<SeoTaxonomySchema, 'raw'>
+      & { breadcrumbs: Maybe<Array<Maybe<(
+        { __typename?: 'SEOPostTypeBreadcrumbs' }
+        & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+      )>>>, opengraphImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
       )> }
     )> }
   )>, posts: Maybe<(
@@ -5619,6 +5625,17 @@ export type AboutQuery = (
     & { nodes: Maybe<Array<Maybe<(
       { __typename?: 'Page' }
       & Pick<Page, 'title' | 'content'>
+      & { seo: Maybe<(
+        { __typename?: 'PostTypeSEO' }
+        & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+        & { breadcrumbs: Maybe<Array<Maybe<(
+          { __typename?: 'SEOPostTypeBreadcrumbs' }
+          & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+        )>>>, opengraphImage: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+        )> }
+      )> }
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
@@ -5753,6 +5770,10 @@ export const PostDetailDocument = gql`
       }
     }
     seo {
+      breadcrumbs {
+        text
+        url
+      }
       canonical
       metaKeywords
       metaDesc
@@ -5837,6 +5858,10 @@ export const CategoryDetailDocument = gql`
   category(id: $categoryId, idType: SLUG) {
     name
     seo {
+      breadcrumbs {
+        text
+        url
+      }
       canonical
       cornerstone
       focuskw
@@ -5853,8 +5878,11 @@ export const CategoryDetailDocument = gql`
       opengraphTitle
       opengraphType
       opengraphUrl
-      schema {
-        raw
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
       }
       title
       twitterDescription
@@ -5920,6 +5948,39 @@ export const AboutDocument = gql`
     nodes {
       title
       content
+      seo {
+        breadcrumbs {
+          text
+          url
+        }
+        canonical
+        metaKeywords
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        schemaDetails
+        title
+        twitterDescription
+        twitterTitle
+        focuskw
+        cornerstone
+        opengraphImage {
+          sourceUrl
+          title
+          uri
+          altText
+        }
+      }
     }
   }
   getHeader {

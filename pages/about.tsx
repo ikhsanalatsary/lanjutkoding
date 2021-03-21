@@ -11,7 +11,8 @@ export default function About({ about, header, menuItems }: Props) {
         siteTitle={header?.siteTitle}
         title={about!.title}
         logo={header?.siteLogoUrl}
-        menuItems={menuItems?.nodes}
+        menuItems={menuItems}
+        seo={about?.seo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">{about!.title}</h1>

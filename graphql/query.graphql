@@ -108,6 +108,10 @@ query PostDetail($slug: ID!) {
       }
     }
     seo {
+      breadcrumbs {
+        text
+        url
+      }
       canonical
       metaKeywords
       metaDesc
@@ -186,6 +190,10 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
   category(id: $categoryId, idType: SLUG) {
     name
     seo {
+      breadcrumbs {
+        text
+        url
+      }
       canonical
       cornerstone
       focuskw
@@ -202,8 +210,11 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
       opengraphTitle
       opengraphType
       opengraphUrl
-      schema {
-        raw
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
       }
       title
       twitterDescription
@@ -267,6 +278,39 @@ query About {
     nodes {
       title
       content
+      seo {
+        breadcrumbs {
+          text
+          url
+        }
+        canonical
+        metaKeywords
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        schemaDetails
+        title
+        twitterDescription
+        twitterTitle
+        focuskw
+        cornerstone
+        opengraphImage {
+          sourceUrl
+          title
+          uri
+          altText
+        }
+      }
     }
   }
   getHeader {

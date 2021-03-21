@@ -1,42 +1,101 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { NextSeo } from 'next-seo';
-import { HomeQuery, Maybe, MediaItem, PostTypeSeo } from '../lib/graphql';
+import { ArticleJsonLd, BreadcrumbJsonLd, NextSeo } from 'next-seo';
+import {
+  HomeQuery,
+  Maybe,
+  MediaItem,
+  PostTypeSeo,
+  SeoPostTypeBreadcrumbs,
+  TaxonomySeo,
+} from '../lib/graphql';
 
 type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
-type SeoType = Maybe<
-  { __typename?: 'PostTypeSEO' } & Pick<
-    PostTypeSeo,
-    | 'canonical'
-    | 'metaKeywords'
-    | 'metaDesc'
-    | 'metaRobotsNoindex'
-    | 'metaRobotsNofollow'
-    | 'opengraphAuthor'
-    | 'opengraphDescription'
-    | 'opengraphModifiedTime'
-    | 'opengraphPublishedTime'
-    | 'opengraphPublisher'
-    | 'opengraphSiteName'
-    | 'opengraphTitle'
-    | 'opengraphType'
-    | 'opengraphUrl'
-    | 'readingTime'
-    | 'schemaDetails'
-    | 'title'
-    | 'twitterDescription'
-    | 'twitterTitle'
-    | 'focuskw'
-    | 'cornerstone'
-  > & {
-      opengraphImage: Maybe<
-        { __typename?: 'MediaItem' } & Pick<
-          MediaItem,
-          'sourceUrl' | 'title' | 'uri' | 'altText'
-        >
-      >;
-    }
->;
+type SeoType =
+  | Maybe<
+      { __typename?: 'PostTypeSEO' } & Pick<
+        PostTypeSeo,
+        | 'canonical'
+        | 'metaKeywords'
+        | 'metaDesc'
+        | 'metaRobotsNoindex'
+        | 'metaRobotsNofollow'
+        | 'opengraphAuthor'
+        | 'opengraphDescription'
+        | 'opengraphModifiedTime'
+        | 'opengraphPublishedTime'
+        | 'opengraphPublisher'
+        | 'opengraphSiteName'
+        | 'opengraphTitle'
+        | 'opengraphType'
+        | 'opengraphUrl'
+        | 'readingTime'
+        | 'schemaDetails'
+        | 'title'
+        | 'twitterDescription'
+        | 'twitterTitle'
+        | 'focuskw'
+        | 'cornerstone'
+      > & {
+          breadcrumbs: Maybe<
+            Array<
+              Maybe<
+                { __typename?: 'SEOPostTypeBreadcrumbs' } & Pick<
+                  SeoPostTypeBreadcrumbs,
+                  'text' | 'url'
+                >
+              >
+            >
+          >;
+          opengraphImage: Maybe<
+            { __typename?: 'MediaItem' } & Pick<
+              MediaItem,
+              'sourceUrl' | 'title' | 'uri' | 'altText'
+            >
+          >;
+        }
+    >
+  | Maybe<
+      { __typename?: 'TaxonomySEO' } & Pick<
+        TaxonomySeo,
+        | 'canonical'
+        | 'cornerstone'
+        | 'focuskw'
+        | 'metaDesc'
+        | 'metaRobotsNofollow'
+        | 'metaKeywords'
+        | 'metaRobotsNoindex'
+        | 'opengraphAuthor'
+        | 'opengraphDescription'
+        | 'opengraphModifiedTime'
+        | 'opengraphPublishedTime'
+        | 'opengraphPublisher'
+        | 'opengraphSiteName'
+        | 'opengraphTitle'
+        | 'opengraphType'
+        | 'opengraphUrl'
+        | 'title'
+        | 'twitterDescription'
+        | 'twitterTitle'
+      > & {
+          breadcrumbs: Maybe<
+            Array<
+              Maybe<
+                { __typename?: 'SEOPostTypeBreadcrumbs' } & Pick<
+                  SeoPostTypeBreadcrumbs,
+                  'text' | 'url'
+                >
+              >
+            >
+          >;
+          opengraphImage: Maybe<
+            { __typename?: 'MediaItem' } & Pick<
+              MediaItem,
+              'sourceUrl' | 'title' | 'uri' | 'altText'
+            >
+          >;
+        }
+    >;
 type MenuItemType = Pick<HomeQuery, 'menuItems'>['menuItems'];
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -50,6 +109,7 @@ type Props = {
   menuItems?: MenuItemType;
 };
 export function Header(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let additionalMetaProps: { [key: string]: any } = {};
   if (props.seo?.metaKeywords) {
     additionalMetaProps.additionalMetaTags = [];
@@ -60,44 +120,49 @@ export function Header(props: Props) {
   }
   return (
     <>
-      {/* <Head> */}
       <NextSeo
-        defaultTitle={'Lanjutkoding.com - Yuk lanjut kodingnya!'}
-        title={`${props.siteTitle ?? props.title ?? 'Lanjutkoding.com'} - ${
-          props.siteDesc ?? 'Yuk lanjut kodingnya!'
+        defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
+        title={`${props.siteTitle || props.title || 'Lanjutkoding.com'} - ${
+          props.siteDesc || 'Yuk lanjut kodingnya!'
         }`}
         description={
-          props.seo?.metaDesc ?? props.siteDesc ?? 'Yuk lanjut kodingnya!'
+          props.seo?.metaDesc || props.siteDesc || 'Yuk lanjut kodingnya!'
         }
-        canonical={props.seo?.canonical ?? process.env.NEXT_PUBLIC_SITE_URL}
+        canonical={props.seo?.canonical || process.env.NEXT_PUBLIC_SITE_URL}
         openGraph={{
-          url: props.seo?.opengraphUrl ?? process.env.NEXT_PUBLIC_SITE_URL,
+          url: props.seo?.opengraphUrl || process.env.NEXT_PUBLIC_SITE_URL,
           title:
-            props.seo?.opengraphTitle ??
-            props.rootSeo?.openGraph?.frontPage?.title ??
-            props.siteTitle ??
+            props.seo?.opengraphTitle ||
+            props.rootSeo?.openGraph?.frontPage?.title ||
+            props.siteTitle ||
             'Lanjutkoding.com',
           description:
-            props.seo?.opengraphDescription ??
-            props.rootSeo?.openGraph?.frontPage?.description ??
+            props.seo?.opengraphDescription ||
+            props.rootSeo?.openGraph?.frontPage?.description ||
             'Yuk lanjut kodingnya!',
           images: [
             {
               url:
-                props.seo?.opengraphImage?.sourceUrl ??
-                props.rootSeo?.openGraph?.frontPage?.image?.uri ??
+                props.seo?.opengraphImage?.sourceUrl ||
+                props.rootSeo?.openGraph?.frontPage?.image?.uri ||
                 '/raycast-untitled-32.png',
               alt:
-                props.seo?.opengraphImage?.altText ??
-                props.rootSeo?.openGraph?.frontPage?.image?.altText ??
+                props.seo?.opengraphImage?.altText ||
+                props.rootSeo?.openGraph?.frontPage?.image?.altText ||
                 undefined,
             },
           ],
           site_name:
-            props.seo?.opengraphSiteName ??
-            props.rootSeo?.openGraph?.frontPage?.title ??
-            props.siteTitle ??
+            props.seo?.opengraphSiteName ||
+            props.rootSeo?.openGraph?.frontPage?.title ||
+            props.siteTitle ||
             'lanjutkoding.com',
+          type: props.seo?.opengraphType ?? undefined,
+          article: {
+            authors: [props.seo?.opengraphAuthor || 'Abdul Fattah Ikhsan'],
+            modifiedTime: props.seo?.opengraphModifiedTime ?? '',
+            publishedTime: props.seo?.opengraphPublishedTime ?? '',
+          },
         }}
         twitter={{
           site: props.rootSeo?.social?.twitter?.username ?? '@houseofcoder1',
@@ -114,15 +179,30 @@ export function Header(props: Props) {
         }
         {...additionalMetaProps}
       />
-      {/* <meta
-          name="robots"
-          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      {props.seo && (
+        <ArticleJsonLd
+          url={props.seo.opengraphUrl!}
+          title={props.seo.title!}
+          images={[props.seo.opengraphImage?.sourceUrl ?? '']}
+          datePublished={props.seo.opengraphPublishedTime ?? ''}
+          dateModified={props.seo.opengraphModifiedTime ?? ''}
+          authorName={[props.seo.opengraphAuthor || 'Abdul Fattah Ikhsan']}
+          publisherName={props.seo.opengraphPublisher || 'Abdul Fattah Ikhsan'}
+          publisherLogo={process.env.NEXT_PUBLIC_DEFAULT_GRAVATAR ?? ''}
+          description={
+            (props.seo.metaDesc || props.seo.opengraphDescription) ?? ''
+          }
         />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image:width" content="1040" />
-        <meta property="og:image:height" content="368" /> */}
-      {/* </Head> */}
+      )}
+      {props.seo && props.seo.breadcrumbs?.length && (
+        <BreadcrumbJsonLd
+          itemListElements={props.seo.breadcrumbs.map((breadcrumb, index) => ({
+            position: index + 1,
+            name: breadcrumb?.text ?? '',
+            item: breadcrumb?.url ?? '',
+          }))}
+        />
+      )}
       <div className="max-w-screen-xl flex flex-wrap justify-between items-baseline py-2 pl-3 mx-auto">
         <div className="font-bold text-lg">
           <Link href="/">
