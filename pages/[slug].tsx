@@ -26,6 +26,19 @@ export default function PostDetail({
   rootSeo,
   footer,
 }: Props) {
+  const url = encodeURI(post?.link ?? window.location.href);
+  const shareText = encodeURI(post!.title!);
+  const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;
+  const linkedInShareUrl =
+    'https://www.linkedin.com/shareArticle?mini=true&url=' +
+    url +
+    '&title=' +
+    shareText +
+    '&summary=' +
+    shareText +
+    '&source=' +
+    url;
   return (
     <>
       <Header
@@ -51,15 +64,30 @@ export default function PostDetail({
                 <div className="block">
                   <p className="text-left text-sm pb-2 ml-1">Bagikan: </p>
                   <div className="flex flex-wrap pb-4">
-                    <div className="bg-transparent px-2 pt-2 pb-2 cursor-pointer hover:bg-blue-200">
+                    <a
+                      href={facebookShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-transparent px-2 pt-2 pb-2 cursor-pointer hover:bg-blue-200"
+                    >
                       <FacebookIcon />
-                    </div>
-                    <div className="bg-transparent px-2 pt-2 pb-2 cursor-pointer hover:bg-blue-200">
+                    </a>
+                    <a
+                      href={twitterShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-transparent px-2 pt-2 pb-2 cursor-pointer hover:bg-blue-200"
+                    >
                       <TwitterIcon />
-                    </div>
-                    <div className="bg-transparent px-1 pt-2 pb-2 cursor-pointer hover:bg-blue-200">
+                    </a>
+                    <a
+                      href={linkedInShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-transparent px-1 pt-2 pb-2 cursor-pointer hover:bg-blue-200"
+                    >
                       <LinkedInIcon />
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
