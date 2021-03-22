@@ -5363,6 +5363,53 @@ export type FullWidthTemplate = ContentTemplate & {
   templateName: Maybe<Scalars['String']>;
 };
 
+export type RootSeoFragmentFragment = (
+  { __typename?: 'RootQuery' }
+  & { seo: Maybe<(
+    { __typename?: 'SEOConfig' }
+    & { openGraph: Maybe<(
+      { __typename?: 'SEOOpenGraph' }
+      & { defaultImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+      )>, frontPage: Maybe<(
+        { __typename?: 'SEOOpenGraphFrontPage' }
+        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
+        & { image: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'uri' | 'altText'>
+        )> }
+      )> }
+    )>, webmaster: Maybe<(
+      { __typename?: 'SEOWebmaster' }
+      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
+    )>, social: Maybe<(
+      { __typename?: 'SEOSocial' }
+      & { facebook: Maybe<(
+        { __typename?: 'SEOSocialFacebook' }
+        & Pick<SeoSocialFacebook, 'url'>
+      )>, instagram: Maybe<(
+        { __typename?: 'SEOSocialInstagram' }
+        & Pick<SeoSocialInstagram, 'url'>
+      )>, twitter: Maybe<(
+        { __typename?: 'SEOSocialTwitter' }
+        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
+      )> }
+    )>, schema: Maybe<(
+      { __typename?: 'SEOSchema' }
+      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
+      & { logo: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'height' | 'width'>
+        )> }
+      )> }
+    )> }
+  )> }
+);
+
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5417,49 +5464,8 @@ export type HomeQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
-  )>, seo: Maybe<(
-    { __typename?: 'SEOConfig' }
-    & { openGraph: Maybe<(
-      { __typename?: 'SEOOpenGraph' }
-      & { defaultImage: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
-      )>, frontPage: Maybe<(
-        { __typename?: 'SEOOpenGraphFrontPage' }
-        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
-        & { image: Maybe<(
-          { __typename?: 'MediaItem' }
-          & Pick<MediaItem, 'uri' | 'altText'>
-        )> }
-      )> }
-    )>, webmaster: Maybe<(
-      { __typename?: 'SEOWebmaster' }
-      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
-    )>, social: Maybe<(
-      { __typename?: 'SEOSocial' }
-      & { facebook: Maybe<(
-        { __typename?: 'SEOSocialFacebook' }
-        & Pick<SeoSocialFacebook, 'url'>
-      )>, instagram: Maybe<(
-        { __typename?: 'SEOSocialInstagram' }
-        & Pick<SeoSocialInstagram, 'url'>
-      )>, twitter: Maybe<(
-        { __typename?: 'SEOSocialTwitter' }
-        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
-      )> }
-    )>, schema: Maybe<(
-      { __typename?: 'SEOSchema' }
-      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
-      & { logo: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
-        & { mediaDetails: Maybe<(
-          { __typename?: 'MediaDetails' }
-          & Pick<MediaDetails, 'height' | 'width'>
-        )> }
-      )> }
-    )> }
   )> }
+  & RootSeoFragmentFragment
 );
 
 export type PostDetailQueryVariables = Exact<{
@@ -5521,49 +5527,8 @@ export type PostDetailQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
-  )>, seo: Maybe<(
-    { __typename?: 'SEOConfig' }
-    & { openGraph: Maybe<(
-      { __typename?: 'SEOOpenGraph' }
-      & { defaultImage: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
-      )>, frontPage: Maybe<(
-        { __typename?: 'SEOOpenGraphFrontPage' }
-        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
-        & { image: Maybe<(
-          { __typename?: 'MediaItem' }
-          & Pick<MediaItem, 'uri' | 'altText'>
-        )> }
-      )> }
-    )>, webmaster: Maybe<(
-      { __typename?: 'SEOWebmaster' }
-      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
-    )>, social: Maybe<(
-      { __typename?: 'SEOSocial' }
-      & { facebook: Maybe<(
-        { __typename?: 'SEOSocialFacebook' }
-        & Pick<SeoSocialFacebook, 'url'>
-      )>, instagram: Maybe<(
-        { __typename?: 'SEOSocialInstagram' }
-        & Pick<SeoSocialInstagram, 'url'>
-      )>, twitter: Maybe<(
-        { __typename?: 'SEOSocialTwitter' }
-        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
-      )> }
-    )>, schema: Maybe<(
-      { __typename?: 'SEOSchema' }
-      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
-      & { logo: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
-        & { mediaDetails: Maybe<(
-          { __typename?: 'MediaDetails' }
-          & Pick<MediaDetails, 'height' | 'width'>
-        )> }
-      )> }
-    )> }
   )> }
+  & RootSeoFragmentFragment
 );
 
 export type PostSlugsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -5665,49 +5630,8 @@ export type CategoryDetailQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
-  )>, seo: Maybe<(
-    { __typename?: 'SEOConfig' }
-    & { openGraph: Maybe<(
-      { __typename?: 'SEOOpenGraph' }
-      & { defaultImage: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
-      )>, frontPage: Maybe<(
-        { __typename?: 'SEOOpenGraphFrontPage' }
-        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
-        & { image: Maybe<(
-          { __typename?: 'MediaItem' }
-          & Pick<MediaItem, 'uri' | 'altText'>
-        )> }
-      )> }
-    )>, webmaster: Maybe<(
-      { __typename?: 'SEOWebmaster' }
-      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
-    )>, social: Maybe<(
-      { __typename?: 'SEOSocial' }
-      & { facebook: Maybe<(
-        { __typename?: 'SEOSocialFacebook' }
-        & Pick<SeoSocialFacebook, 'url'>
-      )>, instagram: Maybe<(
-        { __typename?: 'SEOSocialInstagram' }
-        & Pick<SeoSocialInstagram, 'url'>
-      )>, twitter: Maybe<(
-        { __typename?: 'SEOSocialTwitter' }
-        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
-      )> }
-    )>, schema: Maybe<(
-      { __typename?: 'SEOSchema' }
-      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
-      & { logo: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
-        & { mediaDetails: Maybe<(
-          { __typename?: 'MediaDetails' }
-          & Pick<MediaDetails, 'height' | 'width'>
-        )> }
-      )> }
-    )> }
   )> }
+  & RootSeoFragmentFragment
 );
 
 export type AboutQueryVariables = Exact<{ [key: string]: never; }>;
@@ -5748,105 +5672,12 @@ export type AboutQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
-  )>, seo: Maybe<(
-    { __typename?: 'SEOConfig' }
-    & { openGraph: Maybe<(
-      { __typename?: 'SEOOpenGraph' }
-      & { defaultImage: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
-      )>, frontPage: Maybe<(
-        { __typename?: 'SEOOpenGraphFrontPage' }
-        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
-        & { image: Maybe<(
-          { __typename?: 'MediaItem' }
-          & Pick<MediaItem, 'uri' | 'altText'>
-        )> }
-      )> }
-    )>, webmaster: Maybe<(
-      { __typename?: 'SEOWebmaster' }
-      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
-    )>, social: Maybe<(
-      { __typename?: 'SEOSocial' }
-      & { facebook: Maybe<(
-        { __typename?: 'SEOSocialFacebook' }
-        & Pick<SeoSocialFacebook, 'url'>
-      )>, instagram: Maybe<(
-        { __typename?: 'SEOSocialInstagram' }
-        & Pick<SeoSocialInstagram, 'url'>
-      )>, twitter: Maybe<(
-        { __typename?: 'SEOSocialTwitter' }
-        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
-      )> }
-    )>, schema: Maybe<(
-      { __typename?: 'SEOSchema' }
-      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
-      & { logo: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
-        & { mediaDetails: Maybe<(
-          { __typename?: 'MediaDetails' }
-          & Pick<MediaDetails, 'height' | 'width'>
-        )> }
-      )> }
-    )> }
   )> }
+  & RootSeoFragmentFragment
 );
 
-
-export const HomeDocument = gql`
-    query Home {
-  posts {
-    edges {
-      cursor
-      node {
-        slug
-        title
-        date
-        uri
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-          }
-        }
-        author {
-          node {
-            slug
-            name
-            avatar {
-              url
-            }
-          }
-        }
-        tags {
-          nodes {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-  getHeader {
-    siteTitle
-    siteLogoUrl
-    siteTagLine
-  }
-  getFooter {
-    copyrightText
-    socialLinks {
-      iconName
-      iconUrl
-    }
-  }
-  menuItems {
-    nodes {
-      id
-      label
-      path
-    }
-  }
+export const RootSeoFragmentFragmentDoc = gql`
+    fragment RootSEOFragment on RootQuery {
   seo {
     openGraph {
       defaultImage {
@@ -5914,6 +5745,62 @@ export const HomeDocument = gql`
   }
 }
     `;
+export const HomeDocument = gql`
+    query Home {
+  posts {
+    edges {
+      cursor
+      node {
+        slug
+        title
+        date
+        uri
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        author {
+          node {
+            slug
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+  getHeader {
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
+  ...RootSEOFragment
+}
+    ${RootSeoFragmentFragmentDoc}`;
 export type HomeQueryResult = Apollo.QueryResult<HomeQuery, HomeQueryVariables>;
 export const PostDetailDocument = gql`
     query PostDetail($slug: ID!) {
@@ -5998,73 +5885,9 @@ export const PostDetailDocument = gql`
       path
     }
   }
-  seo {
-    openGraph {
-      defaultImage {
-        altText
-        title
-        uri
-      }
-      frontPage {
-        description
-        title
-        image {
-          uri
-          altText
-        }
-      }
-    }
-    webmaster {
-      baiduVerify
-      googleVerify
-      msVerify
-      yandexVerify
-    }
-    social {
-      facebook {
-        url
-      }
-      instagram {
-        url
-      }
-      twitter {
-        username
-        cardType
-      }
-    }
-    schema {
-      siteName
-      siteUrl
-      wordpressSiteName
-      personName
-      companyOrPerson
-      companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
-      inLanguage
-    }
-  }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type PostDetailQueryResult = Apollo.QueryResult<PostDetailQuery, PostDetailQueryVariables>;
 export const PostSlugsDocument = gql`
     query PostSlugs {
@@ -6174,73 +5997,9 @@ export const CategoryDetailDocument = gql`
       path
     }
   }
-  seo {
-    openGraph {
-      defaultImage {
-        altText
-        title
-        uri
-      }
-      frontPage {
-        description
-        title
-        image {
-          uri
-          altText
-        }
-      }
-    }
-    webmaster {
-      baiduVerify
-      googleVerify
-      msVerify
-      yandexVerify
-    }
-    social {
-      facebook {
-        url
-      }
-      instagram {
-        url
-      }
-      twitter {
-        username
-        cardType
-      }
-    }
-    schema {
-      siteName
-      siteUrl
-      wordpressSiteName
-      personName
-      companyOrPerson
-      companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
-      inLanguage
-    }
-  }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type CategoryDetailQueryResult = Apollo.QueryResult<CategoryDetailQuery, CategoryDetailQueryVariables>;
 export const AboutDocument = gql`
     query About {
@@ -6302,71 +6061,7 @@ export const AboutDocument = gql`
       path
     }
   }
-  seo {
-    openGraph {
-      defaultImage {
-        altText
-        title
-        uri
-      }
-      frontPage {
-        description
-        title
-        image {
-          uri
-          altText
-        }
-      }
-    }
-    webmaster {
-      baiduVerify
-      googleVerify
-      msVerify
-      yandexVerify
-    }
-    social {
-      facebook {
-        url
-      }
-      instagram {
-        url
-      }
-      twitter {
-        username
-        cardType
-      }
-    }
-    schema {
-      siteName
-      siteUrl
-      wordpressSiteName
-      personName
-      companyOrPerson
-      companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
-      inLanguage
-    }
-  }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type AboutQueryResult = Apollo.QueryResult<AboutQuery, AboutQueryVariables>;

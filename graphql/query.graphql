@@ -1,55 +1,4 @@
-query Home {
-  posts {
-    edges {
-      cursor
-      node {
-        slug
-        title
-        date
-        uri
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-          }
-        }
-        author {
-          node {
-            slug
-            name
-            avatar {
-              url
-            }
-          }
-        }
-        tags {
-          nodes {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-  getHeader {
-    siteTitle
-    siteLogoUrl
-    siteTagLine
-  }
-  getFooter {
-    copyrightText
-    socialLinks {
-      iconName
-      iconUrl
-    }
-  }
-  menuItems {
-    nodes {
-      id
-      label
-      path
-    }
-  }
+fragment RootSEOFragment on RootQuery {
   seo {
     openGraph {
       defaultImage {
@@ -115,6 +64,61 @@ query Home {
       inLanguage
     }
   }
+}
+
+query Home {
+  posts {
+    edges {
+      cursor
+      node {
+        slug
+        title
+        date
+        uri
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        author {
+          node {
+            slug
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+  getHeader {
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
+  ...RootSEOFragment
 }
 
 query PostDetail($slug: ID!) {
@@ -199,71 +203,7 @@ query PostDetail($slug: ID!) {
       path
     }
   }
-  seo {
-    openGraph {
-      defaultImage {
-        altText
-        title
-        uri
-      }
-      frontPage {
-        description
-        title
-        image {
-          uri
-          altText
-        }
-      }
-    }
-    webmaster {
-      baiduVerify
-      googleVerify
-      msVerify
-      yandexVerify
-    }
-    social {
-      facebook {
-        url
-      }
-      instagram {
-        url
-      }
-      twitter {
-        username
-        cardType
-      }
-    }
-    schema {
-      siteName
-      siteUrl
-      wordpressSiteName
-      personName
-      companyOrPerson
-      companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
-      inLanguage
-    }
-  }
+  ...RootSEOFragment
 }
 
 query PostSlugs {
@@ -369,71 +309,7 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
       path
     }
   }
-  seo {
-    openGraph {
-      defaultImage {
-        altText
-        title
-        uri
-      }
-      frontPage {
-        description
-        title
-        image {
-          uri
-          altText
-        }
-      }
-    }
-    webmaster {
-      baiduVerify
-      googleVerify
-      msVerify
-      yandexVerify
-    }
-    social {
-      facebook {
-        url
-      }
-      instagram {
-        url
-      }
-      twitter {
-        username
-        cardType
-      }
-    }
-    schema {
-      siteName
-      siteUrl
-      wordpressSiteName
-      personName
-      companyOrPerson
-      companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
-      inLanguage
-    }
-  }
+  ...RootSEOFragment
 }
 
 query About {
@@ -495,69 +371,5 @@ query About {
       path
     }
   }
-  seo {
-    openGraph {
-      defaultImage {
-        altText
-        title
-        uri
-      }
-      frontPage {
-        description
-        title
-        image {
-          uri
-          altText
-        }
-      }
-    }
-    webmaster {
-      baiduVerify
-      googleVerify
-      msVerify
-      yandexVerify
-    }
-    social {
-      facebook {
-        url
-      }
-      instagram {
-        url
-      }
-      twitter {
-        username
-        cardType
-      }
-    }
-    schema {
-      siteName
-      siteUrl
-      wordpressSiteName
-      personName
-      companyOrPerson
-      companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
-      inLanguage
-    }
-  }
+  ...RootSEOFragment
 }

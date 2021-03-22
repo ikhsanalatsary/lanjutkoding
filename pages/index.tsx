@@ -19,8 +19,9 @@ export default function Home({ posts, header, menuItems, seo }: Props) {
       />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
-          Lanjutkoding.com
+          {header?.siteTitle}
         </h1>
+        <h2 className="text-2xl text-gray-600 mt-1">{header?.siteTagLine}</h2>
       </header>
       <div className="flex flex-wrap -mx-1 lg:-mx-4 py-8">
         {posts!.edges!.map((post) => {
@@ -34,11 +35,14 @@ export default function Home({ posts, header, menuItems, seo }: Props) {
                   <a>
                     <Image
                       alt={
-                        post!.node!.featuredImage!.node!.altText ??
+                        post?.node?.featuredImage?.node?.altText ??
                         post!.node!.title!
                       }
                       className="block h-auto w-full"
-                      src={post!.node!.featuredImage!.node!.sourceUrl!}
+                      src={
+                        post?.node?.featuredImage?.node?.sourceUrl ??
+                        seo!.openGraph!.defaultImage!.uri!
+                      }
                       width={600}
                       height={400}
                     />
@@ -47,7 +51,7 @@ export default function Home({ posts, header, menuItems, seo }: Props) {
 
                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                   <h1 className="text-lg">
-                    <Link href={`/blog/${post!.node!.slug!}`}>
+                    <Link href={post!.node!.uri}>
                       <a className="no-underline hover:underline text-black">
                         {post!.node!.title}
                       </a>

@@ -14,21 +14,21 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
  * @return {ApolloClient<import('@apollo/client').NormalizedCacheObject>} instance of ApolloClient NormalizedCacheObject
  */
 function createApolloClient(): ApolloClient<NormalizedCacheObject> {
-  let cacheOptions = {
-    typePolicies: {
-      studentToCourseEventsConnection: {
-        merge(existing = {}, incoming) {
-          return { ...existing, ...incoming };
-        },
-      },
-    },
-  };
   return new ApolloClient({
     ssrMode: true, // set to true for SSR
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_URI,
     }),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        RootQuery: {
+          queryType: true,
+        },
+        RootMutation: {
+          mutationType: true,
+        },
+      },
+    }),
   });
 }
 
