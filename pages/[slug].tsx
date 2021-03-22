@@ -21,6 +21,7 @@ export default function PostDetail({
   categories,
   header,
   menuItems,
+  rootSeo,
 }: Props) {
   return (
     <>
@@ -30,6 +31,7 @@ export default function PostDetail({
         logo={header?.siteLogoUrl}
         menuItems={menuItems}
         seo={post?.seo}
+        rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">{post!.title}</h1>
@@ -126,7 +128,7 @@ export default function PostDetail({
                         key={category!.id}
                         className="py-4 border-b border-gray-400 last:border-none"
                       >
-                        <Link href={`/category/${category!.slug!}`}>
+                        <Link href={category!.uri}>
                           <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
                             {category!.name!}
                           </a>
@@ -175,6 +177,7 @@ export const getStaticProps = async (
       categories: result.data.categories,
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
+      rootSeo: result.data.seo,
     },
   };
 };

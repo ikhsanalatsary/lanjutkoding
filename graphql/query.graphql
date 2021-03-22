@@ -6,6 +6,7 @@ query Home {
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -83,6 +84,36 @@ query Home {
         cardType
       }
     }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
+    }
   }
 }
 
@@ -146,6 +177,7 @@ query PostDetail($slug: ID!) {
       id
       slug
       name
+      uri
     }
   }
   getHeader {
@@ -165,6 +197,71 @@ query PostDetail($slug: ID!) {
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
     }
   }
 }
@@ -228,6 +325,7 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -269,6 +367,71 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
     }
   }
 }
@@ -330,6 +493,71 @@ query About {
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
     }
   }
 }

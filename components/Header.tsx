@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArticleJsonLd, BreadcrumbJsonLd, NextSeo } from 'next-seo';
+import {
+  ArticleJsonLd,
+  BreadcrumbJsonLd,
+  NextSeo,
+  SiteLinksSearchBoxJsonLd,
+  SocialProfileJsonLd,
+} from 'next-seo';
 import {
   HomeQuery,
   Maybe,
@@ -9,6 +15,7 @@ import {
   SeoPostTypeBreadcrumbs,
   TaxonomySeo,
 } from '../lib/graphql';
+import React from 'react';
 
 type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
 type SeoType =
@@ -163,6 +170,8 @@ export function Header(props: Props) {
             modifiedTime: props.seo?.opengraphModifiedTime ?? '',
             publishedTime: props.seo?.opengraphPublishedTime ?? '',
           },
+          locale:
+            props.rootSeo?.schema?.inLanguage ?? process.env.NEXT_PUBLIC_LOCALE,
         }}
         twitter={{
           site: props.rootSeo?.social?.twitter?.username ?? '@houseofcoder1',
@@ -201,6 +210,44 @@ export function Header(props: Props) {
             name: breadcrumb?.text ?? '',
             item: breadcrumb?.url ?? '',
           }))}
+        />
+      )}
+      {props.rootSeo && (
+        <SiteLinksSearchBoxJsonLd
+          url={'https://' + props.siteTitle?.toLowerCase()}
+          potentialActions={[
+            {
+              target: 'https://' + props.siteTitle?.toLowerCase() + '/search?q',
+              queryInput: 'search_term_string',
+            },
+          ]}
+        />
+      )}
+      {props.rootSeo?.schema && (
+        <SocialProfileJsonLd
+          type={
+            props.rootSeo.schema.companyOrPerson &&
+            props.rootSeo.schema.companyOrPerson === 'company'
+              ? 'Organization'
+              : 'Person'
+          }
+          name={
+            props.rootSeo.schema.companyOrPerson &&
+            props.rootSeo.schema.companyOrPerson === 'company'
+              ? props.rootSeo.schema.companyName ?? ''
+              : props.rootSeo.schema.personName ?? ''
+          }
+          url={
+            props.rootSeo.schema.siteUrl &&
+            props.rootSeo.schema.siteUrl.includes('yuk')
+              ? props.rootSeo.schema.siteUrl.replace(/yuk./, '')
+              : (process.env.NEXT_PUBLIC_SITE_URL as string)
+          }
+          sameAs={[
+            props.rootSeo.social!.facebook!.url!,
+            props.rootSeo.social!.instagram!.url!,
+            'https://twitter.com/' + props.rootSeo.social!.twitter!.username!,
+          ]}
         />
       )}
       <div className="max-w-screen-xl flex flex-wrap justify-between items-baseline py-2 pl-3 mx-auto">

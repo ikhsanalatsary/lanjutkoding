@@ -21,6 +21,7 @@ export default function CategoryList({
   category,
   header,
   menuItems,
+  rootSeo,
 }: Props) {
   return (
     <>
@@ -31,6 +32,7 @@ export default function CategoryList({
         logo={header?.siteLogoUrl}
         menuItems={menuItems}
         seo={category?.seo}
+        rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
@@ -45,7 +47,7 @@ export default function CategoryList({
               key={post!.cursor}
             >
               <article className="overflow-hidden rounded-lg shadow-lg bg-white">
-                <Link href={`/${post!.node!.slug!}`}>
+                <Link href={post!.node!.uri}>
                   <a>
                     <Image
                       alt={
@@ -151,6 +153,7 @@ export const getStaticProps = async (
       category: result.data.category,
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
+      rootSeo: result.data.seo,
     },
     revalidate: 1,
   };

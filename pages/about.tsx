@@ -4,7 +4,7 @@ import { AboutDocument, AboutQuery } from '../lib/graphql';
 import { Header } from '../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function About({ about, header, menuItems }: Props) {
+export default function About({ about, header, menuItems, rootSeo }: Props) {
   return (
     <>
       <Header
@@ -13,6 +13,7 @@ export default function About({ about, header, menuItems }: Props) {
         logo={header?.siteLogoUrl}
         menuItems={menuItems}
         seo={about?.seo}
+        rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">{about!.title}</h1>
@@ -93,6 +94,7 @@ export const getStaticProps = async () => {
       about: result.data.pages!.nodes![0],
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
+      rootSeo: result.data.seo,
     },
   };
 };

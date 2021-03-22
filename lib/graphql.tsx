@@ -5375,7 +5375,7 @@ export type HomeQuery = (
       & Pick<RootQueryToPostConnectionEdge, 'cursor'>
       & { node: Maybe<(
         { __typename?: 'Post' }
-        & Pick<Post, 'slug' | 'title' | 'date'>
+        & Pick<Post, 'slug' | 'title' | 'date' | 'uri'>
         & { featuredImage: Maybe<(
           { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge' }
           & { node: Maybe<(
@@ -5447,6 +5447,17 @@ export type HomeQuery = (
         { __typename?: 'SEOSocialTwitter' }
         & Pick<SeoSocialTwitter, 'username' | 'cardType'>
       )> }
+    )>, schema: Maybe<(
+      { __typename?: 'SEOSchema' }
+      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
+      & { logo: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'height' | 'width'>
+        )> }
+      )> }
     )> }
   )> }
 );
@@ -5492,7 +5503,7 @@ export type PostDetailQuery = (
     { __typename?: 'RootQueryToCategoryConnection' }
     & { nodes: Maybe<Array<Maybe<(
       { __typename?: 'Category' }
-      & Pick<Category, 'id' | 'slug' | 'name'>
+      & Pick<Category, 'id' | 'slug' | 'name' | 'uri'>
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
@@ -5510,6 +5521,48 @@ export type PostDetailQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
+  )>, seo: Maybe<(
+    { __typename?: 'SEOConfig' }
+    & { openGraph: Maybe<(
+      { __typename?: 'SEOOpenGraph' }
+      & { defaultImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+      )>, frontPage: Maybe<(
+        { __typename?: 'SEOOpenGraphFrontPage' }
+        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
+        & { image: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'uri' | 'altText'>
+        )> }
+      )> }
+    )>, webmaster: Maybe<(
+      { __typename?: 'SEOWebmaster' }
+      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
+    )>, social: Maybe<(
+      { __typename?: 'SEOSocial' }
+      & { facebook: Maybe<(
+        { __typename?: 'SEOSocialFacebook' }
+        & Pick<SeoSocialFacebook, 'url'>
+      )>, instagram: Maybe<(
+        { __typename?: 'SEOSocialInstagram' }
+        & Pick<SeoSocialInstagram, 'url'>
+      )>, twitter: Maybe<(
+        { __typename?: 'SEOSocialTwitter' }
+        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
+      )> }
+    )>, schema: Maybe<(
+      { __typename?: 'SEOSchema' }
+      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
+      & { logo: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'height' | 'width'>
+        )> }
+      )> }
+    )> }
   )> }
 );
 
@@ -5570,7 +5623,7 @@ export type CategoryDetailQuery = (
       & Pick<RootQueryToPostConnectionEdge, 'cursor'>
       & { node: Maybe<(
         { __typename?: 'Post' }
-        & Pick<Post, 'slug' | 'title' | 'date'>
+        & Pick<Post, 'slug' | 'title' | 'date' | 'uri'>
         & { featuredImage: Maybe<(
           { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge' }
           & { node: Maybe<(
@@ -5612,6 +5665,48 @@ export type CategoryDetailQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
+  )>, seo: Maybe<(
+    { __typename?: 'SEOConfig' }
+    & { openGraph: Maybe<(
+      { __typename?: 'SEOOpenGraph' }
+      & { defaultImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+      )>, frontPage: Maybe<(
+        { __typename?: 'SEOOpenGraphFrontPage' }
+        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
+        & { image: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'uri' | 'altText'>
+        )> }
+      )> }
+    )>, webmaster: Maybe<(
+      { __typename?: 'SEOWebmaster' }
+      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
+    )>, social: Maybe<(
+      { __typename?: 'SEOSocial' }
+      & { facebook: Maybe<(
+        { __typename?: 'SEOSocialFacebook' }
+        & Pick<SeoSocialFacebook, 'url'>
+      )>, instagram: Maybe<(
+        { __typename?: 'SEOSocialInstagram' }
+        & Pick<SeoSocialInstagram, 'url'>
+      )>, twitter: Maybe<(
+        { __typename?: 'SEOSocialTwitter' }
+        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
+      )> }
+    )>, schema: Maybe<(
+      { __typename?: 'SEOSchema' }
+      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
+      & { logo: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'height' | 'width'>
+        )> }
+      )> }
+    )> }
   )> }
 );
 
@@ -5653,6 +5748,48 @@ export type AboutQuery = (
       { __typename?: 'MenuItem' }
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
+  )>, seo: Maybe<(
+    { __typename?: 'SEOConfig' }
+    & { openGraph: Maybe<(
+      { __typename?: 'SEOOpenGraph' }
+      & { defaultImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+      )>, frontPage: Maybe<(
+        { __typename?: 'SEOOpenGraphFrontPage' }
+        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
+        & { image: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'uri' | 'altText'>
+        )> }
+      )> }
+    )>, webmaster: Maybe<(
+      { __typename?: 'SEOWebmaster' }
+      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
+    )>, social: Maybe<(
+      { __typename?: 'SEOSocial' }
+      & { facebook: Maybe<(
+        { __typename?: 'SEOSocialFacebook' }
+        & Pick<SeoSocialFacebook, 'url'>
+      )>, instagram: Maybe<(
+        { __typename?: 'SEOSocialInstagram' }
+        & Pick<SeoSocialInstagram, 'url'>
+      )>, twitter: Maybe<(
+        { __typename?: 'SEOSocialTwitter' }
+        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
+      )> }
+    )>, schema: Maybe<(
+      { __typename?: 'SEOSchema' }
+      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
+      & { logo: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'height' | 'width'>
+        )> }
+      )> }
+    )> }
   )> }
 );
 
@@ -5666,6 +5803,7 @@ export const HomeDocument = gql`
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -5743,6 +5881,36 @@ export const HomeDocument = gql`
         cardType
       }
     }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
+    }
   }
 }
     `;
@@ -5808,6 +5976,7 @@ export const PostDetailDocument = gql`
       id
       slug
       name
+      uri
     }
   }
   getHeader {
@@ -5827,6 +5996,71 @@ export const PostDetailDocument = gql`
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
     }
   }
 }
@@ -5896,6 +6130,7 @@ export const CategoryDetailDocument = gql`
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -5937,6 +6172,71 @@ export const CategoryDetailDocument = gql`
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
     }
   }
 }
@@ -6000,6 +6300,71 @@ export const AboutDocument = gql`
       id
       label
       path
+    }
+  }
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
     }
   }
 }

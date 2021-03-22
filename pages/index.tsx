@@ -30,7 +30,7 @@ export default function Home({ posts, header, menuItems, seo }: Props) {
               key={post!.cursor}
             >
               <article className="overflow-hidden rounded-lg shadow-lg bg-white">
-                <Link href={`/${post!.node!.slug!}`}>
+                <Link href={post!.node!.uri}>
                   <a>
                     <Image
                       alt={
