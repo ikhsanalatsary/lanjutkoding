@@ -1,28 +1,255 @@
 import Link from 'next/link';
-import Head from 'next/head';
 import Image from 'next/image';
-import { Maybe, MenuItem } from '../lib/graphql';
+import {
+  ArticleJsonLd,
+  BreadcrumbJsonLd,
+  NextSeo,
+  SiteLinksSearchBoxJsonLd,
+  SocialProfileJsonLd,
+} from 'next-seo';
+import {
+  HomeQuery,
+  Maybe,
+  MediaItem,
+  PostTypeSeo,
+  SeoPostTypeBreadcrumbs,
+  TaxonomySeo,
+} from '../lib/graphql';
+import React from 'react';
+
+type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
+type SeoType =
+  | Maybe<
+      { __typename?: 'PostTypeSEO' } & Pick<
+        PostTypeSeo,
+        | 'canonical'
+        | 'metaKeywords'
+        | 'metaDesc'
+        | 'metaRobotsNoindex'
+        | 'metaRobotsNofollow'
+        | 'opengraphAuthor'
+        | 'opengraphDescription'
+        | 'opengraphModifiedTime'
+        | 'opengraphPublishedTime'
+        | 'opengraphPublisher'
+        | 'opengraphSiteName'
+        | 'opengraphTitle'
+        | 'opengraphType'
+        | 'opengraphUrl'
+        | 'readingTime'
+        | 'schemaDetails'
+        | 'title'
+        | 'twitterDescription'
+        | 'twitterTitle'
+        | 'focuskw'
+        | 'cornerstone'
+      > & {
+          breadcrumbs: Maybe<
+            Array<
+              Maybe<
+                { __typename?: 'SEOPostTypeBreadcrumbs' } & Pick<
+                  SeoPostTypeBreadcrumbs,
+                  'text' | 'url'
+                >
+              >
+            >
+          >;
+          opengraphImage: Maybe<
+            { __typename?: 'MediaItem' } & Pick<
+              MediaItem,
+              'sourceUrl' | 'title' | 'uri' | 'altText'
+            >
+          >;
+        }
+    >
+  | Maybe<
+      { __typename?: 'TaxonomySEO' } & Pick<
+        TaxonomySeo,
+        | 'canonical'
+        | 'cornerstone'
+        | 'focuskw'
+        | 'metaDesc'
+        | 'metaRobotsNofollow'
+        | 'metaKeywords'
+        | 'metaRobotsNoindex'
+        | 'opengraphAuthor'
+        | 'opengraphDescription'
+        | 'opengraphModifiedTime'
+        | 'opengraphPublishedTime'
+        | 'opengraphPublisher'
+        | 'opengraphSiteName'
+        | 'opengraphTitle'
+        | 'opengraphType'
+        | 'opengraphUrl'
+        | 'title'
+        | 'twitterDescription'
+        | 'twitterTitle'
+      > & {
+          breadcrumbs: Maybe<
+            Array<
+              Maybe<
+                { __typename?: 'SEOPostTypeBreadcrumbs' } & Pick<
+                  SeoPostTypeBreadcrumbs,
+                  'text' | 'url'
+                >
+              >
+            >
+          >;
+          opengraphImage: Maybe<
+            { __typename?: 'MediaItem' } & Pick<
+              MediaItem,
+              'sourceUrl' | 'title' | 'uri' | 'altText'
+            >
+          >;
+        }
+    >;
+type MenuItemType = Pick<HomeQuery, 'menuItems'>['menuItems'];
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
   siteTitle?: Maybe<string>;
+  rootSeo?: RootSeoType;
+  seo?: SeoType;
   title?: Maybe<string>;
   logo?: Maybe<string>;
-  menuItems?: Maybe<
-    Array<
-      Maybe<
-        { __typename?: 'MenuItem' } & Pick<MenuItem, 'id' | 'label' | 'path'>
-      >
-    >
-  >;
+  siteDesc?: Maybe<string>;
+  menuItems?: MenuItemType;
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Header(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let additionalMetaProps: { [key: string]: any } = {};
+  if (props.seo?.metaKeywords) {
+    additionalMetaProps.additionalMetaTags = [];
+    additionalMetaProps.additionalMetaTags.push({
+      name: 'keywords',
+      content: props.seo?.metaKeywords,
+    });
+  }
   return (
     <>
-      <Head>
-        <title>{props.siteTitle ?? props.title ?? 'Lanjutkoding.com'}</title>
-      </Head>
+      <NextSeo
+        defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
+        title={`${props.siteTitle || props.title || 'Lanjutkoding.com'} - ${
+          props.siteDesc || 'Yuk lanjut kodingnya!'
+        }`}
+        description={
+          props.seo?.metaDesc || props.siteDesc || 'Yuk lanjut kodingnya!'
+        }
+        canonical={props.seo?.canonical || process.env.NEXT_PUBLIC_SITE_URL}
+        openGraph={{
+          url: props.seo?.opengraphUrl || process.env.NEXT_PUBLIC_SITE_URL,
+          title:
+            props.seo?.opengraphTitle ||
+            props.rootSeo?.openGraph?.frontPage?.title ||
+            props.siteTitle ||
+            'Lanjutkoding.com',
+          description:
+            props.seo?.opengraphDescription ||
+            props.rootSeo?.openGraph?.frontPage?.description ||
+            'Yuk lanjut kodingnya!',
+          images: [
+            {
+              url:
+                props.seo?.opengraphImage?.sourceUrl ||
+                props.rootSeo?.openGraph?.frontPage?.image?.uri ||
+                '/raycast-untitled-32.png',
+              alt:
+                props.seo?.opengraphImage?.altText ||
+                props.rootSeo?.openGraph?.frontPage?.image?.altText ||
+                undefined,
+            },
+          ],
+          site_name:
+            props.seo?.opengraphSiteName ||
+            props.rootSeo?.openGraph?.frontPage?.title ||
+            props.siteTitle ||
+            'lanjutkoding.com',
+          type: props.seo?.opengraphType ?? undefined,
+          article: {
+            authors: [props.seo?.opengraphAuthor || 'Abdul Fattah Ikhsan'],
+            modifiedTime: props.seo?.opengraphModifiedTime ?? '',
+            publishedTime: props.seo?.opengraphPublishedTime ?? '',
+          },
+          locale:
+            props.rootSeo?.schema?.inLanguage ?? process.env.NEXT_PUBLIC_LOCALE,
+        }}
+        twitter={{
+          site: props.rootSeo?.social?.twitter?.username ?? '@houseofcoder1',
+          cardType:
+            props.rootSeo?.social?.twitter?.cardType ?? 'summary_large_image',
+        }}
+        nofollow={
+          props.seo?.metaRobotsNofollow != null &&
+          props.seo?.metaRobotsNofollow !== 'follow'
+        }
+        noindex={
+          props.seo?.metaRobotsNoindex != null &&
+          props.seo.metaRobotsNoindex !== 'index'
+        }
+        {...additionalMetaProps}
+      />
+      {props.seo && (
+        <ArticleJsonLd
+          url={props.seo.opengraphUrl!}
+          title={props.seo.title!}
+          images={[props.seo.opengraphImage?.sourceUrl ?? '']}
+          datePublished={props.seo.opengraphPublishedTime ?? ''}
+          dateModified={props.seo.opengraphModifiedTime ?? ''}
+          authorName={[props.seo.opengraphAuthor || 'Abdul Fattah Ikhsan']}
+          publisherName={props.seo.opengraphPublisher || 'Abdul Fattah Ikhsan'}
+          publisherLogo={process.env.NEXT_PUBLIC_DEFAULT_GRAVATAR ?? ''}
+          description={
+            (props.seo.metaDesc || props.seo.opengraphDescription) ?? ''
+          }
+        />
+      )}
+      {props.seo && props.seo.breadcrumbs?.length && (
+        <BreadcrumbJsonLd
+          itemListElements={props.seo.breadcrumbs.map((breadcrumb, index) => ({
+            position: index + 1,
+            name: breadcrumb?.text ?? '',
+            item: breadcrumb?.url ?? '',
+          }))}
+        />
+      )}
+      {props.rootSeo && (
+        <SiteLinksSearchBoxJsonLd
+          url={'https://' + props.siteTitle?.toLowerCase()}
+          potentialActions={[
+            {
+              target: 'https://' + props.siteTitle?.toLowerCase() + '/search?q',
+              queryInput: 'search_term_string',
+            },
+          ]}
+        />
+      )}
+      {props.rootSeo?.schema && (
+        <SocialProfileJsonLd
+          type={
+            props.rootSeo.schema.companyOrPerson &&
+            props.rootSeo.schema.companyOrPerson === 'company'
+              ? 'Organization'
+              : 'Person'
+          }
+          name={
+            props.rootSeo.schema.companyOrPerson &&
+            props.rootSeo.schema.companyOrPerson === 'company'
+              ? props.rootSeo.schema.companyName ?? ''
+              : props.rootSeo.schema.personName ?? ''
+          }
+          url={
+            props.rootSeo.schema.siteUrl &&
+            props.rootSeo.schema.siteUrl.includes('yuk')
+              ? props.rootSeo.schema.siteUrl.replace(/yuk./, '')
+              : (process.env.NEXT_PUBLIC_SITE_URL as string)
+          }
+          sameAs={[
+            props.rootSeo.social!.facebook!.url!,
+            props.rootSeo.social!.instagram!.url!,
+            'https://twitter.com/' + props.rootSeo.social!.twitter!.username!,
+          ]}
+        />
+      )}
       <div className="max-w-screen-xl flex flex-wrap justify-between items-baseline py-2 pl-3 mx-auto">
         <div className="font-bold text-lg">
           <Link href="/">
@@ -30,13 +257,13 @@ export function Header(props: Props) {
               <span className="inline">
                 {props.logo && (
                   <Image
-                    className="align-bottom"
                     src={props.logo}
                     layout="intrinsic"
-                    width={36}
-                    height={36}
+                    width={29}
+                    height={29}
                   />
                 )}
+                {/* ideally vertical-align: 0.7rem, but I don't know how to do it in tailwind */}
                 <span className="align-top ml-2">
                   {props.siteTitle ?? 'Lanjutkoding.com'}
                 </span>
@@ -46,7 +273,7 @@ export function Header(props: Props) {
         </div>
         <nav>
           <ul className="flex items-center font-extrabold">
-            {props.menuItems?.map((menu) => {
+            {props.menuItems?.nodes?.map((menu) => {
               return (
                 <li className="mr-3" key={menu?.id}>
                   <Link href={menu!.path!}>

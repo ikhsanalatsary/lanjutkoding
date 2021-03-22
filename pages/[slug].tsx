@@ -5,15 +5,15 @@ import {
 } from 'next';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../lib/apolloClient';
 import {
   PostDetailDocument,
   PostDetailQuery,
   PostDetailQueryVariables,
   PostSlugsDocument,
   PostSlugsQuery,
-} from '../../lib/graphql';
-import { Header } from '../../components/Header';
+} from '../lib/graphql';
+import { Header } from '../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({
@@ -21,6 +21,7 @@ export default function PostDetail({
   categories,
   header,
   menuItems,
+  rootSeo,
 }: Props) {
   return (
     <>
@@ -28,7 +29,9 @@ export default function PostDetail({
         siteTitle={header?.siteTitle}
         title={post!.title}
         logo={header?.siteLogoUrl}
-        menuItems={menuItems?.nodes}
+        menuItems={menuItems}
+        seo={post?.seo}
+        rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">{post!.title}</h1>
@@ -113,9 +116,7 @@ export default function PostDetail({
           </div>
           <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5">
             <div className="mb-10 first:mt-10">
-              <div className="text-gray-600 text-lg text-center">
-                Categories
-              </div>
+              <div className="text-gray-600 text-lg text-center">Topik</div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
               <div className="leading-7 text-gray-600 text-base">
                 <ul>
@@ -125,7 +126,7 @@ export default function PostDetail({
                         key={category!.id}
                         className="py-4 border-b border-gray-400 last:border-none"
                       >
-                        <Link href={`/category/${category!.slug!}`}>
+                        <Link href={category!.uri}>
                           <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
                             {category!.name!}
                           </a>
@@ -174,6 +175,7 @@ export const getStaticProps = async (
       categories: result.data.categories,
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
+      rootSeo: result.data.seo,
     },
   };
 };

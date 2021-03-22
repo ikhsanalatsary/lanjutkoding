@@ -1,3 +1,71 @@
+fragment RootSEOFragment on RootQuery {
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
+    }
+  }
+}
+
 query Home {
   posts {
     edges {
@@ -6,6 +74,7 @@ query Home {
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -31,7 +100,6 @@ query Home {
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -50,6 +118,7 @@ query Home {
       path
     }
   }
+  ...RootSEOFragment
 }
 
 query PostDetail($slug: ID!) {
@@ -73,16 +142,49 @@ query PostDetail($slug: ID!) {
         name
       }
     }
+    seo {
+      breadcrumbs {
+        text
+        url
+      }
+      canonical
+      metaKeywords
+      metaDesc
+      metaRobotsNoindex
+      metaRobotsNofollow
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      readingTime
+      schemaDetails
+      title
+      twitterDescription
+      twitterTitle
+      focuskw
+      cornerstone
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
+      }
+    }
   }
   categories {
     nodes {
       id
       slug
       name
+      uri
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -101,6 +203,7 @@ query PostDetail($slug: ID!) {
       path
     }
   }
+  ...RootSEOFragment
 }
 
 query PostSlugs {
@@ -120,19 +223,49 @@ query CategorySlugs {
   }
 }
 
-query CategoryDetail($slug: String!) {
-  categories(where: { slug: [$slug] }) {
-    nodes {
-      name
+query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
+  category(id: $categoryId, idType: SLUG) {
+    name
+    seo {
+      breadcrumbs {
+        text
+        url
+      }
+      canonical
+      cornerstone
+      focuskw
+      metaDesc
+      metaRobotsNofollow
+      metaKeywords
+      metaRobotsNoindex
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
+      }
+      title
+      twitterDescription
+      twitterTitle
     }
   }
-  posts(where: { categoryName: $slug }) {
+  posts(where: { categoryName: $categorySlug }) {
     edges {
       cursor
       node {
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -158,7 +291,6 @@ query CategoryDetail($slug: String!) {
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -177,6 +309,7 @@ query CategoryDetail($slug: String!) {
       path
     }
   }
+  ...RootSEOFragment
 }
 
 query About {
@@ -184,10 +317,42 @@ query About {
     nodes {
       title
       content
+      seo {
+        breadcrumbs {
+          text
+          url
+        }
+        canonical
+        metaKeywords
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        schemaDetails
+        title
+        twitterDescription
+        twitterTitle
+        focuskw
+        cornerstone
+        opengraphImage {
+          sourceUrl
+          title
+          uri
+          altText
+        }
+      }
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -206,4 +371,5 @@ query About {
       path
     }
   }
+  ...RootSEOFragment
 }

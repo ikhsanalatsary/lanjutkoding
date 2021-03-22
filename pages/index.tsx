@@ -1,5 +1,4 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
@@ -8,18 +7,21 @@ import { HomeDocument, HomeQuery } from '../lib/graphql';
 import { Header } from '../components/Header';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Home({ posts, header, menuItems }: Props) {
+export default function Home({ posts, header, menuItems, seo }: Props) {
   return (
     <>
       <Header
-        siteTile={header?.siteTitle}
+        siteTitle={header?.siteTitle}
+        siteDesc={header?.siteTagLine}
+        rootSeo={seo}
         logo={header?.siteLogoUrl}
-        menuItems={menuItems?.nodes}
+        menuItems={menuItems}
       />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
         <h1 className="text-4xl text-gray-800 font-semibold">
-          Lanjutkoding.com
+          {header?.siteTitle}
         </h1>
+        <h2 className="text-2xl text-gray-600 mt-1">{header?.siteTagLine}</h2>
       </header>
       <div className="flex flex-wrap -mx-1 lg:-mx-4 py-8">
         {posts!.edges!.map((post) => {
@@ -29,15 +31,18 @@ export default function Home({ posts, header, menuItems }: Props) {
               key={post!.cursor}
             >
               <article className="overflow-hidden rounded-lg shadow-lg bg-white">
-                <Link href={`/blog/${post!.node!.slug!}`}>
+                <Link href={post!.node!.uri}>
                   <a>
                     <Image
                       alt={
-                        post!.node!.featuredImage!.node!.altText ??
+                        post?.node?.featuredImage?.node?.altText ??
                         post!.node!.title!
                       }
                       className="block h-auto w-full"
-                      src={post!.node!.featuredImage!.node!.sourceUrl!}
+                      src={
+                        post?.node?.featuredImage?.node?.sourceUrl ??
+                        seo!.openGraph!.defaultImage!.uri!
+                      }
                       width={600}
                       height={400}
                     />
@@ -46,7 +51,7 @@ export default function Home({ posts, header, menuItems }: Props) {
 
                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
                   <h1 className="text-lg">
-                    <Link href={`/blog/${post!.node!.slug!}`}>
+                    <Link href={post!.node!.uri}>
                       <a className="no-underline hover:underline text-black">
                         {post!.node!.title}
                       </a>
@@ -73,25 +78,6 @@ export default function Home({ posts, header, menuItems }: Props) {
                       {post!.node!.author!.node!.name!}
                     </p>
                   </a>
-                  <a
-                    className="no-underline hover:text-red-dark text-gray-500"
-                    href="#"
-                  >
-                    <span className="hidden">Like</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </a>
                 </footer>
               </article>
             </div>
@@ -114,6 +100,7 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
       posts: result.data.posts,
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
+      seo: result.data.seo,
     },
     revalidate: 1,
   };

@@ -5363,6 +5363,53 @@ export type FullWidthTemplate = ContentTemplate & {
   templateName: Maybe<Scalars['String']>;
 };
 
+export type RootSeoFragmentFragment = (
+  { __typename?: 'RootQuery' }
+  & { seo: Maybe<(
+    { __typename?: 'SEOConfig' }
+    & { openGraph: Maybe<(
+      { __typename?: 'SEOOpenGraph' }
+      & { defaultImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+      )>, frontPage: Maybe<(
+        { __typename?: 'SEOOpenGraphFrontPage' }
+        & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
+        & { image: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'uri' | 'altText'>
+        )> }
+      )> }
+    )>, webmaster: Maybe<(
+      { __typename?: 'SEOWebmaster' }
+      & Pick<SeoWebmaster, 'baiduVerify' | 'googleVerify' | 'msVerify' | 'yandexVerify'>
+    )>, social: Maybe<(
+      { __typename?: 'SEOSocial' }
+      & { facebook: Maybe<(
+        { __typename?: 'SEOSocialFacebook' }
+        & Pick<SeoSocialFacebook, 'url'>
+      )>, instagram: Maybe<(
+        { __typename?: 'SEOSocialInstagram' }
+        & Pick<SeoSocialInstagram, 'url'>
+      )>, twitter: Maybe<(
+        { __typename?: 'SEOSocialTwitter' }
+        & Pick<SeoSocialTwitter, 'username' | 'cardType'>
+      )> }
+    )>, schema: Maybe<(
+      { __typename?: 'SEOSchema' }
+      & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
+      & { logo: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'height' | 'width'>
+        )> }
+      )> }
+    )> }
+  )> }
+);
+
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5375,7 +5422,7 @@ export type HomeQuery = (
       & Pick<RootQueryToPostConnectionEdge, 'cursor'>
       & { node: Maybe<(
         { __typename?: 'Post' }
-        & Pick<Post, 'slug' | 'title' | 'date'>
+        & Pick<Post, 'slug' | 'title' | 'date' | 'uri'>
         & { featuredImage: Maybe<(
           { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge' }
           & { node: Maybe<(
@@ -5403,7 +5450,7 @@ export type HomeQuery = (
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5418,6 +5465,7 @@ export type HomeQuery = (
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
   )> }
+  & RootSeoFragmentFragment
 );
 
 export type PostDetailQueryVariables = Exact<{
@@ -5446,16 +5494,26 @@ export type PostDetailQuery = (
         { __typename?: 'Tag' }
         & Pick<Tag, 'id' | 'name'>
       )>>> }
+    )>, seo: Maybe<(
+      { __typename?: 'PostTypeSEO' }
+      & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+      & { breadcrumbs: Maybe<Array<Maybe<(
+        { __typename?: 'SEOPostTypeBreadcrumbs' }
+        & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+      )>>>, opengraphImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+      )> }
     )> }
   )>, categories: Maybe<(
     { __typename?: 'RootQueryToCategoryConnection' }
     & { nodes: Maybe<Array<Maybe<(
       { __typename?: 'Category' }
-      & Pick<Category, 'id' | 'slug' | 'name'>
+      & Pick<Category, 'id' | 'slug' | 'name' | 'uri'>
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5470,6 +5528,7 @@ export type PostDetailQuery = (
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
   )> }
+  & RootSeoFragmentFragment
 );
 
 export type PostSlugsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -5501,18 +5560,27 @@ export type CategorySlugsQuery = (
 );
 
 export type CategoryDetailQueryVariables = Exact<{
-  slug: Scalars['String'];
+  categorySlug: Scalars['String'];
+  categoryId: Scalars['ID'];
 }>;
 
 
 export type CategoryDetailQuery = (
   { __typename?: 'RootQuery' }
-  & { categories: Maybe<(
-    { __typename?: 'RootQueryToCategoryConnection' }
-    & { nodes: Maybe<Array<Maybe<(
-      { __typename?: 'Category' }
-      & Pick<Category, 'name'>
-    )>>> }
+  & { category: Maybe<(
+    { __typename?: 'Category' }
+    & Pick<Category, 'name'>
+    & { seo: Maybe<(
+      { __typename?: 'TaxonomySEO' }
+      & Pick<TaxonomySeo, 'canonical' | 'cornerstone' | 'focuskw' | 'metaDesc' | 'metaRobotsNofollow' | 'metaKeywords' | 'metaRobotsNoindex' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'title' | 'twitterDescription' | 'twitterTitle'>
+      & { breadcrumbs: Maybe<Array<Maybe<(
+        { __typename?: 'SEOPostTypeBreadcrumbs' }
+        & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+      )>>>, opengraphImage: Maybe<(
+        { __typename?: 'MediaItem' }
+        & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+      )> }
+    )> }
   )>, posts: Maybe<(
     { __typename?: 'RootQueryToPostConnection' }
     & { edges: Maybe<Array<Maybe<(
@@ -5520,7 +5588,7 @@ export type CategoryDetailQuery = (
       & Pick<RootQueryToPostConnectionEdge, 'cursor'>
       & { node: Maybe<(
         { __typename?: 'Post' }
-        & Pick<Post, 'slug' | 'title' | 'date'>
+        & Pick<Post, 'slug' | 'title' | 'date' | 'uri'>
         & { featuredImage: Maybe<(
           { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge' }
           & { node: Maybe<(
@@ -5548,7 +5616,7 @@ export type CategoryDetailQuery = (
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5563,6 +5631,7 @@ export type CategoryDetailQuery = (
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
   )> }
+  & RootSeoFragmentFragment
 );
 
 export type AboutQueryVariables = Exact<{ [key: string]: never; }>;
@@ -5575,10 +5644,21 @@ export type AboutQuery = (
     & { nodes: Maybe<Array<Maybe<(
       { __typename?: 'Page' }
       & Pick<Page, 'title' | 'content'>
+      & { seo: Maybe<(
+        { __typename?: 'PostTypeSEO' }
+        & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+        & { breadcrumbs: Maybe<Array<Maybe<(
+          { __typename?: 'SEOPostTypeBreadcrumbs' }
+          & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+        )>>>, opengraphImage: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+        )> }
+      )> }
     )>>> }
   )>, getHeader: Maybe<(
     { __typename?: 'HCMSHeader' }
-    & Pick<HcmsHeader, 'favicon' | 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
   )>, getFooter: Maybe<(
     { __typename?: 'HCMSFooter' }
     & Pick<HcmsFooter, 'copyrightText'>
@@ -5593,9 +5673,78 @@ export type AboutQuery = (
       & Pick<MenuItem, 'id' | 'label' | 'path'>
     )>>> }
   )> }
+  & RootSeoFragmentFragment
 );
 
-
+export const RootSeoFragmentFragmentDoc = gql`
+    fragment RootSEOFragment on RootQuery {
+  seo {
+    openGraph {
+      defaultImage {
+        altText
+        title
+        uri
+      }
+      frontPage {
+        description
+        title
+        image {
+          uri
+          altText
+        }
+      }
+    }
+    webmaster {
+      baiduVerify
+      googleVerify
+      msVerify
+      yandexVerify
+    }
+    social {
+      facebook {
+        url
+      }
+      instagram {
+        url
+      }
+      twitter {
+        username
+        cardType
+      }
+    }
+    schema {
+      siteName
+      siteUrl
+      wordpressSiteName
+      personName
+      companyOrPerson
+      companyName
+      logo {
+        title
+        uri
+        slug
+        sizes
+        description
+        srcSet
+        altText
+        fileSize
+        link
+        mediaDetails {
+          height
+          width
+        }
+        mediaType
+        mimeType
+        modified
+        modifiedGmt
+        mediaItemUrl
+        status
+      }
+      inLanguage
+    }
+  }
+}
+    `;
 export const HomeDocument = gql`
     query Home {
   posts {
@@ -5605,6 +5754,7 @@ export const HomeDocument = gql`
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -5630,7 +5780,6 @@ export const HomeDocument = gql`
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5649,8 +5798,9 @@ export const HomeDocument = gql`
       path
     }
   }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type HomeQueryResult = Apollo.QueryResult<HomeQuery, HomeQueryVariables>;
 export const PostDetailDocument = gql`
     query PostDetail($slug: ID!) {
@@ -5674,16 +5824,49 @@ export const PostDetailDocument = gql`
         name
       }
     }
+    seo {
+      breadcrumbs {
+        text
+        url
+      }
+      canonical
+      metaKeywords
+      metaDesc
+      metaRobotsNoindex
+      metaRobotsNofollow
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      readingTime
+      schemaDetails
+      title
+      twitterDescription
+      twitterTitle
+      focuskw
+      cornerstone
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
+      }
+    }
   }
   categories {
     nodes {
       id
       slug
       name
+      uri
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5702,8 +5885,9 @@ export const PostDetailDocument = gql`
       path
     }
   }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type PostDetailQueryResult = Apollo.QueryResult<PostDetailQuery, PostDetailQueryVariables>;
 export const PostSlugsDocument = gql`
     query PostSlugs {
@@ -5727,19 +5911,49 @@ export const CategorySlugsDocument = gql`
     `;
 export type CategorySlugsQueryResult = Apollo.QueryResult<CategorySlugsQuery, CategorySlugsQueryVariables>;
 export const CategoryDetailDocument = gql`
-    query CategoryDetail($slug: String!) {
-  categories(where: {slug: [$slug]}) {
-    nodes {
-      name
+    query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
+  category(id: $categoryId, idType: SLUG) {
+    name
+    seo {
+      breadcrumbs {
+        text
+        url
+      }
+      canonical
+      cornerstone
+      focuskw
+      metaDesc
+      metaRobotsNofollow
+      metaKeywords
+      metaRobotsNoindex
+      opengraphAuthor
+      opengraphDescription
+      opengraphModifiedTime
+      opengraphPublishedTime
+      opengraphPublisher
+      opengraphSiteName
+      opengraphTitle
+      opengraphType
+      opengraphUrl
+      opengraphImage {
+        sourceUrl
+        title
+        uri
+        altText
+      }
+      title
+      twitterDescription
+      twitterTitle
     }
   }
-  posts(where: {categoryName: $slug}) {
+  posts(where: {categoryName: $categorySlug}) {
     edges {
       cursor
       node {
         slug
         title
         date
+        uri
         featuredImage {
           node {
             sourceUrl
@@ -5765,7 +5979,6 @@ export const CategoryDetailDocument = gql`
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5784,8 +5997,9 @@ export const CategoryDetailDocument = gql`
       path
     }
   }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type CategoryDetailQueryResult = Apollo.QueryResult<CategoryDetailQuery, CategoryDetailQueryVariables>;
 export const AboutDocument = gql`
     query About {
@@ -5793,10 +6007,42 @@ export const AboutDocument = gql`
     nodes {
       title
       content
+      seo {
+        breadcrumbs {
+          text
+          url
+        }
+        canonical
+        metaKeywords
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        schemaDetails
+        title
+        twitterDescription
+        twitterTitle
+        focuskw
+        cornerstone
+        opengraphImage {
+          sourceUrl
+          title
+          uri
+          altText
+        }
+      }
     }
   }
   getHeader {
-    favicon
     siteTitle
     siteLogoUrl
     siteTagLine
@@ -5815,6 +6061,7 @@ export const AboutDocument = gql`
       path
     }
   }
+  ...RootSEOFragment
 }
-    `;
+    ${RootSeoFragmentFragmentDoc}`;
 export type AboutQueryResult = Apollo.QueryResult<AboutQuery, AboutQueryVariables>;
