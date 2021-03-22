@@ -116,9 +116,7 @@ export default function PostDetail({
           </div>
           <div className="w-full md:w-1/3 px-3 md:pr-3 md:pl-5">
             <div className="mb-10 first:mt-10">
-              <div className="text-gray-600 text-lg text-center">
-                Categories
-              </div>
+              <div className="text-gray-600 text-lg text-center">Topik</div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
               <div className="leading-7 text-gray-600 text-base">
                 <ul>
