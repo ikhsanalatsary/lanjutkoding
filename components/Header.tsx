@@ -15,7 +15,6 @@ import {
   SeoPostTypeBreadcrumbs,
   TaxonomySeo,
 } from '../lib/graphql';
-import React from 'react';
 
 type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
 type SeoType =

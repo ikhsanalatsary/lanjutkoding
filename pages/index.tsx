@@ -5,9 +5,10 @@ import dayjs from 'dayjs';
 import { initializeApollo } from '../lib/apolloClient';
 import { HomeDocument, HomeQuery } from '../lib/graphql';
 import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Home({ posts, header, menuItems, seo }: Props) {
+export default function Home({ posts, header, menuItems, seo, footer }: Props) {
   return (
     <>
       <Header
@@ -84,6 +85,10 @@ export default function Home({ posts, header, menuItems, seo }: Props) {
           );
         })}
       </div>
+      <Footer
+        copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`}
+        socialLinks={footer!.socialLinks!}
+      />
     </>
   );
 }
@@ -101,6 +106,7 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
       seo: result.data.seo,
+      footer: result.data.getFooter,
     },
     revalidate: 1,
   };

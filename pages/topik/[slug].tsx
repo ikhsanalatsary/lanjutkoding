@@ -14,6 +14,7 @@ import {
   CategorySlugsQuery,
 } from '../../lib/graphql';
 import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function CategoryList({
@@ -22,6 +23,7 @@ export default function CategoryList({
   header,
   menuItems,
   rootSeo,
+  footer,
 }: Props) {
   return (
     <>
@@ -116,6 +118,10 @@ export default function CategoryList({
           );
         })}
       </div>
+      <Footer
+        copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`}
+        socialLinks={footer!.socialLinks!}
+      />
     </>
   );
 }
@@ -154,6 +160,7 @@ export const getStaticProps = async (
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
       rootSeo: result.data.seo,
+      footer: result.data.getFooter,
     },
     revalidate: 1,
   };

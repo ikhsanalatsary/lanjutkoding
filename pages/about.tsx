@@ -2,9 +2,16 @@ import { InferGetStaticPropsType } from 'next';
 import { initializeApollo } from '../lib/apolloClient';
 import { AboutDocument, AboutQuery } from '../lib/graphql';
 import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function About({ about, header, menuItems, rootSeo }: Props) {
+export default function About({
+  about,
+  header,
+  menuItems,
+  rootSeo,
+  footer,
+}: Props) {
   return (
     <>
       <Header
@@ -80,6 +87,10 @@ export default function About({ about, header, menuItems, rootSeo }: Props) {
           </div>
         </div>
       </div>
+      <Footer
+        copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`}
+        socialLinks={footer!.socialLinks!}
+      />
     </>
   );
 }
@@ -95,6 +106,7 @@ export const getStaticProps = async () => {
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
       rootSeo: result.data.seo,
+      footer: result.data.getFooter,
     },
   };
 };
