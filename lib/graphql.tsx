@@ -5477,7 +5477,7 @@ export type PostDetailQuery = (
   { __typename?: 'RootQuery' }
   & { post: Maybe<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'title' | 'content' | 'date'>
+    & Pick<Post, 'id' | 'title' | 'content' | 'date' | 'link'>
     & { author: Maybe<(
       { __typename?: 'NodeWithAuthorToUserConnectionEdge' }
       & { node: Maybe<(
@@ -5643,7 +5643,7 @@ export type AboutQuery = (
     { __typename?: 'RootQueryToPageConnection' }
     & { nodes: Maybe<Array<Maybe<(
       { __typename?: 'Page' }
-      & Pick<Page, 'title' | 'content'>
+      & Pick<Page, 'title' | 'content' | 'link'>
       & { seo: Maybe<(
         { __typename?: 'PostTypeSEO' }
         & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
@@ -5809,6 +5809,7 @@ export const PostDetailDocument = gql`
     title
     content
     date
+    link
     author {
       node {
         slug
@@ -6007,6 +6008,7 @@ export const AboutDocument = gql`
     nodes {
       title
       content
+      link
       seo {
         breadcrumbs {
           text

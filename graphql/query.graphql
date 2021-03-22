@@ -127,6 +127,7 @@ query PostDetail($slug: ID!) {
     title
     content
     date
+    link
     author {
       node {
         slug
@@ -317,6 +318,7 @@ query About {
     nodes {
       title
       content
+      link
       seo {
         breadcrumbs {
           text
