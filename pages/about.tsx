@@ -13,9 +13,7 @@ export default function About({
   rootSeo,
   footer,
 }: Props) {
-  const url = encodeURI(
-    about?.link ?? process.env.NEXT_PUBLIC_SITE_URL! + 'about'
-  );
+  const url = encodeURI(about?.link ?? window.location.href);
   const shareText = encodeURI(about!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
   const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;
