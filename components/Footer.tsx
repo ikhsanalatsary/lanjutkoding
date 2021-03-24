@@ -36,6 +36,7 @@ md:flex-row max-w-6xl"
             return (
               <>
                 <a
+                  key={social?.iconName}
                   href={social?.iconUrl ?? '#'}
                   className="w-6 mx-1"
                   target="_blank"
