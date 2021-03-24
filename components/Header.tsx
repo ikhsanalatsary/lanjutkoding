@@ -10,6 +10,7 @@ import {
 import {
   HomeQuery,
   Maybe,
+  MediaDetails,
   MediaItem,
   PostTypeSeo,
   SeoPostTypeBreadcrumbs,
@@ -57,7 +58,11 @@ type SeoType =
             { __typename?: 'MediaItem' } & Pick<
               MediaItem,
               'sourceUrl' | 'title' | 'uri' | 'altText'
-            >
+            > & {
+                mediaDetails: Maybe<
+                  { __typename?: 'MediaDetails' } & Pick<MediaDetails, 'file'>
+                >;
+              }
           >;
         }
     >
@@ -98,7 +103,11 @@ type SeoType =
             { __typename?: 'MediaItem' } & Pick<
               MediaItem,
               'sourceUrl' | 'title' | 'uri' | 'altText'
-            >
+            > & {
+                mediaDetails: Maybe<
+                  { __typename?: 'MediaDetails' } & Pick<MediaDetails, 'file'>
+                >;
+              }
           >;
         }
     >;
@@ -114,6 +123,14 @@ type Props = {
   siteDesc?: Maybe<string>;
   menuItems?: MenuItemType;
 };
+function getRelativeImage(targetUrl: string): string {
+  try {
+    let image = new URL(targetUrl);
+    return image.pathname.slice(27);
+  } catch (error) {
+    return '';
+  }
+}
 export function Header(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let additionalMetaProps: { [key: string]: any } = {};
@@ -124,6 +141,12 @@ export function Header(props: Props) {
       content: props.seo?.metaKeywords,
     });
   }
+  let imageUrl =
+    'https://' +
+      props.siteTitle?.toLowerCase() +
+      props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
+    props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
+    '/raycast-untitled-32.png';
   return (
     <>
       <NextSeo
@@ -148,10 +171,7 @@ export function Header(props: Props) {
             'Yuk lanjut kodingnya!',
           images: [
             {
-              url:
-                props.seo?.opengraphImage?.sourceUrl ||
-                props.rootSeo?.openGraph?.frontPage?.image?.uri ||
-                '/raycast-untitled-32.png',
+              url: imageUrl,
               alt:
                 props.seo?.opengraphImage?.altText ||
                 props.rootSeo?.openGraph?.frontPage?.image?.altText ||
@@ -191,7 +211,7 @@ export function Header(props: Props) {
         <ArticleJsonLd
           url={props.seo.opengraphUrl!}
           title={props.seo.title!}
-          images={[props.seo.opengraphImage?.sourceUrl ?? '']}
+          images={[imageUrl]}
           datePublished={props.seo.opengraphPublishedTime ?? ''}
           dateModified={props.seo.opengraphModifiedTime ?? ''}
           authorName={[props.seo.opengraphAuthor || 'Abdul Fattah Ikhsan']}
@@ -256,7 +276,7 @@ export function Header(props: Props) {
               <span className="inline">
                 {props.logo && (
                   <Image
-                    src={props.logo}
+                    src={getRelativeImage(props.logo)}
                     layout="intrinsic"
                     width={29}
                     height={29}

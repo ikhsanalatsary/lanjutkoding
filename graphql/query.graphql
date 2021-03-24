@@ -5,6 +5,9 @@ fragment RootSEOFragment on RootQuery {
         altText
         title
         uri
+        mediaDetails {
+          file
+        }
       }
       frontPage {
         description
@@ -12,6 +15,9 @@ fragment RootSEOFragment on RootQuery {
         image {
           uri
           altText
+          mediaDetails {
+            file
+          }
         }
       }
     }
@@ -40,27 +46,6 @@ fragment RootSEOFragment on RootQuery {
       personName
       companyOrPerson
       companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
       inLanguage
     }
   }
@@ -79,6 +64,9 @@ query Home {
           node {
             sourceUrl
             altText
+            mediaDetails {
+              file
+            }
           }
         }
         author {
@@ -174,6 +162,9 @@ query PostDetail($slug: ID!) {
         title
         uri
         altText
+        mediaDetails {
+          file
+        }
       }
     }
   }
@@ -253,6 +244,9 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
         title
         uri
         altText
+        mediaDetails {
+          file
+        }
       }
       title
       twitterDescription
@@ -271,6 +265,9 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
           node {
             sourceUrl
             altText
+            mediaDetails {
+              file
+            }
           }
         }
         author {
@@ -350,6 +347,9 @@ query About {
           title
           uri
           altText
+          mediaDetails {
+            file
+          }
         }
       }
     }

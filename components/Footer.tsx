@@ -34,17 +34,15 @@ md:flex-row max-w-6xl"
               Icon = InstagramIcon;
             }
             return (
-              <>
-                <a
-                  key={social?.iconName}
-                  href={social?.iconUrl ?? '#'}
-                  className="w-6 mx-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon size={Size.SMALL} color={Color.MONOCHROME} />
-                </a>
-              </>
+              <a
+                key={social?.iconName}
+                href={social?.iconUrl ?? '#'}
+                className="w-6 mx-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon size={Size.SMALL} color={Color.MONOCHROME} />
+              </a>
             );
           })}
         </div>

@@ -41,8 +41,9 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                       }
                       className="block h-auto w-full"
                       src={
-                        post?.node?.featuredImage?.node?.sourceUrl ??
-                        seo!.openGraph!.defaultImage!.uri!
+                        post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
+                          7
+                        ) ?? seo!.openGraph!.defaultImage!.uri!
                       }
                       width={600}
                       height={400}
