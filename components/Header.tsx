@@ -16,7 +16,7 @@ import {
   SeoPostTypeBreadcrumbs,
   TaxonomySeo,
 } from '../lib/graphql';
-import { URL } from 'url';
+// import { URL } from 'url';
 
 type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
 type SeoType =
