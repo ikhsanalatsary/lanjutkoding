@@ -6,7 +6,11 @@ import { request } from '@octokit/request';
 import type { NextApiRequest as Req, NextApiResponse as Res } from 'next';
 import { URL } from 'url';
 import cors from 'cors';
-import { initMiddleware, isValidURL } from '../../lib/initMiddleware';
+import {
+  getOrigin,
+  initMiddleware,
+  isValidURL,
+} from '../../lib/initMiddleware';
 
 let whitelist = [process.env.NEXT_PUBLIC_SITE_URL, process.env.ADMIN_URL];
 // Initialize the cors middleware
@@ -128,7 +132,10 @@ export default async (req: Req, res: Res) => {
       // Process a POST request
       if (req.body.post?.post_status === 'publish') {
         let postThumbnail = req.body.post_thumbnail; // string or false
-        if (isValidURL(postThumbnail)) {
+        if (
+          isValidURL(postThumbnail) &&
+          whitelist.indexOf(getOrigin(postThumbnail)) !== -1
+        ) {
           let fileName = new URL(postThumbnail).pathname.slice(28);
           let base64Image = await getImageAsBuffer(postThumbnail);
           let blobData = await createBlob(base64Image);

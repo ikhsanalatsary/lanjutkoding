@@ -18,14 +18,29 @@ export function isValidURL(targetUrl: string) {
   return isValid;
 }
 
+export function getOrigin(targetUrl: string) {
+  if (!targetUrl) {
+    return '';
+  }
+  let origin = '';
+  try {
+    let url = new URL(targetUrl);
+    origin = url.origin;
+  } catch (error) {
+    origin = '';
+  }
+
+  return origin;
+}
+
 // And to throw an error when an error happens in a middleware
 export function initMiddleware(middleware: ReturnType<typeof cors>) {
   return (req: Req, res: Res) =>
     new Promise((resolve, reject) => {
       if (isValidURL(req.headers['x-wp-webhook-source'] as string)) {
-        req.headers.origin = new URL(
+        req.headers.origin = getOrigin(
           req.headers['x-wp-webhook-source'] as string
-        ).origin;
+        );
       }
       middleware(req, res, (result) => {
         if (result instanceof Error) {
