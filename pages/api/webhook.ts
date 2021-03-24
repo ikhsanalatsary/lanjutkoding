@@ -5,6 +5,29 @@ import { inspect } from 'util';
 import { request } from '@octokit/request';
 import type { NextApiRequest as Req, NextApiResponse as Res } from 'next';
 import { URL } from 'url';
+import cors from 'cors';
+import { initMiddleware, isValidURL } from '../../lib/initMiddleware';
+
+let whitelist = [process.env.NEXT_PUBLIC_SITE_URL, process.env.ADMIN_URL];
+// Initialize the cors middleware
+const initCors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  cors({
+    // Only allow requests with GET, POST and OPTIONS
+    methods: ['POST', 'OPTIONS'],
+    origin: function (origin, callback) {
+      console.log('🚀 ~ file: webhook.ts ~ line 19 ~ origin', origin);
+      if (
+        process.env.NODE_ENV === 'development' ||
+        whitelist.indexOf(origin) !== -1
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 
 type UnwrappedPromiseType<T extends (...args: any) => any> = T extends (
   ...args: any
@@ -86,8 +109,8 @@ async function pushCommit(data: UnwrappedPromiseType<typeof createCommit>) {
   let result = await requestWithAuth(
     'PATCH /repos/{owner}/{repo}/git/refs/{ref}',
     {
-      owner: 'ikhsanalatsary',
-      repo: 'dddd',
+      owner: process.env.GITHUB_USERNAME!,
+      repo: process.env.GITHUB_REPO!,
       ref: process.env.GITHUB_REF!,
       sha: data.sha,
       // force: false,
@@ -100,11 +123,12 @@ async function pushCommit(data: UnwrappedPromiseType<typeof createCommit>) {
 export default async (req: Req, res: Res) => {
   let message = '';
   try {
+    await initCors(req, res);
     if (req.method === 'POST') {
       // Process a POST request
       if (req.body.post?.post_status === 'publish') {
         let postThumbnail = req.body.post_thumbnail; // string or false
-        if (postThumbnail) {
+        if (isValidURL(postThumbnail)) {
           let fileName = new URL(postThumbnail).pathname.slice(28);
           let base64Image = await getImageAsBuffer(postThumbnail);
           let blobData = await createBlob(base64Image);
