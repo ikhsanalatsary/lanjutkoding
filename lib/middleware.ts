@@ -34,7 +34,7 @@ export function getOrigin(targetUrl: string) {
 }
 
 // And to throw an error when an error happens in a middleware
-export function initMiddleware(middleware: ReturnType<typeof cors>) {
+export function corsMiddleware(middleware: ReturnType<typeof cors>) {
   return (req: Req, res: Res) =>
     new Promise((resolve, reject) => {
       if (isValidURL(req.headers['x-wp-webhook-source'] as string)) {
@@ -49,4 +49,21 @@ export function initMiddleware(middleware: ReturnType<typeof cors>) {
         return resolve(result);
       });
     });
+}
+
+export function authMiddleware() {
+  return async (req: Req) => {
+    console.log(
+      '🚀 ~ file: middleware.ts ~ line 56 ~ return ~ req',
+      req.headers
+    );
+    if (
+      req.headers['x-api-key'] &&
+      req.headers['x-api-key'] === process.env.X_API_KEY
+    ) {
+      return true;
+    }
+
+    throw new Error('Not Authorized!');
+  };
 }

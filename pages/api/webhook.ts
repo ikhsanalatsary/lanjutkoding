@@ -7,14 +7,16 @@ import type { NextApiRequest as Req, NextApiResponse as Res } from 'next';
 import { URL } from 'url';
 import cors from 'cors';
 import {
+  authMiddleware,
+  corsMiddleware,
   getOrigin,
-  initMiddleware,
   isValidURL,
-} from '../../lib/initMiddleware';
+} from '../../lib/middleware';
 
-let whitelist = [process.env.NEXT_PUBLIC_SITE_URL, process.env.ADMIN_URL];
+let auth = authMiddleware();
+let whitelist = [process.env.SITE_URL, process.env.ADMIN_URL];
 // Initialize the cors middleware
-const initCors = initMiddleware(
+const initCors = corsMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
   cors({
     // Only allow requests with GET, POST and OPTIONS
@@ -127,6 +129,7 @@ async function pushCommit(data: UnwrappedPromiseType<typeof createCommit>) {
 export default async (req: Req, res: Res) => {
   let message = '';
   try {
+    await auth(req);
     await initCors(req, res);
     if (req.method === 'POST') {
       // Process a POST request
