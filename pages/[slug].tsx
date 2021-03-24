@@ -26,7 +26,9 @@ export default function PostDetail({
   rootSeo,
   footer,
 }: Props) {
-  const url = encodeURI(post?.link ?? window.location.href);
+  const url = encodeURI(
+    post?.link ?? process.env.NEXT_PUBLIC_SITE_URL! + (post?.title ?? '')
+  );
   const shareText = encodeURI(post!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
   const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;
