@@ -5372,12 +5372,20 @@ export type RootSeoFragmentFragment = (
       & { defaultImage: Maybe<(
         { __typename?: 'MediaItem' }
         & Pick<MediaItem, 'altText' | 'title' | 'uri'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'file'>
+        )> }
       )>, frontPage: Maybe<(
         { __typename?: 'SEOOpenGraphFrontPage' }
         & Pick<SeoOpenGraphFrontPage, 'description' | 'title'>
         & { image: Maybe<(
           { __typename?: 'MediaItem' }
           & Pick<MediaItem, 'uri' | 'altText'>
+          & { mediaDetails: Maybe<(
+            { __typename?: 'MediaDetails' }
+            & Pick<MediaDetails, 'file'>
+          )> }
         )> }
       )> }
     )>, webmaster: Maybe<(
@@ -5398,14 +5406,6 @@ export type RootSeoFragmentFragment = (
     )>, schema: Maybe<(
       { __typename?: 'SEOSchema' }
       & Pick<SeoSchema, 'siteName' | 'siteUrl' | 'wordpressSiteName' | 'personName' | 'companyOrPerson' | 'companyName' | 'inLanguage'>
-      & { logo: Maybe<(
-        { __typename?: 'MediaItem' }
-        & Pick<MediaItem, 'title' | 'uri' | 'slug' | 'sizes' | 'description' | 'srcSet' | 'altText' | 'fileSize' | 'link' | 'mediaType' | 'mimeType' | 'modified' | 'modifiedGmt' | 'mediaItemUrl' | 'status'>
-        & { mediaDetails: Maybe<(
-          { __typename?: 'MediaDetails' }
-          & Pick<MediaDetails, 'height' | 'width'>
-        )> }
-      )> }
     )> }
   )> }
 );
@@ -5428,6 +5428,10 @@ export type HomeQuery = (
           & { node: Maybe<(
             { __typename?: 'MediaItem' }
             & Pick<MediaItem, 'sourceUrl' | 'altText'>
+            & { mediaDetails: Maybe<(
+              { __typename?: 'MediaDetails' }
+              & Pick<MediaDetails, 'file'>
+            )> }
           )> }
         )>, author: Maybe<(
           { __typename?: 'NodeWithAuthorToUserConnectionEdge' }
@@ -5503,6 +5507,10 @@ export type PostDetailQuery = (
       )>>>, opengraphImage: Maybe<(
         { __typename?: 'MediaItem' }
         & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'file'>
+        )> }
       )> }
     )> }
   )>, categories: Maybe<(
@@ -5579,6 +5587,10 @@ export type CategoryDetailQuery = (
       )>>>, opengraphImage: Maybe<(
         { __typename?: 'MediaItem' }
         & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+        & { mediaDetails: Maybe<(
+          { __typename?: 'MediaDetails' }
+          & Pick<MediaDetails, 'file'>
+        )> }
       )> }
     )> }
   )>, posts: Maybe<(
@@ -5594,6 +5606,10 @@ export type CategoryDetailQuery = (
           & { node: Maybe<(
             { __typename?: 'MediaItem' }
             & Pick<MediaItem, 'sourceUrl' | 'altText'>
+            & { mediaDetails: Maybe<(
+              { __typename?: 'MediaDetails' }
+              & Pick<MediaDetails, 'file'>
+            )> }
           )> }
         )>, author: Maybe<(
           { __typename?: 'NodeWithAuthorToUserConnectionEdge' }
@@ -5653,6 +5669,10 @@ export type AboutQuery = (
         )>>>, opengraphImage: Maybe<(
           { __typename?: 'MediaItem' }
           & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+          & { mediaDetails: Maybe<(
+            { __typename?: 'MediaDetails' }
+            & Pick<MediaDetails, 'file'>
+          )> }
         )> }
       )> }
     )>>> }
@@ -5684,6 +5704,9 @@ export const RootSeoFragmentFragmentDoc = gql`
         altText
         title
         uri
+        mediaDetails {
+          file
+        }
       }
       frontPage {
         description
@@ -5691,6 +5714,9 @@ export const RootSeoFragmentFragmentDoc = gql`
         image {
           uri
           altText
+          mediaDetails {
+            file
+          }
         }
       }
     }
@@ -5719,27 +5745,6 @@ export const RootSeoFragmentFragmentDoc = gql`
       personName
       companyOrPerson
       companyName
-      logo {
-        title
-        uri
-        slug
-        sizes
-        description
-        srcSet
-        altText
-        fileSize
-        link
-        mediaDetails {
-          height
-          width
-        }
-        mediaType
-        mimeType
-        modified
-        modifiedGmt
-        mediaItemUrl
-        status
-      }
       inLanguage
     }
   }
@@ -5759,6 +5764,9 @@ export const HomeDocument = gql`
           node {
             sourceUrl
             altText
+            mediaDetails {
+              file
+            }
           }
         }
         author {
@@ -5856,6 +5864,9 @@ export const PostDetailDocument = gql`
         title
         uri
         altText
+        mediaDetails {
+          file
+        }
       }
     }
   }
@@ -5941,6 +5952,9 @@ export const CategoryDetailDocument = gql`
         title
         uri
         altText
+        mediaDetails {
+          file
+        }
       }
       title
       twitterDescription
@@ -5959,6 +5973,9 @@ export const CategoryDetailDocument = gql`
           node {
             sourceUrl
             altText
+            mediaDetails {
+              file
+            }
           }
         }
         author {
@@ -6040,6 +6057,9 @@ export const AboutDocument = gql`
           title
           uri
           altText
+          mediaDetails {
+            file
+          }
         }
       }
     }
