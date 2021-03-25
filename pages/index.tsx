@@ -19,10 +19,12 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
         menuItems={menuItems}
       />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
-        <h1 className="text-4xl text-gray-800 font-semibold">
+        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">
           {header?.siteTitle}
         </h1>
-        <h2 className="text-2xl text-gray-600 mt-1">{header?.siteTagLine}</h2>
+        <h2 className="text-xl md:text-2xl text-gray-600 mt-1">
+          {header?.siteTagLine}
+        </h2>
       </header>
       <div className="flex flex-wrap -mx-1 lg:-mx-4 py-8">
         {posts!.edges!.map((post) => {

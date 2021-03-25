@@ -50,8 +50,10 @@ export default function PostDetail({
         rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
-        <h1 className="text-4xl text-gray-800 font-semibold">{post!.title}</h1>
-        <div className="text-2xl text-gray-600 mt-1">
+        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">
+          {post!.title}
+        </h1>
+        <div className="text-xl md:text-2xl text-gray-600 mt-1">
           {dayjs(post!.date!).format('DD MMMM YYYY')} -{' '}
           {post!.author!.node!.name}
         </div>

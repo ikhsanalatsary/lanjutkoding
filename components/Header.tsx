@@ -159,7 +159,10 @@ export function Header(props: Props) {
         description={
           props.seo?.metaDesc || props.siteDesc || 'Yuk lanjut kodingnya!'
         }
-        canonical={props.seo?.canonical || process.env.NEXT_PUBLIC_SITE_URL}
+        canonical={
+          removeSubDomain(props.seo?.canonical) ||
+          process.env.NEXT_PUBLIC_SITE_URL
+        }
         openGraph={{
           url:
             removeSubDomain(props.seo?.opengraphUrl) ||

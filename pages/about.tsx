@@ -37,7 +37,9 @@ export default function About({
         rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
-        <h1 className="text-4xl text-gray-800 font-semibold">{about!.title}</h1>
+        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">
+          {about!.title}
+        </h1>
       </header>
       <div className="w-full">
         <div className="max-w-screen-xl py-12 mx-auto flex flex-wrap justify-center">
