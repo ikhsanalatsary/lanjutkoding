@@ -101,5 +101,6 @@ export const getStaticProps = async () => {
       rootSeo: result.data.seo,
       footer: result.data.getFooter,
     },
+    revalidate: 1,
   };
 };

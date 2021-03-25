@@ -151,7 +151,6 @@ query PostDetail($slug: ID!) {
       opengraphType
       opengraphUrl
       readingTime
-      schemaDetails
       title
       twitterDescription
       twitterTitle
@@ -336,7 +335,6 @@ query About {
         opengraphType
         opengraphUrl
         readingTime
-        schemaDetails
         title
         twitterDescription
         twitterTitle

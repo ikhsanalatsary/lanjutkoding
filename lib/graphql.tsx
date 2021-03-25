@@ -5500,7 +5500,7 @@ export type PostDetailQuery = (
       )>>> }
     )>, seo: Maybe<(
       { __typename?: 'PostTypeSEO' }
-      & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+      & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
       & { breadcrumbs: Maybe<Array<Maybe<(
         { __typename?: 'SEOPostTypeBreadcrumbs' }
         & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
@@ -5662,7 +5662,7 @@ export type AboutQuery = (
       & Pick<Page, 'title' | 'content' | 'link'>
       & { seo: Maybe<(
         { __typename?: 'PostTypeSEO' }
-        & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'schemaDetails' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+        & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
         & { breadcrumbs: Maybe<Array<Maybe<(
           { __typename?: 'SEOPostTypeBreadcrumbs' }
           & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
@@ -5853,7 +5853,6 @@ export const PostDetailDocument = gql`
       opengraphType
       opengraphUrl
       readingTime
-      schemaDetails
       title
       twitterDescription
       twitterTitle
@@ -6046,7 +6045,6 @@ export const AboutDocument = gql`
         opengraphType
         opengraphUrl
         readingTime
-        schemaDetails
         title
         twitterDescription
         twitterTitle

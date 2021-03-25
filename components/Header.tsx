@@ -37,7 +37,6 @@ type SeoType =
         | 'opengraphType'
         | 'opengraphUrl'
         | 'readingTime'
-        | 'schemaDetails'
         | 'title'
         | 'twitterDescription'
         | 'twitterTitle'
@@ -131,6 +130,9 @@ function getRelativeImage(targetUrl: string): string {
     return '';
   }
 }
+function removeSubDomain(target?: Maybe<string>) {
+  return target?.includes('yuk') ? target?.replace(/yuk./, '') : target;
+}
 export function Header(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let additionalMetaProps: { [key: string]: any } = {};
@@ -159,7 +161,9 @@ export function Header(props: Props) {
         }
         canonical={props.seo?.canonical || process.env.NEXT_PUBLIC_SITE_URL}
         openGraph={{
-          url: props.seo?.opengraphUrl || process.env.NEXT_PUBLIC_SITE_URL,
+          url:
+            removeSubDomain(props.seo?.opengraphUrl) ||
+            process.env.NEXT_PUBLIC_SITE_URL,
           title:
             props.seo?.opengraphTitle ||
             props.rootSeo?.openGraph?.frontPage?.title ||
@@ -209,7 +213,7 @@ export function Header(props: Props) {
       />
       {props.seo && (
         <ArticleJsonLd
-          url={props.seo.opengraphUrl!}
+          url={removeSubDomain(props.seo.opengraphUrl!)}
           title={props.seo.title!}
           images={[imageUrl]}
           datePublished={props.seo.opengraphPublishedTime ?? ''}
@@ -227,7 +231,7 @@ export function Header(props: Props) {
           itemListElements={props.seo.breadcrumbs.map((breadcrumb, index) => ({
             position: index + 1,
             name: breadcrumb?.text ?? '',
-            item: breadcrumb?.url ?? '',
+            item: removeSubDomain(breadcrumb?.url) ?? '',
           }))}
         />
       )}
@@ -257,10 +261,8 @@ export function Header(props: Props) {
               : props.rootSeo.schema.personName ?? ''
           }
           url={
-            props.rootSeo.schema.siteUrl &&
-            props.rootSeo.schema.siteUrl.includes('yuk')
-              ? props.rootSeo.schema.siteUrl.replace(/yuk./, '')
-              : (process.env.NEXT_PUBLIC_SITE_URL as string)
+            removeSubDomain(props.rootSeo.schema.siteUrl) ||
+            (process.env.NEXT_PUBLIC_SITE_URL as string)
           }
           sameAs={[
             props.rootSeo.social!.facebook!.url!,
