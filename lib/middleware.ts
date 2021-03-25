@@ -4,33 +4,21 @@ import type cors from 'cors';
 import { URL } from 'url';
 
 export function isValidURL(targetUrl: string) {
-  if (!targetUrl) {
-    return false;
-  }
-  let isValid = false;
   try {
     let url = new URL(targetUrl);
-    isValid = url.protocol === 'http:' || url.protocol === 'https:';
+    return url.protocol === 'http:' || url.protocol === 'https:';
   } catch (error) {
-    isValid = false;
+    return false;
   }
-
-  return isValid;
 }
 
 export function getOrigin(targetUrl: string) {
-  if (!targetUrl) {
-    return '';
-  }
-  let origin = '';
   try {
     let url = new URL(targetUrl);
-    origin = url.origin;
+    return url.origin;
   } catch (error) {
-    origin = '';
+    return '';
   }
-
-  return origin;
 }
 
 // And to throw an error when an error happens in a middleware

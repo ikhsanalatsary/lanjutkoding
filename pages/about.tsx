@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from 'next';
 import { initializeApollo } from '../lib/apolloClient';
 import { AboutDocument, AboutQuery } from '../lib/graphql';
-import { Header } from '../components/Header';
+import { Header, removeSubDomain } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
 
@@ -13,7 +13,7 @@ export default function About({
   rootSeo,
   footer,
 }: Props) {
-  const url = encodeURI(about?.link ?? window.location.href);
+  const url = encodeURI(removeSubDomain(about?.link) ?? window.location.href);
   const shareText = encodeURI(about!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
   const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;

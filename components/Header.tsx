@@ -130,7 +130,7 @@ function getRelativeImage(targetUrl: string): string {
     return '';
   }
 }
-function removeSubDomain(target?: Maybe<string>) {
+export function removeSubDomain(target?: Maybe<string>) {
   return target?.includes('yuk') ? target?.replace(/yuk./, '') : target;
 }
 export function Header(props: Props) {

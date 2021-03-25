@@ -13,7 +13,7 @@ import {
   PostSlugsDocument,
   PostSlugsQuery,
 } from '../lib/graphql';
-import { Header } from '../components/Header';
+import { Header, removeSubDomain } from '../components/Header';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
 import { Footer } from '../components/Footer';
 
@@ -26,7 +26,7 @@ export default function PostDetail({
   rootSeo,
   footer,
 }: Props) {
-  const url = encodeURI(post?.link ?? window.location.href);
+  const url = encodeURI(removeSubDomain(post?.link) ?? window.location.href);
   const shareText = encodeURI(post!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
   const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;
