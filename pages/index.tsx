@@ -45,7 +45,10 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                       src={
                         post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
                           7
-                        ) ?? seo!.openGraph!.defaultImage!.uri!
+                        ) ??
+                        seo!.openGraph!.defaultImage!.mediaDetails?.file?.slice(
+                          7
+                        )
                       }
                       width={600}
                       height={400}

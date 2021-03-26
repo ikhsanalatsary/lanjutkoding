@@ -147,6 +147,7 @@ export function Header(props: Props) {
     'https://' +
       props.siteTitle?.toLowerCase() +
       props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
+    props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
     props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
     '/raycast-untitled-32.png';
   return (
