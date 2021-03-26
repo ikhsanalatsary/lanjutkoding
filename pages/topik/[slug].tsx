@@ -53,11 +53,18 @@ export default function CategoryList({
                   <a>
                     <Image
                       alt={
-                        post!.node!.featuredImage!.node!.altText ??
+                        post?.node?.featuredImage?.node?.altText ??
                         post!.node!.title!
                       }
                       className="block h-auto w-full"
-                      src={post!.node!.featuredImage!.node!.sourceUrl!}
+                      src={
+                        post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
+                          7
+                        ) ??
+                        rootSeo!.openGraph!.defaultImage!.mediaDetails!.file!.slice(
+                          7
+                        )
+                      }
                       width={600}
                       height={400}
                     />
@@ -133,6 +140,11 @@ export const getStaticProps = async (
       categoryId: params?.slug,
     },
   });
+  console.log(
+    '🚀 ~ file: [slug].tsx ~ line 136 ~ result',
+    result.data.posts,
+    params.slug
+  );
 
   return {
     props: {
