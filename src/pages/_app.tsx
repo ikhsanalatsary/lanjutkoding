@@ -1,3 +1,4 @@
+import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
 import dayjs from 'dayjs';
@@ -8,7 +9,7 @@ import 'dayjs/locale/id';
 dayjs.locale('id');
 
 type Props = {
-  Component: import('react').JSXElementConstructor<Record<string, unknown>>;
+  Component: React.JSXElementConstructor<Record<string, unknown>>;
   pageProps: Record<string, never>;
 };
 function MyApp({ Component, pageProps }: Props) {
