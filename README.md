@@ -2,7 +2,23 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, setup environment variable on your local. e.g: `.env.local` with the following:
+
+```
+NEXT_PUBLIC_GRAPHQL_URI=
+NEXT_PUBLIC_SITE_URL=
+SITE_URL=
+NEXT_PUBLIC_DEFAULT_GRAVATAR=https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g
+NEXT_PUBLIC_LOCALE=id-ID
+GITHUB_TOKEN=
+GITHUB_USERNAME=ikhsanalatsary
+GITHUB_REPO=
+GITHUB_REF=heads/main
+ADMIN_URL=
+X_API_KEY=
+```
+
+Second, run the development server:
 
 ```bash
 npm run dev
