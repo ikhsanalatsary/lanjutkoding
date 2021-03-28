@@ -1,3 +1,4 @@
+import React from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { initializeApollo } from '../lib/apolloClient';
 import { AboutDocument, AboutQuery } from '../lib/graphql';

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { HcmsSocialLinks, Maybe } from '../lib/graphql';
 import { Size, Color, FacebookIcon, InstagramIcon, TwitterIcon } from './Icon';
 
