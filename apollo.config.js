@@ -1,6 +1,6 @@
 module.exports = {
   client: {
-    includes: ['pages/**', 'components/**', 'graphql/**'],
+    includes: ['src/pages/**', 'src/components/**', 'graphql/**'],
     service: {
       name: 'lanjutkoding',
       localSchemaFile: './schema/schema.graphql',
