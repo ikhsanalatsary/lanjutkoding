@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: Props) {
         <meta name="msapplication-TileColor" content="#2b5797" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div className="container mt-4 mx-auto px-4 md:px-12">
+      <div className="container mt-4 mx-auto md:px-12">
         <Component {...pageProps} />
       </div>
     </ApolloProvider>

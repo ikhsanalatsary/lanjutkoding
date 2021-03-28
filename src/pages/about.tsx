@@ -44,7 +44,7 @@ export default function About({
       </header>
       <div className="w-full">
         <div className="max-w-screen-xl py-12 mx-auto flex flex-wrap justify-center">
-          <div className="bg-white rounded-lg shadow-lg px-4 sm:px-16 py-8">
+          <div className="bg-white md:rounded-lg md:shadow-lg px-4 sm:px-16 py-8">
             <div className="mt-2 flex flex-wrap justify-end">
               <div className="block">
                 <p className="text-left text-sm pb-2 ml-1">Bagikan: </p>

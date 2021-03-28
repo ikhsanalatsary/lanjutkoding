@@ -42,11 +42,11 @@ export default function CategoryList({
           {category!.name}
         </h1>
       </header>
-      <div className="flex flex-wrap -mx-1 lg:-mx-4 py-12">
+      <div className="flex flex-wrap -mx-1 lg:-mx-4 py-12 px-4">
         {posts!.edges!.map((post) => {
           return (
             <div
-              className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 "
+              className="my-2 md:py-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 "
               key={post!.cursor}
             >
               <article className="overflow-hidden rounded-lg shadow-lg bg-white">
