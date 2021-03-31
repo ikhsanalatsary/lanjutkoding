@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   GetStaticPaths,
   GetStaticPropsContext,
@@ -6,6 +6,7 @@ import {
 } from 'next';
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import Prism from 'prismjs';
 import { initializeApollo } from '../lib/apolloClient';
 import {
   PostDetailDocument,
@@ -27,6 +28,9 @@ export default function PostDetail({
   rootSeo,
   footer,
 }: Props) {
+  useEffect(() => {
+    setTimeout(() => Prism.highlightAll(), 0);
+  }, []);
   const url = encodeURI(removeSubDomain(post?.link) ?? window.location.href);
   const shareText = encodeURI(post!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;

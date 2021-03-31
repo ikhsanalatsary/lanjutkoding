@@ -15,3 +15,9 @@
 body {
     background-color: #d8e0e8;
 }
+
+@layer base {
+    figcaption {
+        @apply break-words
+    }
+}
