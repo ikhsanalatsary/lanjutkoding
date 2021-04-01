@@ -70,7 +70,8 @@
     "scripts/codegen.js",
     "scripts/updateSchema.js",
     "postcss.config.js",
-    "tailwind.config.js"
+    "tailwind.config.js",
+    "babel.config.js"
   ],
   "include": [
     "next-env.d.ts",
