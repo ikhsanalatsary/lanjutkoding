@@ -1,12 +1,17 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
 import { useApollo } from '../lib/apolloClient';
 import '../styles/globals.css';
 import 'dayjs/locale/id';
 
 dayjs.locale('id');
+
+let ScrollTop = dynamic(() => import('../components/ScrollTop'), {
+  ssr: false,
+});
 
 type Props = {
   Component: React.JSXElementConstructor<Record<string, unknown>>;
@@ -49,6 +54,7 @@ function MyApp({ Component, pageProps }: Props) {
       </Head>
       <div className="container mt-4 mx-auto md:px-12">
         <Component {...pageProps} />
+        <ScrollTop />
       </div>
     </ApolloProvider>
   );

@@ -31,6 +31,15 @@ export default function PostDetail({
   useEffect(() => {
     setTimeout(() => Prism.highlightAll(), 0);
   }, []);
+  useEffect(() => {
+    import('smooth-scroll').then(({ default: SmoothScroll }) => {
+      new SmoothScroll('a[href*="#"]', {
+        speed: 500,
+        // speedAsDuration: true,
+        easing: 'easeOutCubic',
+      });
+    });
+  }, []);
   const url = encodeURI(removeSubDomain(post?.link) ?? window.location.href);
   const shareText = encodeURI(post!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
