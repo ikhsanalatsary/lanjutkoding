@@ -15,4 +15,5 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  future: { webpack5: true },
 };
