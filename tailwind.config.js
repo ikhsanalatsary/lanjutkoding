@@ -10,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['MesloLGS NF', ...defaultTheme.fontFamily.sans],
+        sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+        mono: ['MesloLGS NF', ...defaultTheme.fontFamily.mono],
       },
     },
   },
