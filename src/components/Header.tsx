@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
 import {
   ArticleJsonLd,
   BreadcrumbJsonLd,
@@ -151,13 +152,17 @@ export function Header(props: Props) {
     props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
     props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
     '/raycast-untitled-32.png';
+  let title = `${props.title || props.siteTitle || 'Lanjutkoding.com'} - ${
+    props.siteDesc || 'Yuk lanjut kodingnya!'
+  }`;
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <NextSeo
         defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
-        title={`${props.siteTitle || props.title || 'Lanjutkoding.com'} - ${
-          props.siteDesc || 'Yuk lanjut kodingnya!'
-        }`}
+        title={title}
         description={
           props.seo?.metaDesc || props.siteDesc || 'Yuk lanjut kodingnya!'
         }
