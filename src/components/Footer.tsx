@@ -35,6 +35,7 @@ md:flex-row max-w-6xl"
             }
             return (
               <a
+                aria-label={`${social?.iconName} lanjutkoding.com`}
                 key={social?.iconName}
                 href={social?.iconUrl ?? '#'}
                 className="w-6 mx-1"

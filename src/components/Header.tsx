@@ -147,11 +147,13 @@ export function Header(props: Props) {
   }
   let imageUrl =
     'https://' +
-      props.siteTitle?.toLowerCase() +
-      props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
-    props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
-    props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
-    '/raycast-untitled-32.png';
+    props.siteTitle?.toLowerCase() +
+    (props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
+      props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
+      props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(
+        7
+      ) ||
+      '/raycast-untitled-32.png');
   let title = `${props.title || props.siteTitle || 'Lanjutkoding.com'} - ${
     props.siteDesc || 'Yuk lanjut kodingnya!'
   }`;
@@ -292,6 +294,7 @@ export function Header(props: Props) {
                     layout="intrinsic"
                     width={29}
                     height={29}
+                    alt="logo lanjutkoding.com"
                   />
                 )}
                 {/* ideally vertical-align: 0.7rem, but I don't know how to do it in tailwind */}

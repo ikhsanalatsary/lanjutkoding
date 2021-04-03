@@ -81,6 +81,7 @@ export default function PostDetail({
                   <p className="text-left text-sm pb-2 ml-1">Bagikan: </p>
                   <div className="flex flex-wrap pb-4">
                     <a
+                      aria-label="Bagikan ke Facebook"
                       href={facebookShareUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -89,6 +90,7 @@ export default function PostDetail({
                       <FacebookIcon />
                     </a>
                     <a
+                      aria-label="Bagikan ke Twitter"
                       href={twitterShareUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -97,6 +99,7 @@ export default function PostDetail({
                       <TwitterIcon />
                     </a>
                     <a
+                      aria-label="Bagikan ke LinkedIn"
                       href={linkedInShareUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -108,7 +111,7 @@ export default function PostDetail({
                 </div>
               </div>
               <article
-                className="text-gray-800 prose lg:prose-xl"
+                className="text-gray-800 prose-sm lg:prose"
                 dangerouslySetInnerHTML={{ __html: post!.content! }}
               />
               <div className="mt-4 flex flex-wrap space-x-2">
