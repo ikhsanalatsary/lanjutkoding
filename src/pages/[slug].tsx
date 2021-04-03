@@ -114,7 +114,7 @@ export default function PostDetail({
                 className="text-gray-800 prose-sm lg:prose"
                 dangerouslySetInnerHTML={{ __html: post!.content! }}
               />
-              <div className="mt-4 flex flex-wrap space-x-2">
+              <div className="mt-4 flex flex-wrap space-x-2 space-y-1">
                 {post!.tags!.nodes!.map((tag) => {
                   return (
                     <div

@@ -5,8 +5,16 @@
 @font-face {
     font-family: 'MesloLGS NF';
     src: url('/MesloLGS-NF-Regular.woff2') format('woff2'),
-        url('/MesloLGS-NF-Regular.woff') format('woff'),
-        url('/MesloLGS-NF-Regular.ttf') format('truetype');
+        url('/MesloLGS-NF-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/Poppins-Regular.woff2') format('woff2'),
+        url('/Poppins-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -19,5 +27,8 @@ body {
 @layer base {
     figcaption {
         @apply break-words
+    }
+    pre code {
+        @apply font-mono text-sm !important
     }
 }
