@@ -31,4 +31,7 @@ body {
     pre code {
         @apply font-mono text-sm !important
     }
+    a {
+        @apply underline
+    }
 }
