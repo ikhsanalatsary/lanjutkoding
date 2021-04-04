@@ -58,7 +58,7 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                 </Link>
 
                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                  <h1 className="text-lg">
+                  <h1 className="text-base lg:text-lg">
                     <Link href={post!.node!.uri}>
                       <a className="no-underline hover:underline text-black">
                         {post!.node!.title}
