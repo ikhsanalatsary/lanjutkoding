@@ -111,7 +111,7 @@ export default function PostDetail({
                 </div>
               </div>
               <article
-                className="text-gray-800 prose-sm lg:prose"
+                className="text-gray-800 prose lg:prose-lg"
                 dangerouslySetInnerHTML={{ __html: post!.content! }}
               />
               <div className="mt-4 flex flex-wrap space-x-2 space-y-1">

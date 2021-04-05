@@ -13,6 +13,20 @@ module.exports = {
         sans: ['Poppins', ...defaultTheme.fontFamily.sans],
         mono: ['MesloLGS NF', ...defaultTheme.fontFamily.mono],
       },
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: {
+              fontSize: '0.875rem',
+            },
+          },
+          lg: {
+            css: {
+              fontSize: '1rem',
+            },
+          },
+        };
+      },
     },
   },
   variants: {
