@@ -161,6 +161,12 @@ export function Header(props: Props) {
     <>
       <Head>
         <title>{title}</title>
+        {props.rootSeo?.webmaster?.googleVerify && (
+          <meta
+            name="google-site-verification"
+            content={props.rootSeo.webmaster.googleVerify}
+          />
+        )}
       </Head>
       <NextSeo
         defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
