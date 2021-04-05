@@ -37,7 +37,15 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang={this.props.locale}>
-        <Head />
+        <Head>
+          {process.env.NODE_ENV === 'production' && (
+            <script
+              defer
+              src="https://static.cloudflareinsights.com/beacon.min.js"
+              data-cf-beacon='{"token": "15a270292cfc4f5684025d07ab4fc1ab"}'
+            ></script>
+          )}
+        </Head>
         <body>
           <Main />
           <NextScript />
