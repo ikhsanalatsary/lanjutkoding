@@ -32,3 +32,9 @@ body {
         @apply font-mono text-sm !important
     }
 }
+
+@layer utilities {
+    .align-text-middle {
+        vertical-align: 0.7rem
+    }
+}

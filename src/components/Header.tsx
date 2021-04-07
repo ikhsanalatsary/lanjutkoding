@@ -298,13 +298,12 @@ export function Header(props: Props) {
                   <Image
                     src={getRelativeImage(props.logo)}
                     layout="intrinsic"
-                    width={29}
-                    height={29}
+                    width={36}
+                    height={36}
                     alt="logo lanjutkoding.com"
                   />
                 )}
-                {/* ideally vertical-align: 0.7rem, but I don't know how to do it in tailwind */}
-                <span className="align-top ml-2">
+                <span className="align-text-middle ml-2">
                   {props.siteTitle ?? 'Lanjutkoding.com'}
                 </span>
               </span>
@@ -317,7 +316,7 @@ export function Header(props: Props) {
               return (
                 <li className="mr-3" key={menu?.id}>
                   <Link href={menu!.path!}>
-                    <a className="text-gray-800 hover:border-b-2 hover:border-primary-500">
+                    <a className="text-gray-800 hover:border-b-2 hover:border-primary-500 align-text-middle">
                       {menu?.label}
                     </a>
                   </Link>
