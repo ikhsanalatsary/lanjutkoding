@@ -14,6 +14,7 @@
     "@apollo/client": "^3.3.11",
     "@octokit/request": "^5.4.14",
     "@tailwindcss/typography": "^0.4.0",
+    "cheerio": "^1.0.0-rc.5",
     "cors": "^2.8.5",
     "dayjs": "^1.10.4",
     "graphql": "^15.5.0",

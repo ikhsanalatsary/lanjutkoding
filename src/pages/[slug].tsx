@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useEffect } from 'react';
 import {
   GetStaticPaths,
@@ -18,6 +19,7 @@ import {
 import { Header, removeSubDomain } from '../components/Header';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
 import { Footer } from '../components/Footer';
+import cheerio from 'cheerio';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({
@@ -187,6 +189,27 @@ export const getStaticProps = async (
       slug: params?.slug,
     },
   });
+  if (result.data.post?.content) {
+    // @ts-ignore
+    const $ = cheerio.load(result.data.post.content, null, false);
+    $('pre').each(function (i, el) {
+      let lang = $(el).attr('class')?.split(' ')[1].slice(9) ?? 'javascript';
+      let code = $(el).find('code');
+      code.replaceWith(
+        Prism.highlight(code.text(), Prism.languages[lang], lang)
+      );
+    });
+    result = {
+      ...result,
+      data: {
+        ...result.data,
+        post: {
+          ...result.data.post,
+          content: $.html(),
+        },
+      },
+    };
+  }
   return {
     props: {
       post: result.data.post,
