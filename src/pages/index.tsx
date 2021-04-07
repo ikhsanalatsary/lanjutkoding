@@ -42,7 +42,7 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                         post?.node?.featuredImage?.node?.altText ??
                         post!.node!.title!
                       }
-                      className="block h-auto w-full"
+                      className="w-full"
                       src={
                         post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
                           7
@@ -51,6 +51,7 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                           7
                         )
                       }
+                      layout="responsive"
                       width={600}
                       height={400}
                     />
@@ -78,6 +79,7 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                     <Image
                       alt={post!.node!.author!.node!.name!}
                       className="block rounded-full"
+                      layout="intrinsic"
                       src={post!.node!.author!.node!.avatar!.url!}
                       width={32}
                       height={32}
