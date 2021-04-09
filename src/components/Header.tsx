@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,119 +11,30 @@ import {
   SocialProfileJsonLd,
 } from 'next-seo';
 import {
+  CategoryDetailQuery,
   HomeQuery,
   Maybe,
-  MediaDetails,
-  MediaItem,
-  PostTypeSeo,
-  SeoPostTypeBreadcrumbs,
-  TaxonomySeo,
+  PostDetailQuery,
 } from '../lib/graphql';
 
 type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
+// ref: https://www.typescriptlang.org/docs/handbook/utility-types.html#nonnullabletype
+// More advanced: https://www.reddit.com/r/typescript/comments/c1grsp/how_would_i_extract_this_type_from_this_generated/
+// and https://blog.mayflower.de/8860-typescript-graphql-codegen-types.html
 type SeoType =
-  | Maybe<
-      { __typename?: 'PostTypeSEO' } & Pick<
-        PostTypeSeo,
-        | 'canonical'
-        | 'metaKeywords'
-        | 'metaDesc'
-        | 'metaRobotsNoindex'
-        | 'metaRobotsNofollow'
-        | 'opengraphAuthor'
-        | 'opengraphDescription'
-        | 'opengraphModifiedTime'
-        | 'opengraphPublishedTime'
-        | 'opengraphPublisher'
-        | 'opengraphSiteName'
-        | 'opengraphTitle'
-        | 'opengraphType'
-        | 'opengraphUrl'
-        | 'readingTime'
-        | 'title'
-        | 'twitterDescription'
-        | 'twitterTitle'
-        | 'focuskw'
-        | 'cornerstone'
-      > & {
-          breadcrumbs: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'SEOPostTypeBreadcrumbs' } & Pick<
-                  SeoPostTypeBreadcrumbs,
-                  'text' | 'url'
-                >
-              >
-            >
-          >;
-          opengraphImage: Maybe<
-            { __typename?: 'MediaItem' } & Pick<
-              MediaItem,
-              'sourceUrl' | 'title' | 'uri' | 'altText'
-            > & {
-                mediaDetails: Maybe<
-                  { __typename?: 'MediaDetails' } & Pick<MediaDetails, 'file'>
-                >;
-              }
-          >;
-        }
-    >
-  | Maybe<
-      { __typename?: 'TaxonomySEO' } & Pick<
-        TaxonomySeo,
-        | 'canonical'
-        | 'cornerstone'
-        | 'focuskw'
-        | 'metaDesc'
-        | 'metaRobotsNofollow'
-        | 'metaKeywords'
-        | 'metaRobotsNoindex'
-        | 'opengraphAuthor'
-        | 'opengraphDescription'
-        | 'opengraphModifiedTime'
-        | 'opengraphPublishedTime'
-        | 'opengraphPublisher'
-        | 'opengraphSiteName'
-        | 'opengraphTitle'
-        | 'opengraphType'
-        | 'opengraphUrl'
-        | 'title'
-        | 'twitterDescription'
-        | 'twitterTitle'
-      > & {
-          breadcrumbs: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'SEOPostTypeBreadcrumbs' } & Pick<
-                  SeoPostTypeBreadcrumbs,
-                  'text' | 'url'
-                >
-              >
-            >
-          >;
-          opengraphImage: Maybe<
-            { __typename?: 'MediaItem' } & Pick<
-              MediaItem,
-              'sourceUrl' | 'title' | 'uri' | 'altText'
-            > & {
-                mediaDetails: Maybe<
-                  { __typename?: 'MediaDetails' } & Pick<MediaDetails, 'file'>
-                >;
-              }
-          >;
-        }
-    >;
+  | NonNullable<PostDetailQuery['post']>['seo']
+  | NonNullable<CategoryDetailQuery['category']>['seo'];
 type MenuItemType = Pick<HomeQuery, 'menuItems'>['menuItems'];
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
-  siteTitle?: Maybe<string>;
-  rootSeo?: RootSeoType;
-  seo?: SeoType;
-  title?: Maybe<string>;
-  logo?: Maybe<string>;
+  siteTitle: Maybe<string>;
+  rootSeo: RootSeoType;
+  seo: SeoType;
+  title: Maybe<string>;
+  logo: Maybe<string>;
   siteDesc?: Maybe<string>;
-  menuItems?: MenuItemType;
+  menuItems: MenuItemType;
 };
 function getRelativeImage(targetUrl: string): string {
   try {
@@ -145,15 +57,12 @@ export function Header(props: Props) {
       content: props.seo?.metaKeywords,
     });
   }
-  let imageUrl =
-    'https://' +
-    props.siteTitle?.toLowerCase() +
-    (props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
-      props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
-      props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(
-        7
-      ) ||
-      '/raycast-untitled-32.png');
+  let imageUrl = `https://${props.siteTitle?.toLowerCase()}${
+    props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
+    props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
+    props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
+    '/raycast-untitled-32.png'
+  }`;
   let title = `${props.title || props.siteTitle || 'Lanjutkoding.com'} - ${
     props.siteDesc || 'Yuk lanjut kodingnya!'
   }`;
@@ -231,7 +140,7 @@ export function Header(props: Props) {
       />
       {props.seo && (
         <ArticleJsonLd
-          url={removeSubDomain(props.seo.opengraphUrl!)}
+          url={removeSubDomain(props.seo.opengraphUrl!)!}
           title={props.seo.title!}
           images={[imageUrl]}
           datePublished={props.seo.opengraphPublishedTime ?? ''}
@@ -255,10 +164,10 @@ export function Header(props: Props) {
       )}
       {props.rootSeo && (
         <SiteLinksSearchBoxJsonLd
-          url={'https://' + props.siteTitle?.toLowerCase()}
+          url={`https://${props.siteTitle?.toLowerCase()}`}
           potentialActions={[
             {
-              target: 'https://' + props.siteTitle?.toLowerCase() + '/search?q',
+              target: `https://${props.siteTitle?.toLowerCase()}/search?q`,
               queryInput: 'search_term_string',
             },
           ]}
@@ -285,7 +194,7 @@ export function Header(props: Props) {
           sameAs={[
             props.rootSeo.social!.facebook!.url!,
             props.rootSeo.social!.instagram!.url!,
-            'https://twitter.com/' + props.rootSeo.social!.twitter!.username!,
+            `https://twitter.com/${props.rootSeo.social!.twitter!.username!}`,
           ]}
         />
       )}

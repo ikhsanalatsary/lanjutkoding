@@ -10,18 +10,15 @@ module.exports = {
         'typescript-react-apollo',
       ],
       config: {
+        // https://www.graphql-code-generator.com/docs/generated-config/typescript#maybevalue
+        maybeValue: 'T | null | undefined',
         skipTypename: false,
         withHooks: false,
         withHOC: false,
         withComponent: false,
         withResultType: true,
         reactApolloVersion: 3,
-        avoidOptionals: {
-          field: true,
-          inputValue: true,
-          object: true,
-          defaultValue: true,
-        },
+        avoidOptionals: true,
       },
     },
   },

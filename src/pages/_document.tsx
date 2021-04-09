@@ -30,7 +30,7 @@ class MyDocument extends Document {
       ...initialProps,
       locale: result.data.allSettings?.generalSettingsLanguage?.length
         ? result.data.allSettings.generalSettingsLanguage.replace('_', '-')
-        : 'en-US',
+        : 'id-ID',
     };
   }
 

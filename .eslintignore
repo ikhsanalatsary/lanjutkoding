@@ -1,1 +1,5 @@
 *.config.js
+codegen.js
+updateSchema.js
+graphql.tsx
+.eslintrc.js

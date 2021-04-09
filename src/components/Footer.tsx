@@ -15,16 +15,16 @@ type Props = {
     >
   >;
 };
-export function Footer(props: Props) {
+export function Footer({ copyRightText, socialLinks }: Props) {
   return (
     <div className="pt-2">
       <div
         className="flex pb-5 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col
 md:flex-row max-w-6xl"
       >
-        <div className="mt-2">{props.copyRightText}</div>
+        <div className="mt-2">{copyRightText}</div>
         <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-          {props.socialLinks?.map((social) => {
+          {socialLinks?.map((social) => {
             let Icon: FC<{ size?: Size; color?: Color }> = () => null;
             if (social?.iconName === 'facebook') {
               Icon = FacebookIcon;
