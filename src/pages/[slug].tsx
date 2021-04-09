@@ -8,6 +8,7 @@ import {
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import Prism from 'prismjs';
+import cheerio from 'cheerio';
 import { initializeApollo } from '../lib/apolloClient';
 import {
   PostDetailDocument,
@@ -19,7 +20,6 @@ import {
 import { Header, removeSubDomain } from '../components/Header';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
 import { Footer } from '../components/Footer';
-import cheerio from 'cheerio';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({
@@ -35,6 +35,7 @@ export default function PostDetail({
   }, []);
   useEffect(() => {
     import('smooth-scroll').then(({ default: SmoothScroll }) => {
+      // eslint-disable-next-line no-new
       new SmoothScroll('a[href*="#"]', {
         speed: 500,
         // speedAsDuration: true,
@@ -46,15 +47,7 @@ export default function PostDetail({
   const shareText = encodeURI(post!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
   const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;
-  const linkedInShareUrl =
-    'https://www.linkedin.com/shareArticle?mini=true&url=' +
-    url +
-    '&title=' +
-    shareText +
-    '&summary=' +
-    shareText +
-    '&source=' +
-    url;
+  const linkedInShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${shareText}&summary=${shareText}&source=${url}`;
   return (
     <>
       <Header
@@ -192,7 +185,7 @@ export const getStaticProps = async (
   if (result.data.post?.content) {
     // @ts-ignore
     const $ = cheerio.load(result.data.post.content, null, false);
-    $('pre').each(function (i, el) {
+    $('pre').each((i, el) => {
       let lang = $(el).attr('class')?.split(' ')[1].slice(9) ?? 'javascript';
       let code = $(el).find('code');
       code.replaceWith(

@@ -14,15 +14,16 @@ export default function ScrollTop() {
         setOnBottomPage(false);
       }
     }
-    let listener = window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      listener?.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return onBottomPage ? (
     <button
+      type="button"
       className="fixed bottom-28 right-4 md:right-8 mouse underline focus:outline-none text-sm"
       onClick={() => {
         if (window.location.hash) {

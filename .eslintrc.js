@@ -7,6 +7,7 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "airbnb-typescript",
         "plugin:@typescript-eslint/recommended",
         "prettier",
         "plugin:react-hooks/recommended"
@@ -17,7 +18,9 @@ module.exports = {
             "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "tsconfigRootDir": __dirname,
+        "project": "./tsconfig.eslint.json"
     },
     "plugins": [
         "react",
@@ -28,6 +31,14 @@ module.exports = {
         "prefer-const": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
+        "react/jsx-filename-extension": "off",
+        "react/jsx-props-no-spreading": "off",
+        "no-underscore-dangle": "off",
+        "arrow-body-style": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "import/prefer-default-export": "off",
+        "react/require-default-props": "off",
+        "react/no-danger": "off",
     },
     "settings": {
         "react": {
