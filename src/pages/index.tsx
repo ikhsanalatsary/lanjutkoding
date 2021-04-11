@@ -59,13 +59,13 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                 </Link>
 
                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                  <h1 className="text-base lg:text-lg">
+                  <h3 className="text-base lg:text-lg">
                     <Link href={post!.node!.uri}>
                       <a className="no-underline hover:underline text-black">
                         {post!.node!.title}
                       </a>
                     </Link>
-                  </h1>
+                  </h3>
                   <p className=" text-sm text-gray-500">
                     {dayjs(post!.node!.date!).format('DD/MM/YYYY')}
                   </p>

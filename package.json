@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "codegen": "graphql-codegen --config scripts/codegen.js",
     "update-schema": "graphql-codegen --config scripts/updateSchema.js",
@@ -51,6 +52,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "graphql-codegen-apollo-next-ssr": "^1.5.0",
+    "next-sitemap": "^1.6.25",
     "postcss": "^8.2.8",
     "prettier": "^2.2.1",
     "tailwindcss": "2.1.0",
