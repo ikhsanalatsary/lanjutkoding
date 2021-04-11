@@ -50,6 +50,7 @@ export function removeSubDomain(target?: Maybe<string>) {
 export function Header(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let additionalMetaProps: { [key: string]: any } = {};
+  let siteUrl = removeSubDomain(props.rootSeo!.schema!.siteUrl!)!;
   if (props.seo?.metaKeywords) {
     additionalMetaProps.additionalMetaTags = [];
     additionalMetaProps.additionalMetaTags.push({
@@ -57,13 +58,13 @@ export function Header(props: Props) {
       content: props.seo?.metaKeywords,
     });
   }
-  let imageUrl = `https://${props.siteTitle?.toLowerCase()}${
+  let imageUrl = `${siteUrl}${
     props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
     props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
     props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
     '/raycast-untitled-32.png'
   }`;
-  let title = `${props.title || props.siteTitle || 'Lanjutkoding.com'} - ${
+  let title = `${props.title || props.siteTitle || 'Lanjut Koding'} - ${
     props.siteDesc || 'Yuk lanjut kodingnya!'
   }`;
   return (
@@ -95,7 +96,7 @@ export function Header(props: Props) {
             props.seo?.opengraphTitle ||
             props.rootSeo?.openGraph?.frontPage?.title ||
             props.siteTitle ||
-            'Lanjutkoding.com',
+            'Lanjut Koding',
           description:
             props.seo?.opengraphDescription ||
             props.rootSeo?.openGraph?.frontPage?.description ||
@@ -112,7 +113,7 @@ export function Header(props: Props) {
           site_name:
             props.seo?.opengraphSiteName ||
             props.rootSeo?.openGraph?.frontPage?.title ||
-            props.siteTitle ||
+            props.rootSeo?.schema?.siteName ||
             'lanjutkoding.com',
           type: props.seo?.opengraphType ?? undefined,
           article: {
@@ -164,10 +165,10 @@ export function Header(props: Props) {
       )}
       {props.rootSeo && (
         <SiteLinksSearchBoxJsonLd
-          url={`https://${props.siteTitle?.toLowerCase()}`}
+          url={siteUrl}
           potentialActions={[
             {
-              target: `https://${props.siteTitle?.toLowerCase()}/search?q`,
+              target: `${siteUrl}/search?q`,
               queryInput: 'search_term_string',
             },
           ]}
