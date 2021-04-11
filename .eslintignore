@@ -3,3 +3,4 @@ codegen.js
 updateSchema.js
 graphql.tsx
 .eslintrc.js
+next-sitemap.js
