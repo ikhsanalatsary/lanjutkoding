@@ -82,7 +82,11 @@ export function Header(props: Props) {
         defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
         title={title}
         description={
-          props.seo?.metaDesc || props.siteDesc || 'Yuk lanjut kodingnya!'
+          props.seo?.metaDesc ||
+          props.siteDesc ||
+          props.seo?.opengraphDescription ||
+          props.rootSeo?.openGraph?.frontPage?.description ||
+          'Yuk lanjut kodingnya!'
         }
         canonical={
           removeSubDomain(props.seo?.canonical) ||
