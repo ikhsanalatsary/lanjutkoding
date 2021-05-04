@@ -4,6 +4,7 @@
 import { inspect } from 'util';
 import { request } from '@octokit/request';
 import type { NextApiRequest as Req, NextApiResponse as Res } from 'next';
+import type { Response } from 'node-fetch';
 import { URL } from 'url';
 import cors from 'cors';
 import {
@@ -21,8 +22,7 @@ const initCors = corsMiddleware(
   cors({
     // Only allow requests with GET, POST and OPTIONS
     methods: ['POST', 'OPTIONS'],
-    origin: function (origin, callback) {
-      console.log('🚀 ~ file: webhook.ts ~ line 19 ~ origin', origin);
+    origin(origin, callback) {
       if (
         process.env.NODE_ENV === 'development' ||
         whitelist.indexOf(origin) !== -1
@@ -45,14 +45,14 @@ type UnwrappedPromiseType<T extends (...args: any) => any> = T extends (
 
 async function getImageAsBuffer(imageUrl: string): Promise<string> {
   // @ts-ignore
-  let result = await fetch(imageUrl);
+  let result: Response = await fetch(imageUrl);
   let data = await result.buffer();
   return data.toString('base64');
 }
 
 let requestWithAuth = request.defaults({
   headers: {
-    authorization: 'token ' + process.env.GITHUB_TOKEN,
+    authorization: `token ${process.env.GITHUB_TOKEN}`,
   },
 });
 
@@ -79,7 +79,7 @@ async function createCommit(
     repo: process.env.GITHUB_REPO!,
     tree: [
       {
-        path: 'public/' + fileName,
+        path: `public/${fileName}`,
         mode: '100644',
         type: 'blob',
         sha: data.sha,
@@ -90,7 +90,7 @@ async function createCommit(
   let result = await requestWithAuth('POST /repos/{owner}/{repo}/git/commits', {
     owner: process.env.GITHUB_USERNAME!,
     repo: process.env.GITHUB_REPO!,
-    message: 'add new image ' + fileName,
+    message: `add new image ${fileName}`,
     tree: tree.data.sha,
     parents: [lastCommitSha],
   });
@@ -145,12 +145,14 @@ export default async (req: Req, res: Res) => {
           let lastCommit = await getLastCommitSha();
           let commit = await createCommit(fileName, blobData, lastCommit);
           let result = await pushCommit(commit);
+          // eslint-disable-next-line no-console
           console.log(inspect(result, true, 8));
         }
       }
       message = 'success';
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     message = error.message;
   }

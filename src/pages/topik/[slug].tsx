@@ -141,11 +141,6 @@ export const getStaticProps = async (
       categoryId: params?.slug,
     },
   });
-  console.log(
-    '🚀 ~ file: [slug].tsx ~ line 136 ~ result',
-    result.data.posts,
-    params.slug
-  );
 
   return {
     props: {
