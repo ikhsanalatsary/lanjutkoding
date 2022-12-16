@@ -30,6 +30,7 @@ services:
       WORDPRESS_DB_NAME: lanjutkoding
     volumes:
       - wordpress_files:/var/www/html
+      - ./.htaccess:/var/www/html/.htaccess
 volumes:
   db_data:
     external:

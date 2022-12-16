@@ -1,8 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import Head from 'next/head';
+
 import {
   ArticleJsonLd,
   BreadcrumbJsonLd,
@@ -10,6 +8,10 @@ import {
   SiteLinksSearchBoxJsonLd,
   SocialProfileJsonLd,
 } from 'next-seo';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import {
   CategoryDetailQuery,
   HomeQuery,
@@ -60,8 +62,8 @@ export function Header(props: Props) {
   }
   let imageUrl = `${siteUrl}${
     props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
-    props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
     props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
+    props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
     '/raycast-untitled-32.png'
   }`;
   let title = `${props.title || props.siteTitle || 'Lanjut Koding'} - ${
