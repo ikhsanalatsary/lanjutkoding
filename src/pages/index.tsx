@@ -1,12 +1,20 @@
 import React from 'react';
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+
+import dayjs from 'dayjs';
+import {
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import dayjs from 'dayjs';
-import { initializeApollo } from '../lib/apolloClient';
-import { HomeDocument, HomeQuery } from '../lib/graphql';
-import { Header } from '../components/Header';
+
 import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { initializeApollo } from '../lib/apolloClient';
+import {
+  HomeDocument,
+  HomeQuery,
+} from '../lib/graphql';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Home({ posts, header, menuItems, seo, footer }: Props) {
@@ -59,14 +67,14 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                 </Link>
 
                 <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                  <h3 className="text-base lg:text-lg">
+                  <h3 className="text-base lg:text-lg break-all mr-2">
                     <Link href={post!.node!.uri}>
                       <a className="no-underline hover:underline text-black">
                         {post!.node!.title}
                       </a>
                     </Link>
                   </h3>
-                  <p className=" text-sm text-gray-500">
+                  <p className=" text-sm text-gray-500 ml-2">
                     {dayjs(post!.node!.date!).format('DD/MM/YYYY')}
                   </p>
                 </header>
