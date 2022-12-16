@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   db:
-    image: mysql:5.7
+    image: arm64v8/mysql:latest
     volumes:
       - db_data:/var/lib/mysql
     ports:
@@ -20,8 +20,8 @@ services:
     image: wordpress:latest
     ports:
       - '80:80'
-    extra_hosts:
-      - lanjutkoding.local:192.168.88.73
+    # extra_hosts:
+    #   - lanjutkoding.local:192.168.88.73
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306 # change to existing db if necessary
@@ -30,6 +30,11 @@ services:
       WORDPRESS_DB_NAME: lanjutkoding
     volumes:
       - wordpress_files:/var/www/html
+      - ./.htaccess:/var/www/html/.htaccess
 volumes:
-  db_data: {}
-  wordpress_files: {}
+  db_data:
+    external:
+      name: lanjutkoding_db_data
+  wordpress_files:
+    external:
+      name: lanjutkoding_wordpress_files

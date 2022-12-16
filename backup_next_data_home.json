@@ -1,0 +1,377 @@
+{
+  "props": {
+    "pageProps": {
+      "posts": {
+        "__typename": "RootQueryToPostConnection",
+        "edges": [
+          {
+            "__typename": "RootQueryToPostConnectionEdge",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjE1Nw==",
+            "node": {
+              "__typename": "Post",
+              "slug": "membuat-docker-image-untuk-aplikasi-react-native",
+              "title": "Membuat Docker Image Untuk Aplikasi React Native",
+              "date": "2021-10-06T00:51:16",
+              "uri": "/membuat-docker-image-untuk-aplikasi-react-native/",
+              "featuredImage": null,
+              "author": {
+                "__typename": "NodeWithAuthorToUserConnectionEdge",
+                "node": {
+                  "__typename": "User",
+                  "slug": "ikhsan",
+                  "name": "Abdul Fattah Ikhsan",
+                  "avatar": {
+                    "__typename": "Avatar",
+                    "url": "https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g"
+                  }
+                }
+              },
+              "tags": {
+                "__typename": "PostToTagConnection",
+                "nodes": [
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToyMQ==",
+                    "name": "android"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToxOQ==",
+                    "name": "docker"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToyMA==",
+                    "name": "react-native"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "__typename": "RootQueryToPostConnectionEdge",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjE0OQ==",
+            "node": {
+              "__typename": "Post",
+              "slug": "mengecualikan-tipe-null-dan-undefined-pada-tipe-data-typescript",
+              "title": "Mengecualikan tipe null dan undefined pada tipe data TypeScript",
+              "date": "2021-04-14T16:45:28",
+              "uri": "/mengecualikan-tipe-null-dan-undefined-pada-tipe-data-typescript/",
+              "featuredImage": {
+                "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+                "node": {
+                  "__typename": "MediaItem",
+                  "sourceUrl": "https://yuk.lanjutkoding.com/wp-content/uploads/2021/04/typescript-tutorial.png",
+                  "altText": "",
+                  "mediaDetails": {
+                    "__typename": "MediaDetails",
+                    "file": "2021/04/typescript-tutorial.png"
+                  }
+                }
+              },
+              "author": {
+                "__typename": "NodeWithAuthorToUserConnectionEdge",
+                "node": {
+                  "__typename": "User",
+                  "slug": "ikhsan",
+                  "name": "Abdul Fattah Ikhsan",
+                  "avatar": {
+                    "__typename": "Avatar",
+                    "url": "https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g"
+                  }
+                }
+              },
+              "tags": {
+                "__typename": "PostToTagConnection",
+                "nodes": [
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToxNg==",
+                    "name": "Programming"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToxOA==",
+                    "name": "Tipe Data"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToxNQ==",
+                    "name": "TypeScript"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "__typename": "RootQueryToPostConnectionEdge",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjY3",
+            "node": {
+              "__typename": "Post",
+              "slug": "perbedaan-client-side-rendering-dan-server-side-rendering",
+              "title": "Perbedaan client side rendering dan server side rendering",
+              "date": "2021-04-07T12:23:06",
+              "uri": "/perbedaan-client-side-rendering-dan-server-side-rendering/",
+              "featuredImage": null,
+              "author": {
+                "__typename": "NodeWithAuthorToUserConnectionEdge",
+                "node": {
+                  "__typename": "User",
+                  "slug": "ikhsan",
+                  "name": "Abdul Fattah Ikhsan",
+                  "avatar": {
+                    "__typename": "Avatar",
+                    "url": "https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g"
+                  }
+                }
+              },
+              "tags": {
+                "__typename": "PostToTagConnection",
+                "nodes": []
+              }
+            }
+          },
+          {
+            "__typename": "RootQueryToPostConnectionEdge",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjcx",
+            "node": {
+              "__typename": "Post",
+              "slug": "membuat-cadangan-gambar-dari-wordpress-ke-github-secara-otomatis",
+              "title": "Membuat cadangan gambar dari WordPress ke GitHub secara otomatis",
+              "date": "2021-04-01T18:01:55",
+              "uri": "/membuat-cadangan-gambar-dari-wordpress-ke-github-secara-otomatis/",
+              "featuredImage": null,
+              "author": {
+                "__typename": "NodeWithAuthorToUserConnectionEdge",
+                "node": {
+                  "__typename": "User",
+                  "slug": "ikhsan",
+                  "name": "Abdul Fattah Ikhsan",
+                  "avatar": {
+                    "__typename": "Avatar",
+                    "url": "https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g"
+                  }
+                }
+              },
+              "tags": {
+                "__typename": "PostToTagConnection",
+                "nodes": [
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToxMQ==",
+                    "name": "Api Integration"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybTo4",
+                    "name": "Node.js"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybToxMA==",
+                    "name": "Web Development"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybTo5",
+                    "name": "Webhooks"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybTo3",
+                    "name": "WordPress"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "__typename": "RootQueryToPostConnectionEdge",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjM0",
+            "node": {
+              "__typename": "Post",
+              "slug": "sudah-saatnya-pindah-karir-di-era-digital",
+              "title": "Sudah saatnya pindah karir di era digital",
+              "date": "2021-03-27T01:46:26",
+              "uri": "/sudah-saatnya-pindah-karir-di-era-digital/",
+              "featuredImage": null,
+              "author": {
+                "__typename": "NodeWithAuthorToUserConnectionEdge",
+                "node": {
+                  "__typename": "User",
+                  "slug": "ikhsan",
+                  "name": "Abdul Fattah Ikhsan",
+                  "avatar": {
+                    "__typename": "Avatar",
+                    "url": "https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g"
+                  }
+                }
+              },
+              "tags": {
+                "__typename": "PostToTagConnection",
+                "nodes": [
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybTo2",
+                    "name": "karir"
+                  },
+                  {
+                    "__typename": "Tag",
+                    "id": "dGVybTo1",
+                    "name": "motivasi"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "__typename": "RootQueryToPostConnectionEdge",
+            "cursor": "YXJyYXljb25uZWN0aW9uOjE=",
+            "node": {
+              "__typename": "Post",
+              "slug": "hello-world",
+              "title": "Hello world!",
+              "date": "2021-03-14T15:02:22",
+              "uri": "/hello-world/",
+              "featuredImage": {
+                "__typename": "NodeWithFeaturedImageToMediaItemConnectionEdge",
+                "node": {
+                  "__typename": "MediaItem",
+                  "sourceUrl": "https://yuk.lanjutkoding.com/wp-content/uploads/2021/03/890-1500x1000-1.jpg",
+                  "altText": "ombak",
+                  "mediaDetails": {
+                    "__typename": "MediaDetails",
+                    "file": "2021/03/890-1500x1000-1.jpg"
+                  }
+                }
+              },
+              "author": {
+                "__typename": "NodeWithAuthorToUserConnectionEdge",
+                "node": {
+                  "__typename": "User",
+                  "slug": "ikhsan",
+                  "name": "Abdul Fattah Ikhsan",
+                  "avatar": {
+                    "__typename": "Avatar",
+                    "url": "https://secure.gravatar.com/avatar/72176749cff2f81f6bf56178ec7b2c64?s=96&d=mm&r=g"
+                  }
+                }
+              },
+              "tags": {
+                "__typename": "PostToTagConnection",
+                "nodes": []
+              }
+            }
+          }
+        ]
+      },
+      "header": {
+        "__typename": "HCMSHeader",
+        "siteTitle": "Lanjut Koding",
+        "siteLogoUrl": "https://yuk.lanjutkoding.com/wp-content/uploads/2021/03/android-chrome-192x192-1.png",
+        "siteTagLine": "Tutorial bahasa Indonesia seputar pemrograman. Yuk lanjut belajar kodingnya!"
+      },
+      "menuItems": {
+        "__typename": "RootQueryToMenuItemConnection",
+        "nodes": [
+          {
+            "__typename": "MenuItem",
+            "id": "cG9zdDoxOQ==",
+            "label": "Tentang",
+            "path": "/about/"
+          }
+        ]
+      },
+      "seo": {
+        "__typename": "SEOConfig",
+        "openGraph": {
+          "__typename": "SEOOpenGraph",
+          "defaultImage": {
+            "__typename": "MediaItem",
+            "altText": "",
+            "title": "raycast-yuk-lanjutkoding",
+            "uri": "/raycast-yuk-lanjutkoding/",
+            "mediaDetails": {
+              "__typename": "MediaDetails",
+              "file": "2021/03/raycast-yuk-lanjutkoding.png"
+            }
+          },
+          "frontPage": {
+            "__typename": "SEOOpenGraphFrontPage",
+            "description": "Tutorial bahasa Indonesia seputar pemrograman. Yuk lanjut belajar kodingnya!",
+            "title": "Lanjut Koding",
+            "image": {
+              "__typename": "MediaItem",
+              "uri": "/raycast-untitled-32/",
+              "altText": "lanjutkoding.com",
+              "mediaDetails": {
+                "__typename": "MediaDetails",
+                "file": "2021/03/raycast-untitled-32.png"
+              }
+            }
+          }
+        },
+        "webmaster": {
+          "__typename": "SEOWebmaster",
+          "baiduVerify": "",
+          "googleVerify": "0tNwPA9CuQ7jZ8m35tbACH9oxXGWcbcXqo6jRfHe9D4",
+          "msVerify": "",
+          "yandexVerify": ""
+        },
+        "social": {
+          "__typename": "SEOSocial",
+          "facebook": {
+            "__typename": "SEOSocialFacebook",
+            "url": "https://www.facebook.com/houseofcoder/"
+          },
+          "instagram": {
+            "__typename": "SEOSocialInstagram",
+            "url": "https://www.instagram.com/houseofcoder/"
+          },
+          "twitter": {
+            "__typename": "SEOSocialTwitter",
+            "username": "houseofcoder1",
+            "cardType": "summary_large_image"
+          }
+        },
+        "schema": {
+          "__typename": "SEOSchema",
+          "siteName": "Lanjut Koding",
+          "siteUrl": "https://yuk.lanjutkoding.com",
+          "wordpressSiteName": "Lanjut Koding",
+          "personName": null,
+          "companyOrPerson": "company",
+          "companyName": "lanjutkoding.com",
+          "inLanguage": "id-ID"
+        }
+      },
+      "footer": {
+        "__typename": "HCMSFooter",
+        "copyrightText": "© 2021",
+        "socialLinks": [
+          {
+            "__typename": "HCMSSocialLinks",
+            "iconName": "facebook",
+            "iconUrl": "https://www.facebook.com/houseofcoder"
+          },
+          {
+            "__typename": "HCMSSocialLinks",
+            "iconName": "twitter",
+            "iconUrl": "https://twitter.com/houseofcoder1"
+          },
+          {
+            "__typename": "HCMSSocialLinks",
+            "iconName": "instagram",
+            "iconUrl": "https://www.instagram.com/houseofcoder/"
+          }
+        ]
+      }
+    },
+    "__N_SSG": true
+  },
+  "page": "/",
+  "query": {},
+  "buildId": "cVGonmjkwsrpuYT0li_f9",
+  "isFallback": false,
+  "gsp": true
+}
