@@ -1,4 +1,6 @@
 import React from 'react';
+
+import dayjs from 'dayjs';
 import {
   GetStaticPaths,
   GetStaticPropsContext,
@@ -6,7 +8,9 @@ import {
 } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import dayjs from 'dayjs';
+
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
 import { initializeApollo } from '../../lib/apolloClient';
 import {
   CategoryDetailDocument,
@@ -14,8 +18,6 @@ import {
   CategorySlugsDocument,
   CategorySlugsQuery,
 } from '../../lib/graphql';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function CategoryList({
@@ -62,7 +64,7 @@ export default function CategoryList({
                         post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
                           7
                         ) ??
-                        rootSeo!.openGraph!.defaultImage!.mediaDetails!.file!.slice(
+                        rootSeo!.openGraph!.frontPage!.image!.mediaDetails!.file!.slice(
                           7
                         )
                       }
