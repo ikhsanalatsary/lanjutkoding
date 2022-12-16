@@ -55,7 +55,7 @@ export default function Home({ posts, header, menuItems, seo, footer }: Props) {
                         post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
                           7
                         ) ??
-                        (seo!.openGraph!.frontPage!.image!.mediaDetails?.file.slice(
+                        (seo!.openGraph!.frontPage!.image!.mediaDetails!.file!.slice(
                           7
                         ) ||
                           seo!.openGraph!.defaultImage!.mediaDetails!.file!.slice(
