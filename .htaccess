@@ -15,4 +15,4 @@ RewriteRule . /index.php [L]
 # END WordPress
 
 php_value upload_max_filesize 10M
-# php_value post_max_size 500M
+php_value post_max_size 100M

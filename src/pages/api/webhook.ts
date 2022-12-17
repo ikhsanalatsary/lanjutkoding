@@ -1,12 +1,17 @@
+import cors from 'cors';
+import type {
+  NextApiRequest as Req,
+  NextApiResponse as Res,
+} from 'next';
+import type { Response } from 'node-fetch';
+import { URL } from 'url';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { inspect } from 'util';
+
 import { request } from '@octokit/request';
-import type { NextApiRequest as Req, NextApiResponse as Res } from 'next';
-import type { Response } from 'node-fetch';
-import { URL } from 'url';
-import cors from 'cors';
+
 import {
   authMiddleware,
   corsMiddleware,
@@ -15,7 +20,13 @@ import {
 } from '../../lib/middleware';
 
 let auth = authMiddleware();
-let whitelist = [process.env.SITE_URL, process.env.ADMIN_URL];
+let whitelist = [
+  new RegExp(`^https?://${process.env.SITE_URL!.slice(8)}`),
+  new RegExp(`^https?://${process.env.ADMIN_URL!.slice(8)}`),
+  // process.env.SITE_URL,
+  // process.env.ADMIN_URL,
+  // 'http://yuk.lanjutkoding.com',
+];
 // Initialize the cors middleware
 const initCors = corsMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -25,7 +36,7 @@ const initCors = corsMiddleware(
     origin(origin, callback) {
       if (
         process.env.NODE_ENV === 'development' ||
-        whitelist.indexOf(origin) !== -1
+        whitelist.findIndex((lst) => lst.test(origin as string)) !== -1
       ) {
         callback(null, true);
       } else {
@@ -133,12 +144,19 @@ export default async (req: Req, res: Res) => {
     await initCors(req, res);
     if (req.method === 'POST') {
       // Process a POST request
+      // console.log(
+      //   '🚀 ~ file: webhook.ts:137 ~ eq.body.post?.post_status',
+      //   req.body.post?.post_status
+      // );
       if (req.body.post?.post_status === 'publish') {
         let postThumbnail = req.body.post_thumbnail; // string or false
+        // console.log('🚀 ~ file: webhook.ts:147 ~ postThumbnail', postThumbnail);
         if (
           isValidURL(postThumbnail) &&
-          whitelist.indexOf(getOrigin(postThumbnail)) !== -1
+          whitelist.findIndex((rgx) => rgx.test(getOrigin(postThumbnail))) !==
+            -1
         ) {
+          // console.log('here');
           let fileName = new URL(postThumbnail).pathname.slice(28);
           let base64Image = await getImageAsBuffer(postThumbnail);
           let blobData = await createBlob(base64Image);
@@ -151,7 +169,8 @@ export default async (req: Req, res: Res) => {
       }
       message = 'success';
     }
-  } catch (error) {
+    // console.log('sss');
+  } catch (error: any) {
     // eslint-disable-next-line no-console
     console.error(error);
     message = error.message;
