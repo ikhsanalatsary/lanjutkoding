@@ -29,7 +29,7 @@ type SeoType =
 type MenuItemType = Pick<HomeQuery, 'menuItems'>['menuItems'];
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type Props = {
+type Props = Partial<{
   siteTitle: Maybe<string>;
   rootSeo: RootSeoType;
   seo: SeoType;
@@ -37,7 +37,7 @@ type Props = {
   logo: Maybe<string>;
   siteDesc?: Maybe<string>;
   menuItems: MenuItemType;
-};
+}>;
 function getRelativeImage(targetUrl: string): string {
   try {
     let image = new URL(targetUrl);

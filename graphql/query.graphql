@@ -87,6 +87,14 @@ query Home {
       }
     }
   }
+  categories {
+    nodes {
+      id
+      slug
+      name
+      uri
+    }
+  }
   getHeader {
     siteTitle
     siteLogoUrl
@@ -285,6 +293,14 @@ query CategoryDetail($categorySlug: String!, $categoryId: ID!) {
           }
         }
       }
+    }
+  }
+  categories {
+    nodes {
+      id
+      slug
+      name
+      uri
     }
   }
   getHeader {
