@@ -121,20 +121,22 @@ export default function CategoryList({
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
               <div className="leading-7 text-gray-600 text-base">
                 <ul>
-                  {categories!.nodes!.map((category) => {
-                    return (
-                      <li
-                        key={category!.id}
-                        className="py-4 border-b border-gray-400 last:border-none"
-                      >
-                        <Link href={category!.uri}>
-                          <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
-                            {category!.name!}
-                          </a>
-                        </Link>
-                      </li>
-                    );
-                  })}
+                  {categories!
+                    .nodes!.filter((item) => item.name !== 'Uncategorized')
+                    .map((cat) => {
+                      return (
+                        <li
+                          key={cat!.id}
+                          className="py-4 border-b border-gray-400 last:border-none"
+                        >
+                          <Link href={cat!.uri}>
+                            <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
+                              {cat!.name!}
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>

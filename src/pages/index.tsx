@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 
 import dayjs from 'dayjs';
@@ -114,22 +115,68 @@ export default function Home({
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
               <div className="leading-7 text-gray-600 text-base">
                 <ul>
-                  {categories!.nodes!.map((category) => {
-                    return (
-                      <li
-                        key={category!.id}
-                        className="py-4 border-b border-gray-400 last:border-none"
-                      >
-                        <Link href={category!.uri}>
-                          <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
-                            {category!.name!}
-                          </a>
-                        </Link>
-                      </li>
-                    );
-                  })}
+                  {categories!
+                    .nodes!.filter((item) => item.name !== 'Uncategorized')
+                    .map((category) => {
+                      return (
+                        <li
+                          key={category!.id}
+                          className="py-4 border-b border-gray-400 last:border-none"
+                        >
+                          <Link href={category!.uri}>
+                            <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
+                              {category!.name!}
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
+              <div className="text-gray-600 text-lg text-center">Ads</div>
+              <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
+              <a
+                href="https://tokopedia.link/ulpXx2BOPvb"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/generator/gFZoml/29819936a43f45c830f1b34116f66de8.jpg"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    ONEX GDI-1000-W Gaming Desk 47" Wood Feet Cup Holder ,
+                    Headset Holder - Rp800.000
+                  </p>
+                </span>
+              </a>
+              <a
+                href="https://tokopedia.link/dLhJKqGKOvb"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/generator/gFZoml/cd23df0751ab80a9b6efc46ff86ba9b7.jpg"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    Nuphy Air75 / Air 75 Daylight Twilight Wireless Mechanical
+                    Keyboard - Daylight, Red Switch - Rp1.899.000
+                  </p>
+                </span>
+              </a>
             </div>
           </div>
         </div>

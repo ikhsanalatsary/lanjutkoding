@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useEffect } from 'react';
 import {
@@ -20,6 +21,7 @@ import {
 import { Header, removeSubDomain } from '../components/Header';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
 import { Footer } from '../components/Footer';
+import Image from 'next/image';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({
@@ -145,6 +147,112 @@ export default function PostDetail({
                   })}
                 </ul>
               </div>
+              <div className="text-gray-600 text-lg text-center">Ads</div>
+              <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
+              <a
+                href="https://tokopedia.link/Dn6RuFK7Qvb"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/generator/gFZoml/540a6b5a06137baccc52832d6b3dc83c.jpg"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    Miyako Water Pump Galon Air Black 4W - AWD200BK Hitam -
+                    Rp66.000
+                  </p>
+                </span>
+              </a>
+              <a
+                href="https://tokopedia.link/Ci46FTP7Qvb"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/generator/gFZoml/3483f0ad3b5537f9519c889a6dc75f45.jpg"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    Mecool KM2 Plus - Android TV 4K - Rp1.190.000
+                  </p>
+                </span>
+              </a>
+              <a
+                href="https://tokopedia.link/RrL4AUe5gub"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/cache/700/product-1/2020/4/2/3311752/3311752_f33847af-bbaf-4dbf-a5be-0e387c582d15_1080_1080.webp"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    Divoom Speaker Ditoo (Original) Garansi Resmi 1 Tahun -
+                    Ditoo, Hitam - Rp1.277.100
+                  </p>
+                </span>
+              </a>
+              <a
+                href="https://tokopedia.link/ulpXx2BOPvb"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/generator/gFZoml/29819936a43f45c830f1b34116f66de8.jpg"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    ONEX GDI-1000-W Gaming Desk 47" Wood Feet Cup Holder ,
+                    Headset Holder - Rp800.000
+                  </p>
+                </span>
+              </a>
+              <a
+                href="https://tokopedia.link/dLhJKqGKOvb"
+                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                target="_blank"
+                rel="noopener sponsored"
+              >
+                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                  <Image
+                    alt=""
+                    className="w-full"
+                    src="https://images.tokopedia.net/img/generator/gFZoml/cd23df0751ab80a9b6efc46ff86ba9b7.jpg"
+                    layout="responsive"
+                    width={300}
+                    height={300}
+                  />
+                  <p className="text-sm text-gray-500 py-2">
+                    Nuphy Air75 / Air 75 Daylight Twilight Wireless Mechanical
+                    Keyboard - Daylight, Red Switch - Rp1.899.000
+                  </p>
+                </span>
+              </a>
             </div>
           </div>
         </div>

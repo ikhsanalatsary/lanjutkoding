@@ -6,6 +6,7 @@ module.exports = {
       'lanjutkoding.com',
       'secure.gravatar.com',
       '1.gravatar.com',
+      'images.tokopedia.net',
     ],
   },
   typescript: {
