@@ -14,6 +14,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.16",
     "@octokit/request": "^5.4.15",
+    "@supabase/supabase-js": "^2.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "cheerio": "^1.0.0-rc.6",
     "cors": "^2.8.5",

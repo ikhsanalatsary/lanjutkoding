@@ -18,23 +18,13 @@ ADMIN_URL=
 X_API_KEY=
 ```
 
-Second, run WordPress via docker & docker compose:
-
-```bash
-docker-compose up -d
-```
-
-### Hostname resolution (map hostname to ip address)
-
-Make sure you map dash.lanjutkoding.local to localhost ip address (127.0.0.1),
-The location is - for linux or mac in `/etc/hosts` or for Windows in `C:\Windows\System32\drivers\etc\hosts`
-Let's add this line in the end of the file:
+Second, run WordPress:
 
 ```
-127.0.0.1 dash.lanjutkoding.local
+cd cms
 ```
 
-So, our WordPress will point to `http://dash.lanjutkoding.local`
+and see [The readme](cms/README.md)
 
 Third, run the development server:
 
@@ -66,3 +56,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### (OLD_UNNECESSARY_CONFIG) Hostname resolution (map hostname to ip address)
+
+Make sure you map dash.lanjutkoding.local to localhost ip address (127.0.0.1),
+The location is - for linux or mac in `/etc/hosts` or for Windows in `C:\Windows\System32\drivers\etc\hosts`
+Let's add this line in the end of the file:
+
+```
+127.0.0.1 dash.lanjutkoding.local
+```
+
+So, our WordPress will point to `http://dash.lanjutkoding.local`

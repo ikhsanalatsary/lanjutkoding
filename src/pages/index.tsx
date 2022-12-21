@@ -10,61 +10,33 @@ import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { initializeApollo } from '../lib/apolloClient';
 import { HomeDocument, HomeQuery } from '../lib/graphql';
+import initializeSupabase from '../lib/supa';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Home({
-  posts,
-  header,
-  menuItems,
-  seo,
-  footer,
-  categories,
-}: Props) {
+export default function Home({ posts, header, menuItems, seo, footer, categories, affiliates }: Props) {
   return (
     <>
-      <Header
-        siteTitle={header?.siteTitle}
-        siteDesc={header?.siteTagLine}
-        rootSeo={seo}
-        logo={header?.siteLogoUrl}
-        menuItems={menuItems}
-      />
+      <Header siteTitle={header?.siteTitle} siteDesc={header?.siteTagLine} rootSeo={seo} logo={header?.siteLogoUrl} menuItems={menuItems} />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
-        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">
-          {header?.siteTitle}
-        </h1>
-        <h2 className="text-xl md:text-2xl text-gray-600 mt-1">
-          {header?.siteTagLine}
-        </h2>
+        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">{header?.siteTitle}</h1>
+        <h2 className="text-xl md:text-2xl text-gray-600 mt-1">{header?.siteTagLine}</h2>
       </header>
       <div className="container flex flex-wrap mx-auto mb-8">
         <div className="max-w-screen-xl py-12 mx-auto flex flex-wrap">
           <div className="flex flex-wrap md:w-3/4 md:pl-3 md:pr-5">
             {posts!.edges!.map((post) => {
               return (
-                <div
-                  className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
-                  key={post!.cursor}
-                >
+                <div className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3" key={post!.cursor}>
                   <article className="overflow-hidden rounded-lg shadow-lg bg-white">
                     <Link href={post!.node!.uri}>
                       <a>
                         <Image
-                          alt={
-                            post?.node?.featuredImage?.node?.altText ??
-                            post!.node!.title!
-                          }
+                          alt={post?.node?.featuredImage?.node?.altText ?? post!.node!.title!}
                           className="w-full"
                           src={
-                            post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(
-                              7
-                            ) ??
-                            (seo!.openGraph!.frontPage!.image!.mediaDetails!.file!.slice(
-                              7
-                            ) ||
-                              seo!.openGraph!.defaultImage!.mediaDetails!.file!.slice(
-                                7
-                              ))
+                            post?.node?.featuredImage?.node?.mediaDetails?.file?.slice(7) ??
+                            (seo!.openGraph!.frontPage!.image!.mediaDetails!.file!.slice(7) ||
+                              seo!.openGraph!.defaultImage!.mediaDetails!.file!.slice(7))
                           }
                           layout="responsive"
                           width={600}
@@ -76,21 +48,14 @@ export default function Home({
                     <header className="leading-tight p-2 md:p-4">
                       <h3 className="text-base lg:text-lg break-words mb-2">
                         <Link href={post!.node!.uri}>
-                          <a className="no-underline hover:underline text-black">
-                            {post!.node!.title}
-                          </a>
+                          <a className="no-underline hover:underline text-black">{post!.node!.title}</a>
                         </Link>
                       </h3>
-                      <p className="text-sm text-gray-500 py-2">
-                        {dayjs(post!.node!.date!).format('DD/MM/YYYY')}
-                      </p>
+                      <p className="text-sm text-gray-500 py-2">{dayjs(post!.node!.date!).format('DD/MM/YYYY')}</p>
                     </header>
 
                     <footer className="flex items-center justify-between leading-none p-2 md:p-4">
-                      <a
-                        className="flex items-center no-underline hover:underline text-gray-500"
-                        href="#"
-                      >
+                      <a className="flex items-center no-underline hover:underline text-gray-500" href="#">
                         <Image
                           alt={post!.node!.author!.node!.name!}
                           className="block rounded-full"
@@ -99,9 +64,7 @@ export default function Home({
                           width={32}
                           height={32}
                         />
-                        <p className="ml-2 text-sm">
-                          {post!.node!.author!.node!.name!}
-                        </p>
+                        <p className="ml-2 text-sm">{post!.node!.author!.node!.name!}</p>
                       </a>
                     </footer>
                   </article>
@@ -119,10 +82,7 @@ export default function Home({
                     .nodes!.filter((item) => item.name !== 'Uncategorized')
                     .map((category) => {
                       return (
-                        <li
-                          key={category!.id}
-                          className="py-4 border-b border-gray-400 last:border-none"
-                        >
+                        <li key={category!.id} className="py-4 border-b border-gray-400 last:border-none">
                           <Link href={category!.uri}>
                             <a className="text-gray-600 border-b-2 border-blue-200 leading-6 hover:text-gray-800 hover:border-b-2 hover:border-primary-500">
                               {category!.name!}
@@ -135,56 +95,25 @@ export default function Home({
               </div>
               <div className="text-gray-600 text-lg text-center">Ads</div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
-              <a
-                href="https://tokopedia.link/ulpXx2BOPvb"
-                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
-                target="_blank"
-                rel="noopener sponsored"
-              >
-                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
-                  <Image
-                    alt=""
-                    className="w-full"
-                    src="https://images.tokopedia.net/img/generator/gFZoml/29819936a43f45c830f1b34116f66de8.jpg"
-                    layout="responsive"
-                    width={300}
-                    height={300}
-                  />
-                  <p className="text-sm text-gray-500 py-2">
-                    ONEX GDI-1000-W Gaming Desk 47" Wood Feet Cup Holder ,
-                    Headset Holder - Rp800.000
-                  </p>
-                </span>
-              </a>
-              <a
-                href="https://tokopedia.link/dLhJKqGKOvb"
-                className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
-                target="_blank"
-                rel="noopener sponsored"
-              >
-                <span className="overflow-hidden rounded-lg shadow-lg bg-white">
-                  <Image
-                    alt=""
-                    className="w-full"
-                    src="https://images.tokopedia.net/img/generator/gFZoml/cd23df0751ab80a9b6efc46ff86ba9b7.jpg"
-                    layout="responsive"
-                    width={300}
-                    height={300}
-                  />
-                  <p className="text-sm text-gray-500 py-2">
-                    Nuphy Air75 / Air 75 Daylight Twilight Wireless Mechanical
-                    Keyboard - Daylight, Red Switch - Rp1.899.000
-                  </p>
-                </span>
-              </a>
+              {affiliates!.map((aff) => (
+                <a
+                  key={aff.id}
+                  href={aff.link}
+                  className="my-2 md:my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+                  target="_blank"
+                  rel="noopener sponsored"
+                >
+                  <span className="overflow-hidden rounded-lg shadow-lg bg-white">
+                    <Image alt="" className="w-full" src={aff.image} layout="responsive" width={300} height={300} />
+                    <p className="text-sm text-gray-500 py-2">{aff.name}</p>
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <Footer
-        copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`}
-        socialLinks={footer!.socialLinks!}
-      />
+      <Footer copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`} socialLinks={footer!.socialLinks!} />
     </>
   );
 }
@@ -195,6 +124,8 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
   let result = await client.query<HomeQuery>({
     query: HomeDocument,
   });
+  let supabase = initializeSupabase();
+  const { data, error } = await supabase.from('affiliate_links').select('name, image, link, id').order('name', { ascending: false }).limit(2);
 
   return {
     props: {
@@ -204,6 +135,7 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
       seo: result.data.seo,
       categories: result.data.categories,
       footer: result.data.getFooter,
+      affiliates: data,
     },
     revalidate: 1,
   };
