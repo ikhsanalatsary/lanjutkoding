@@ -16,6 +16,8 @@ GITHUB_REPO=
 GITHUB_REF=heads/main
 ADMIN_URL=
 X_API_KEY=
+SUPABASE_URL=
+SUPABASE_KEY=
 ```
 
 Second, run WordPress:
