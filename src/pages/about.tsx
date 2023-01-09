@@ -5,28 +5,16 @@ import { AboutDocument, AboutQuery } from '../lib/graphql';
 import { Header, removeSubDomain } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
+import { generateCopyRight } from '../lib/utils';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function About({
-  about,
-  header,
-  menuItems,
-  rootSeo,
-  footer,
-}: Props) {
+export default function About({ about, header, menuItems, rootSeo, footer }: Props) {
   const url = encodeURI(removeSubDomain(about?.link) ?? window.location.href);
   const shareText = encodeURI(about!.title!);
   const facebookShareUrl = `https://facebook.com/sharer/sharer.php?u=${url}`;
   const twitterShareUrl = `https://twitter.com/intent/tweet/?text=${shareText}&url=${url}`;
   const linkedInShareUrl =
-    'https://www.linkedin.com/shareArticle?mini=true&url=' +
-    url +
-    '&title=' +
-    shareText +
-    '&summary=' +
-    shareText +
-    '&source=' +
-    url;
+    'https://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=' + shareText + '&summary=' + shareText + '&source=' + url;
   return (
     <>
       <Header
@@ -38,9 +26,7 @@ export default function About({
         rootSeo={rootSeo}
       />
       <header className="max-w-screen-xl text-center pt-8 pb-8 px-3 mx-auto">
-        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">
-          {about!.title}
-        </h1>
+        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">{about!.title}</h1>
       </header>
       <div className="w-full">
         <div className="max-w-screen-xl py-12 mx-auto flex flex-wrap justify-center">
@@ -76,17 +62,11 @@ export default function About({
                 </div>
               </div>
             </div>
-            <article
-              className="text-gray-800 prose lg:prose-xl"
-              dangerouslySetInnerHTML={{ __html: about!.content! }}
-            />
+            <article className="text-gray-800 prose lg:prose-xl" dangerouslySetInnerHTML={{ __html: about!.content! }} />
           </div>
         </div>
       </div>
-      <Footer
-        copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`}
-        socialLinks={footer!.socialLinks!}
-      />
+      <Footer copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`} socialLinks={footer!.socialLinks!} />
     </>
   );
 }
@@ -102,7 +82,10 @@ export const getStaticProps = async () => {
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
       rootSeo: result.data.seo,
-      footer: result.data.getFooter,
+      footer: {
+        ...result.data.getFooter,
+        copyrightText: generateCopyRight(result.data.getFooter?.copyrightText),
+      },
     },
     revalidate: 1,
   };

@@ -11,6 +11,7 @@ import { Header } from '../components/Header';
 import { initializeApollo } from '../lib/apolloClient';
 import { HomeDocument, HomeQuery } from '../lib/graphql';
 import initializeSupabase from '../lib/supa';
+import { generateCopyRight } from '../lib/utils';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Home({ posts, header, menuItems, seo, footer, categories, affiliates }: Props) {
@@ -18,7 +19,9 @@ export default function Home({ posts, header, menuItems, seo, footer, categories
     <>
       <Header siteTitle={header?.siteTitle} siteDesc={header?.siteTagLine} rootSeo={seo} logo={header?.siteLogoUrl} menuItems={menuItems} />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
-        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold">{header?.siteTitle}</h1>
+        <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold" translate="no">
+          {header?.siteTitle}
+        </h1>
         <h2 className="text-xl md:text-2xl text-gray-600 mt-1">{header?.siteTagLine}</h2>
       </header>
       <div className="container flex flex-wrap mx-auto mb-8">
@@ -134,8 +137,11 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
       menuItems: result.data.menuItems,
       seo: result.data.seo,
       categories: result.data.categories,
-      footer: result.data.getFooter,
       affiliates: data,
+      footer: {
+        ...result.data.getFooter,
+        copyrightText: generateCopyRight(result.data.getFooter?.copyrightText),
+      },
     },
     revalidate: 1,
   };

@@ -7,18 +7,15 @@ type Props = {
   socialLinks: Maybe<Array<Maybe<{ __typename?: 'HCMSSocialLinks' } & Pick<HcmsSocialLinks, 'iconName' | 'iconUrl'>>>>;
 };
 export function Footer({ copyRightText, socialLinks }: Props) {
-  let copyRights = copyRightText.split(' ');
-  let c = copyRights.shift();
-  copyRights[0] = `${copyRights[0]} - ${new Date().getFullYear()}`;
-  let copyRight = [c].concat(copyRights).join(' ');
-
   return (
     <div className="pt-2">
       <div
         className="flex pb-5 px-3 m-auto pt-5 border-t text-gray-800 text-sm flex-col
 md:flex-row max-w-6xl"
       >
-        <div className="mt-2">{copyRight}</div>
+        <div className="mt-2" translate="no">
+          {copyRightText}
+        </div>
         <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
           {socialLinks?.map((social) => {
             let Icon: FC<{ size?: Size; color?: Color }> = () => null;

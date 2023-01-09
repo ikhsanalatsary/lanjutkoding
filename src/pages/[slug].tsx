@@ -13,6 +13,7 @@ import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
 import { Footer } from '../components/Footer';
 import Image from 'next/image';
 import initializeSupabase from '../lib/supa';
+import { generateCopyRight } from '../lib/utils';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function PostDetail({ post, categories, header, menuItems, rootSeo, footer, affiliates }: Props) {
@@ -188,8 +189,11 @@ export const getStaticProps = async (context: GetStaticPropsContext<PostDetailQu
       header: result.data.getHeader,
       menuItems: result.data.menuItems,
       rootSeo: result.data.seo,
-      footer: result.data.getFooter,
       affiliates: data,
+      footer: {
+        ...result.data.getFooter,
+        copyrightText: generateCopyRight(result.data.getFooter?.copyrightText),
+      },
     },
     revalidate: 1,
   };
