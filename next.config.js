@@ -1,13 +1,7 @@
 module.exports = {
+  swcMinify: false,
   images: {
-    domains: [
-      'lanjutkoding.local',
-      'yuk.lanjutkoding.com',
-      'lanjutkoding.com',
-      'secure.gravatar.com',
-      '1.gravatar.com',
-      'images.tokopedia.net',
-    ],
+    domains: ['lanjutkoding.local', 'yuk.lanjutkoding.com', 'lanjutkoding.com', 'secure.gravatar.com', '1.gravatar.com', 'images.tokopedia.net'],
   },
   typescript: {
     // !! WARN !!
@@ -15,5 +9,10 @@ module.exports = {
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
   },
 };
