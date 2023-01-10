@@ -1,6 +1,5 @@
-import * as Apollo from '@apollo/client';
 import { gql } from '@apollo/client';
-
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -78,7 +77,7 @@ export type Category = Node & TermNode & UniformResourceIdentifiable & DatabaseI
   taxonomyName: Maybe<Scalars['String']>;
   termGroupId: Maybe<Scalars['Int']>;
   termTaxonomyId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -538,7 +537,7 @@ export type ContentNode = {
   slug: Maybe<Scalars['String']>;
   status: Maybe<Scalars['String']>;
   template: Maybe<ContentTemplate>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -655,7 +654,7 @@ export type ContentType = Node & UniformResourceIdentifiable & {
   showInNavMenus: Maybe<Scalars['Boolean']>;
   showInRest: Maybe<Scalars['Boolean']>;
   showUi: Maybe<Scalars['Boolean']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -1178,7 +1177,7 @@ export type HierarchicalContentNode = {
   slug: Maybe<Scalars['String']>;
   status: Maybe<Scalars['String']>;
   template: Maybe<ContentTemplate>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -1314,7 +1313,7 @@ export type HierarchicalTermNode = {
   taxonomyName: Maybe<Scalars['String']>;
   termGroupId: Maybe<Scalars['Int']>;
   termTaxonomyId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -1401,7 +1400,7 @@ export type MediaItem = Node & ContentNode & UniformResourceIdentifiable & Datab
   status: Maybe<Scalars['String']>;
   template: Maybe<ContentTemplate>;
   title: Maybe<Scalars['String']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -1645,7 +1644,7 @@ export type MenuItem = Node & DatabaseIdentifier & {
   path: Maybe<Scalars['String']>;
   target: Maybe<Scalars['String']>;
   title: Maybe<Scalars['String']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
   url: Maybe<Scalars['String']>;
 };
 
@@ -1673,7 +1672,7 @@ export type MenuItemLinkable = {
   id: Scalars['ID'];
   isContentNode: Scalars['Boolean'];
   isTermNode: Scalars['Boolean'];
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 export type MenuItemLinkableConnectionEdge = {
@@ -2008,7 +2007,7 @@ export type Page = Node & ContentNode & UniformResourceIdentifiable & DatabaseId
   status: Maybe<Scalars['String']>;
   template: Maybe<ContentTemplate>;
   title: Maybe<Scalars['String']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -2180,13 +2179,13 @@ export type PageToRevisionConnectionWhereArgs = {
 export type Plugin = Node & {
   __typename?: 'Plugin';
   author: Maybe<Scalars['String']>;
-  authoruri: Scalars['String'];
+  authorUri: Maybe<Scalars['String']>;
   description: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isRestricted: Maybe<Scalars['Boolean']>;
   name: Maybe<Scalars['String']>;
   path: Maybe<Scalars['String']>;
-  pluginuri: Scalars['String'];
+  pluginUri: Maybe<Scalars['String']>;
   version: Maybe<Scalars['String']>;
 };
 
@@ -2266,7 +2265,7 @@ export type Post = Node & ContentNode & UniformResourceIdentifiable & DatabaseId
   terms: Maybe<PostToTermNodeConnection>;
   title: Maybe<Scalars['String']>;
   toPing: Maybe<Array<Maybe<Scalars['String']>>>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -2399,7 +2398,7 @@ export type PostFormat = Node & TermNode & UniformResourceIdentifiable & Databas
   taxonomyName: Maybe<Scalars['String']>;
   termGroupId: Maybe<Scalars['Int']>;
   termTaxonomyId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -3337,7 +3336,7 @@ export type RootQueryMediaItemArgs = {
 export type RootQueryMediaItemByArgs = {
   id: Maybe<Scalars['ID']>;
   mediaItemId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
   slug: Maybe<Scalars['String']>;
 };
 
@@ -3401,7 +3400,7 @@ export type RootQueryPageArgs = {
 export type RootQueryPageByArgs = {
   id: Maybe<Scalars['ID']>;
   pageId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -3438,7 +3437,7 @@ export type RootQueryPostArgs = {
 export type RootQueryPostByArgs = {
   id: Maybe<Scalars['ID']>;
   postId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
   slug: Maybe<Scalars['String']>;
 };
 
@@ -4422,7 +4421,7 @@ export type Tag = Node & TermNode & UniformResourceIdentifiable & DatabaseIdenti
   taxonomyName: Maybe<Scalars['String']>;
   termGroupId: Maybe<Scalars['Int']>;
   termTaxonomyId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -4674,7 +4673,7 @@ export type TermNode = {
   taxonomyName: Maybe<Scalars['String']>;
   termGroupId: Maybe<Scalars['Int']>;
   termTaxonomyId: Maybe<Scalars['Int']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 
@@ -4750,7 +4749,7 @@ export enum TermObjectsConnectionOrderbyEnum {
 export type Theme = Node & {
   __typename?: 'Theme';
   author: Maybe<Scalars['String']>;
-  authoruri: Scalars['String'];
+  authorUri: Maybe<Scalars['String']>;
   description: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isRestricted: Maybe<Scalars['Boolean']>;
@@ -4758,7 +4757,7 @@ export type Theme = Node & {
   screenshot: Maybe<Scalars['String']>;
   slug: Maybe<Scalars['String']>;
   tags: Maybe<Array<Maybe<Scalars['String']>>>;
-  themeuri: Scalars['String'];
+  themeUri: Maybe<Scalars['String']>;
   version: Maybe<Scalars['String']>;
 };
 
@@ -4776,7 +4775,7 @@ export type UniformResourceIdentifiable = {
   id: Scalars['ID'];
   isContentNode: Scalars['Boolean'];
   isTermNode: Scalars['Boolean'];
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
 };
 
 export type UpdateCategoryInput = {
@@ -5009,7 +5008,7 @@ export type User = Node & UniformResourceIdentifiable & Commenter & DatabaseIden
   roles: Maybe<UserToUserRoleConnection>;
   seo: Maybe<SeoUser>;
   slug: Maybe<Scalars['String']>;
-  uri: Scalars['String'];
+  uri: Maybe<Scalars['String']>;
   url: Maybe<Scalars['String']>;
   /** @deprecated Deprecated in favor of the databaseId field */
   userId: Maybe<Scalars['Int']>;
@@ -5787,6 +5786,52 @@ export type AboutQuery = (
   & RootSeoFragmentFragment
 );
 
+export type PrivacyPolicyQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PrivacyPolicyQuery = (
+  { __typename?: 'RootQuery' }
+  & { pages: Maybe<(
+    { __typename?: 'RootQueryToPageConnection' }
+    & { nodes: Array<(
+      { __typename?: 'Page' }
+      & Pick<Page, 'title' | 'content' | 'link'>
+      & { seo: Maybe<(
+        { __typename?: 'PostTypeSEO' }
+        & Pick<PostTypeSeo, 'canonical' | 'metaKeywords' | 'metaDesc' | 'metaRobotsNoindex' | 'metaRobotsNofollow' | 'opengraphAuthor' | 'opengraphDescription' | 'opengraphModifiedTime' | 'opengraphPublishedTime' | 'opengraphPublisher' | 'opengraphSiteName' | 'opengraphTitle' | 'opengraphType' | 'opengraphUrl' | 'readingTime' | 'title' | 'twitterDescription' | 'twitterTitle' | 'focuskw' | 'cornerstone'>
+        & { breadcrumbs: Maybe<Array<Maybe<(
+          { __typename?: 'SEOPostTypeBreadcrumbs' }
+          & Pick<SeoPostTypeBreadcrumbs, 'text' | 'url'>
+        )>>>, opengraphImage: Maybe<(
+          { __typename?: 'MediaItem' }
+          & Pick<MediaItem, 'sourceUrl' | 'title' | 'uri' | 'altText'>
+          & { mediaDetails: Maybe<(
+            { __typename?: 'MediaDetails' }
+            & Pick<MediaDetails, 'file'>
+          )> }
+        )> }
+      )> }
+    )> }
+  )>, getHeader: Maybe<(
+    { __typename?: 'HCMSHeader' }
+    & Pick<HcmsHeader, 'siteTitle' | 'siteLogoUrl' | 'siteTagLine'>
+  )>, getFooter: Maybe<(
+    { __typename?: 'HCMSFooter' }
+    & Pick<HcmsFooter, 'copyrightText'>
+    & { socialLinks: Maybe<Array<Maybe<(
+      { __typename?: 'HCMSSocialLinks' }
+      & Pick<HcmsSocialLinks, 'iconName' | 'iconUrl'>
+    )>>> }
+  )>, menuItems: Maybe<(
+    { __typename?: 'RootQueryToMenuItemConnection' }
+    & { nodes: Array<(
+      { __typename?: 'MenuItem' }
+      & Pick<MenuItem, 'id' | 'label' | 'path'>
+    )> }
+  )> }
+  & RootSeoFragmentFragment
+);
+
 export const RootSeoFragmentFragmentDoc = gql`
     fragment RootSEOFragment on RootQuery {
   seo {
@@ -6192,3 +6237,70 @@ export const AboutDocument = gql`
 }
     ${RootSeoFragmentFragmentDoc}`;
 export type AboutQueryResult = Apollo.QueryResult<AboutQuery, AboutQueryVariables>;
+export const PrivacyPolicyDocument = gql`
+    query PrivacyPolicy {
+  pages(where: {title: "Privacy Policy"}) {
+    nodes {
+      title
+      content
+      link
+      seo {
+        breadcrumbs {
+          text
+          url
+        }
+        canonical
+        metaKeywords
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        title
+        twitterDescription
+        twitterTitle
+        focuskw
+        cornerstone
+        opengraphImage {
+          sourceUrl
+          title
+          uri
+          altText
+          mediaDetails {
+            file
+          }
+        }
+      }
+    }
+  }
+  getHeader {
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
+  ...RootSEOFragment
+}
+    ${RootSeoFragmentFragmentDoc}`;
+export type PrivacyPolicyQueryResult = Apollo.QueryResult<PrivacyPolicyQuery, PrivacyPolicyQueryVariables>;

@@ -389,3 +389,68 @@ query About {
   }
   ...RootSEOFragment
 }
+
+query PrivacyPolicy {
+  pages(where: { title: "Privacy Policy" }) {
+    nodes {
+      title
+      content
+      link
+      seo {
+        breadcrumbs {
+          text
+          url
+        }
+        canonical
+        metaKeywords
+        metaDesc
+        metaRobotsNoindex
+        metaRobotsNofollow
+        opengraphAuthor
+        opengraphDescription
+        opengraphModifiedTime
+        opengraphPublishedTime
+        opengraphPublisher
+        opengraphSiteName
+        opengraphTitle
+        opengraphType
+        opengraphUrl
+        readingTime
+        title
+        twitterDescription
+        twitterTitle
+        focuskw
+        cornerstone
+        opengraphImage {
+          sourceUrl
+          title
+          uri
+          altText
+          mediaDetails {
+            file
+          }
+        }
+      }
+    }
+  }
+  getHeader {
+    siteTitle
+    siteLogoUrl
+    siteTagLine
+  }
+  getFooter {
+    copyrightText
+    socialLinks {
+      iconName
+      iconUrl
+    }
+  }
+  menuItems {
+    nodes {
+      id
+      label
+      path
+    }
+  }
+  ...RootSEOFragment
+}
