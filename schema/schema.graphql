@@ -82,20 +82,20 @@ enum AvatarRatingEnum {
 }
 
 # The category type
-type Category implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & HierarchicalTermNode & HierarchicalNode & MenuItemLinkable {
+type Category implements DatabaseIdentifier & HierarchicalNode & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
   # The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   ancestors(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): CategoryToAncestorsCategoryConnection
 
   # The id field matches the WP_Post-&gt;ID field.
@@ -103,17 +103,17 @@ type Category implements Node & TermNode & UniformResourceIdentifiable & Databas
 
   # Connection between the category type and its children categories.
   children(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: CategoryToCategoryConnectionWhereArgs
@@ -121,17 +121,17 @@ type Category implements Node & TermNode & UniformResourceIdentifiable & Databas
 
   # Connection between the Category type and the ContentNode type
   contentNodes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: CategoryToContentNodeConnectionWhereArgs
@@ -148,32 +148,32 @@ type Category implements Node & TermNode & UniformResourceIdentifiable & Databas
 
   # Connection between the TermNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedScriptConnection
 
   # Connection between the TermNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedStylesheetConnection
 
   # The unique resource identifier path
@@ -205,17 +205,17 @@ type Category implements Node & TermNode & UniformResourceIdentifiable & Databas
 
   # Connection between the Category type and the post type
   posts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: CategoryToPostConnectionWhereArgs
@@ -388,7 +388,7 @@ input CategoryToCategoryConnectionWhereArgs {
 }
 
 # Connection between the Category type and the ContentNode type
-type CategoryToContentNodeConnection implements ContentNodeConnection & Connection {
+type CategoryToContentNodeConnection implements Connection & ContentNodeConnection {
   # Edges for the CategoryToContentNodeConnection connection
   edges: [CategoryToContentNodeConnectionEdge!]!
 
@@ -466,7 +466,7 @@ input CategoryToContentNodeConnectionWhereArgs {
 }
 
 # Connection between the Category type and the category type
-type CategoryToParentCategoryConnectionEdge implements OneToOneConnection & Edge & CategoryConnectionEdge {
+type CategoryToParentCategoryConnectionEdge implements CategoryConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -475,7 +475,7 @@ type CategoryToParentCategoryConnectionEdge implements OneToOneConnection & Edge
 }
 
 # Connection between the Category type and the post type
-type CategoryToPostConnection implements PostConnection & Connection {
+type CategoryToPostConnection implements Connection & PostConnection {
   # Edges for the CategoryToPostConnection connection
   edges: [CategoryToPostConnectionEdge!]!
 
@@ -487,7 +487,7 @@ type CategoryToPostConnection implements PostConnection & Connection {
 }
 
 # An edge in a connection
-type CategoryToPostConnectionEdge implements PostConnectionEdge & Edge {
+type CategoryToPostConnectionEdge implements Edge & PostConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -592,7 +592,7 @@ input CategoryToPostConnectionWhereArgs {
 }
 
 # Connection between the Category type and the Taxonomy type
-type CategoryToTaxonomyConnectionEdge implements OneToOneConnection & Edge & TaxonomyConnectionEdge {
+type CategoryToTaxonomyConnectionEdge implements Edge & OneToOneConnection & TaxonomyConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -601,7 +601,7 @@ type CategoryToTaxonomyConnectionEdge implements OneToOneConnection & Edge & Tax
 }
 
 # A Comment object
-type Comment implements Node & DatabaseIdentifier {
+type Comment implements DatabaseIdentifier & Node {
   # User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL.
   agent: String
 
@@ -658,17 +658,17 @@ type Comment implements Node & DatabaseIdentifier {
 
   # Connection between the Comment type and the Comment type
   replies(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: CommentToCommentConnectionWhereArgs
@@ -682,17 +682,17 @@ type Comment implements Node & DatabaseIdentifier {
 }
 
 # A Comment Author object
-type CommentAuthor implements Node & Commenter & DatabaseIdentifier {
+type CommentAuthor implements Commenter & DatabaseIdentifier & Node {
   # Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument.
   avatar(
-    # The size attribute of the avatar field can be used to fetch avatars of different sizes. The value corresponds to the dimension in pixels to fetch. The default is 96 pixels.
-    size: Int = 96
-
     # Whether to always show the default image, never the Gravatar. Default false
     forceDefault: Boolean
 
     # The rating level of the avatar.
     rating: AvatarRatingEnum
+
+    # The size attribute of the avatar field can be used to fetch avatars of different sizes. The value corresponds to the dimension in pixels to fetch. The default is 96 pixels.
+    size: Int = 96
   ): Avatar
 
   # The unique identifier stored in the database
@@ -868,7 +868,7 @@ input CommentToCommentConnectionWhereArgs {
 }
 
 # Connection between the Comment type and the Commenter type
-type CommentToCommenterConnectionEdge implements OneToOneConnection & Edge & CommenterConnectionEdge {
+type CommentToCommenterConnectionEdge implements CommenterConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -877,7 +877,7 @@ type CommentToCommenterConnectionEdge implements OneToOneConnection & Edge & Com
 }
 
 # Connection between the Comment type and the ContentNode type
-type CommentToContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
+type CommentToContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -886,7 +886,7 @@ type CommentToContentNodeConnectionEdge implements OneToOneConnection & Edge & C
 }
 
 # Connection between the Comment type and the Comment type
-type CommentToParentCommentConnectionEdge implements OneToOneConnection & Edge & CommentConnectionEdge {
+type CommentToParentCommentConnectionEdge implements CommentConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -985,7 +985,7 @@ input CommentToParentCommentConnectionWhereArgs {
 }
 
 # The author of a comment
-interface Commenter implements Node & DatabaseIdentifier {
+interface Commenter implements DatabaseIdentifier & Node {
   # Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument.
   avatar: Avatar
 
@@ -1105,32 +1105,32 @@ interface ContentNode implements Node & UniformResourceIdentifiable {
 
   # Connection between the ContentNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedScriptConnection
 
   # Connection between the ContentNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedStylesheetConnection
 
   # The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
@@ -1216,7 +1216,7 @@ enum ContentNodeIdTypeEnum {
 }
 
 # Connection between the ContentNode type and the ContentType type
-type ContentNodeToContentTypeConnectionEdge implements OneToOneConnection & Edge & ContentTypeConnectionEdge {
+type ContentNodeToContentTypeConnectionEdge implements ContentTypeConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -1225,7 +1225,7 @@ type ContentNodeToContentTypeConnectionEdge implements OneToOneConnection & Edge
 }
 
 # Connection between the ContentNode type and the User type
-type ContentNodeToEditLastConnectionEdge implements OneToOneConnection & Edge & UserConnectionEdge {
+type ContentNodeToEditLastConnectionEdge implements Edge & OneToOneConnection & UserConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -1234,7 +1234,7 @@ type ContentNodeToEditLastConnectionEdge implements OneToOneConnection & Edge & 
 }
 
 # Connection between the ContentNode type and the User type
-type ContentNodeToEditLockConnectionEdge implements OneToOneConnection & Edge & UserConnectionEdge {
+type ContentNodeToEditLockConnectionEdge implements Edge & OneToOneConnection & UserConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -1246,7 +1246,7 @@ type ContentNodeToEditLockConnectionEdge implements OneToOneConnection & Edge & 
 }
 
 # Connection between the ContentNode type and the EnqueuedScript type
-type ContentNodeToEnqueuedScriptConnection implements EnqueuedScriptConnection & Connection {
+type ContentNodeToEnqueuedScriptConnection implements Connection & EnqueuedScriptConnection {
   # Edges for the ContentNodeToEnqueuedScriptConnection connection
   edges: [ContentNodeToEnqueuedScriptConnectionEdge!]!
 
@@ -1258,7 +1258,7 @@ type ContentNodeToEnqueuedScriptConnection implements EnqueuedScriptConnection &
 }
 
 # An edge in a connection
-type ContentNodeToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnectionEdge & Edge {
+type ContentNodeToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -1267,7 +1267,7 @@ type ContentNodeToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnecti
 }
 
 # Connection between the ContentNode type and the EnqueuedStylesheet type
-type ContentNodeToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnection & Connection {
+type ContentNodeToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the ContentNodeToEnqueuedStylesheetConnection connection
   edges: [ContentNodeToEnqueuedStylesheetConnectionEdge!]!
 
@@ -1279,7 +1279,7 @@ type ContentNodeToEnqueuedStylesheetConnection implements EnqueuedStylesheetConn
 }
 
 # An edge in a connection
-type ContentNodeToEnqueuedStylesheetConnectionEdge implements EnqueuedStylesheetConnectionEdge & Edge {
+type ContentNodeToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStylesheetConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -1300,32 +1300,32 @@ type ContentType implements Node & UniformResourceIdentifiable {
 
   # Connection between the ContentType type and the Taxonomy type
   connectedTaxonomies(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentTypeToTaxonomyConnection
 
   # Connection between the ContentType type and the ContentNode type
   contentNodes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: ContentTypeToContentNodeConnectionWhereArgs
@@ -1459,7 +1459,7 @@ enum ContentTypeIdTypeEnum {
 }
 
 # Connection between the ContentType type and the ContentNode type
-type ContentTypeToContentNodeConnection implements ContentNodeConnection & Connection {
+type ContentTypeToContentNodeConnection implements Connection & ContentNodeConnection {
   # Edges for the ContentTypeToContentNodeConnection connection
   edges: [ContentTypeToContentNodeConnectionEdge!]!
 
@@ -1537,7 +1537,7 @@ input ContentTypeToContentNodeConnectionWhereArgs {
 }
 
 # Connection between the ContentType type and the Taxonomy type
-type ContentTypeToTaxonomyConnection implements TaxonomyConnection & Connection {
+type ContentTypeToTaxonomyConnection implements Connection & TaxonomyConnection {
   # Edges for the ContentTypeToTaxonomyConnection connection
   edges: [ContentTypeToTaxonomyConnectionEdge!]!
 
@@ -1549,7 +1549,7 @@ type ContentTypeToTaxonomyConnection implements TaxonomyConnection & Connection 
 }
 
 # An edge in a connection
-type ContentTypeToTaxonomyConnectionEdge implements TaxonomyConnectionEdge & Edge {
+type ContentTypeToTaxonomyConnectionEdge implements Edge & TaxonomyConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -2230,7 +2230,7 @@ interface EnqueuedAsset {
 }
 
 # Script enqueued by the CMS
-type EnqueuedScript implements Node & EnqueuedAsset {
+type EnqueuedScript implements EnqueuedAsset & Node {
   # @todo
   args: Boolean
 
@@ -2272,7 +2272,7 @@ interface EnqueuedScriptConnectionEdge implements Edge {
 }
 
 # Stylesheet enqueued by the CMS
-type EnqueuedStylesheet implements Node & EnqueuedAsset {
+type EnqueuedStylesheet implements EnqueuedAsset & Node {
   # @todo
   args: Boolean
 
@@ -2383,20 +2383,20 @@ type HCMSSocialLinks {
 }
 
 # Content node with hierarchical (parent/child) relationships
-interface HierarchicalContentNode implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & HierarchicalNode {
+interface HierarchicalContentNode implements ContentNode & DatabaseIdentifier & HierarchicalNode & Node & UniformResourceIdentifiable {
   # Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   ancestors(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
@@ -2404,17 +2404,17 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
 
   # Connection between the HierarchicalContentNode type and the ContentNode type
   children(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
@@ -2446,32 +2446,32 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
 
   # Connection between the ContentNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedScriptConnection
 
   # Connection between the ContentNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedStylesheetConnection
 
   # The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
@@ -2536,7 +2536,7 @@ interface HierarchicalContentNode implements Node & ContentNode & UniformResourc
 }
 
 # Connection between the HierarchicalContentNode type and the ContentNode type
-type HierarchicalContentNodeToContentNodeAncestorsConnection implements ContentNodeConnection & Connection {
+type HierarchicalContentNodeToContentNodeAncestorsConnection implements Connection & ContentNodeConnection {
   # Edges for the HierarchicalContentNodeToContentNodeAncestorsConnection connection
   edges: [HierarchicalContentNodeToContentNodeAncestorsConnectionEdge!]!
 
@@ -2614,7 +2614,7 @@ input HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs {
 }
 
 # Connection between the HierarchicalContentNode type and the ContentNode type
-type HierarchicalContentNodeToContentNodeChildrenConnection implements ContentNodeConnection & Connection {
+type HierarchicalContentNodeToContentNodeChildrenConnection implements Connection & ContentNodeConnection {
   # Edges for the HierarchicalContentNodeToContentNodeChildrenConnection connection
   edges: [HierarchicalContentNodeToContentNodeChildrenConnectionEdge!]!
 
@@ -2692,7 +2692,7 @@ input HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs {
 }
 
 # Connection between the HierarchicalContentNode type and the ContentNode type
-type HierarchicalContentNodeToParentContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
+type HierarchicalContentNodeToParentContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -2701,7 +2701,7 @@ type HierarchicalContentNodeToParentContentNodeConnectionEdge implements OneToOn
 }
 
 # Node with hierarchical (parent/child) relationships
-interface HierarchicalNode implements Node & DatabaseIdentifier {
+interface HierarchicalNode implements DatabaseIdentifier & Node {
   # The unique identifier stored in the database
   databaseId: Int!
 
@@ -2716,7 +2716,7 @@ interface HierarchicalNode implements Node & DatabaseIdentifier {
 }
 
 # Term node with hierarchical (parent/child) relationships
-interface HierarchicalTermNode implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & HierarchicalNode {
+interface HierarchicalTermNode implements DatabaseIdentifier & HierarchicalNode & Node & TermNode & UniformResourceIdentifiable {
   # The number of objects connected to the object
   count: Int
 
@@ -2728,32 +2728,32 @@ interface HierarchicalTermNode implements Node & TermNode & UniformResourceIdent
 
   # Connection between the TermNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedScriptConnection
 
   # Connection between the TermNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedStylesheetConnection
 
   # The globally unique ID for the object
@@ -2821,23 +2821,23 @@ type MediaDetails {
 }
 
 # The mediaItem type
-type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & NodeWithTitle & NodeWithAuthor & NodeWithComments & HierarchicalContentNode & HierarchicalNode {
+type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & Node & NodeWithAuthor & NodeWithComments & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable {
   # Alternative text to display when resource is not displayed
   altText: String
 
   # Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   ancestors(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
@@ -2860,17 +2860,17 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
 
   # Connection between the HierarchicalContentNode type and the ContentNode type
   children(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
@@ -2884,17 +2884,17 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
 
   # Connection between the MediaItem type and the Comment type
   comments(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: MediaItemToCommentConnectionWhereArgs
@@ -2932,32 +2932,32 @@ type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & Dat
 
   # Connection between the ContentNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedScriptConnection
 
   # Connection between the ContentNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedStylesheetConnection
 
   # The filesize in bytes of the resource
@@ -3316,7 +3316,7 @@ type MediaSize {
 }
 
 # Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme.
-type Menu implements Node & DatabaseIdentifier {
+type Menu implements DatabaseIdentifier & Node {
   # The number of items in the menu
   count: Int
 
@@ -3337,17 +3337,17 @@ type Menu implements Node & DatabaseIdentifier {
 
   # Connection between the Menu type and the MenuItem type
   menuItems(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: MenuToMenuItemConnectionWhereArgs
@@ -3379,20 +3379,20 @@ interface MenuConnectionEdge implements Edge {
 }
 
 # Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu.
-type MenuItem implements Node & DatabaseIdentifier {
+type MenuItem implements DatabaseIdentifier & Node {
   # Connection between the MenuItem type and the MenuItem type
   childItems(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: MenuItemToMenuItemConnectionWhereArgs
@@ -3478,7 +3478,7 @@ interface MenuItemConnectionEdge implements Edge {
 }
 
 # Nodes that can be linked to as Menu Items
-interface MenuItemLinkable implements Node & UniformResourceIdentifiable & DatabaseIdentifier {
+interface MenuItemLinkable implements DatabaseIdentifier & Node & UniformResourceIdentifiable {
   # The unique identifier stored in the database
   databaseId: Int!
 
@@ -3514,10 +3514,10 @@ enum MenuItemNodeIdTypeEnum {
 }
 
 # Deprecated in favor of MenuItemLinkeable Interface
-union MenuItemObjectUnion = Post | Page | Category | Tag | PostFormat
+union MenuItemObjectUnion = Category | Page | Post | PostFormat | Tag
 
 # Connection between the MenuItem type and the Menu type
-type MenuItemToMenuConnectionEdge implements OneToOneConnection & Edge & MenuConnectionEdge {
+type MenuItemToMenuConnectionEdge implements Edge & MenuConnectionEdge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -3526,7 +3526,7 @@ type MenuItemToMenuConnectionEdge implements OneToOneConnection & Edge & MenuCon
 }
 
 # Connection between the MenuItem type and the MenuItem type
-type MenuItemToMenuItemConnection implements MenuItemConnection & Connection {
+type MenuItemToMenuItemConnection implements Connection & MenuItemConnection {
   # Edges for the MenuItemToMenuItemConnection connection
   edges: [MenuItemToMenuItemConnectionEdge!]!
 
@@ -3538,7 +3538,7 @@ type MenuItemToMenuItemConnection implements MenuItemConnection & Connection {
 }
 
 # An edge in a connection
-type MenuItemToMenuItemConnectionEdge implements MenuItemConnectionEdge & Edge {
+type MenuItemToMenuItemConnectionEdge implements Edge & MenuItemConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -3562,7 +3562,7 @@ input MenuItemToMenuItemConnectionWhereArgs {
 }
 
 # Connection between the MenuItem type and the MenuItemLinkable type
-type MenuItemToMenuItemLinkableConnectionEdge implements OneToOneConnection & Edge & MenuItemLinkableConnectionEdge {
+type MenuItemToMenuItemLinkableConnectionEdge implements Edge & MenuItemLinkableConnectionEdge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -3604,7 +3604,7 @@ enum MenuNodeIdTypeEnum {
 }
 
 # Connection between the Menu type and the MenuItem type
-type MenuToMenuItemConnection implements MenuItemConnection & Connection {
+type MenuToMenuItemConnection implements Connection & MenuItemConnection {
   # Edges for the MenuToMenuItemConnection connection
   edges: [MenuToMenuItemConnectionEdge!]!
 
@@ -3616,7 +3616,7 @@ type MenuToMenuItemConnection implements MenuItemConnection & Connection {
 }
 
 # An edge in a connection
-type MenuToMenuItemConnectionEdge implements MenuItemConnectionEdge & Edge {
+type MenuToMenuItemConnectionEdge implements Edge & MenuItemConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -3931,7 +3931,7 @@ interface NodeWithAuthor implements Node {
 }
 
 # Connection between the NodeWithAuthor type and the User type
-type NodeWithAuthorToUserConnectionEdge implements OneToOneConnection & Edge & UserConnectionEdge {
+type NodeWithAuthorToUserConnectionEdge implements Edge & OneToOneConnection & UserConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -3991,7 +3991,7 @@ interface NodeWithFeaturedImage implements Node {
 }
 
 # Connection between the NodeWithFeaturedImage type and the MediaItem type
-type NodeWithFeaturedImageToMediaItemConnectionEdge implements OneToOneConnection & Edge & MediaItemConnectionEdge {
+type NodeWithFeaturedImageToMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -4021,7 +4021,7 @@ interface NodeWithRevisions implements Node {
 }
 
 # Connection between the NodeWithRevisions type and the ContentNode type
-type NodeWithRevisionsToContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
+type NodeWithRevisionsToContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge & OneToOneConnection {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -4087,20 +4087,20 @@ enum OrderEnum {
 }
 
 # The page type
-type Page implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & NodeWithContentEditor & NodeWithAuthor & NodeWithFeaturedImage & NodeWithComments & NodeWithRevisions & NodeWithPageAttributes & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable {
+type Page implements ContentNode & DatabaseIdentifier & HierarchicalContentNode & HierarchicalNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
   # Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
   ancestors(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
@@ -4120,17 +4120,17 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the HierarchicalContentNode type and the ContentNode type
   children(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
@@ -4144,17 +4144,17 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Page type and the Comment type
   comments(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PageToCommentConnectionWhereArgs
@@ -4192,32 +4192,32 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the ContentNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedScriptConnection
 
   # Connection between the ContentNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedStylesheetConnection
 
   # Connection between the NodeWithFeaturedImage type and the MediaItem type
@@ -4300,17 +4300,17 @@ type Page implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Page type and the page type
   revisions(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PageToRevisionConnectionWhereArgs
@@ -4480,7 +4480,7 @@ input PageToCommentConnectionWhereArgs {
 }
 
 # Connection between the Page type and the page type
-type PageToPreviewConnectionEdge implements OneToOneConnection & Edge & PageConnectionEdge {
+type PageToPreviewConnectionEdge implements Edge & OneToOneConnection & PageConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -4489,7 +4489,7 @@ type PageToPreviewConnectionEdge implements OneToOneConnection & Edge & PageConn
 }
 
 # Connection between the Page type and the page type
-type PageToRevisionConnection implements PageConnection & Connection {
+type PageToRevisionConnection implements Connection & PageConnection {
   # Edges for the PageToRevisionConnection connection
   edges: [PageToRevisionConnectionEdge!]!
 
@@ -4501,7 +4501,7 @@ type PageToRevisionConnection implements PageConnection & Connection {
 }
 
 # An edge in a connection
-type PageToRevisionConnectionEdge implements PageConnectionEdge & Edge {
+type PageToRevisionConnectionEdge implements Edge & PageConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -4648,7 +4648,7 @@ enum PluginStatusEnum {
 }
 
 # The post type
-type Post implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & Previewable & NodeWithTitle & NodeWithContentEditor & NodeWithAuthor & NodeWithFeaturedImage & NodeWithExcerpt & NodeWithComments & NodeWithTrackbacks & NodeWithRevisions & MenuItemLinkable {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable {
   # Connection between the NodeWithAuthor type and the User type
   author: NodeWithAuthorToUserConnectionEdge
 
@@ -4663,17 +4663,17 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Post type and the category type
   categories(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostToCategoryConnectionWhereArgs
@@ -4690,17 +4690,17 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Post type and the Comment type
   comments(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostToCommentConnectionWhereArgs
@@ -4738,32 +4738,32 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the ContentNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedScriptConnection
 
   # Connection between the ContentNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): ContentNodeToEnqueuedStylesheetConnection
 
   # The excerpt of the post.
@@ -4825,17 +4825,17 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Post type and the postFormat type
   postFormats(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostToPostFormatConnectionWhereArgs
@@ -4858,17 +4858,17 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Post type and the post type
   revisions(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostToRevisionConnectionWhereArgs
@@ -4885,17 +4885,17 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Post type and the tag type
   tags(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostToTagConnectionWhereArgs
@@ -4906,17 +4906,17 @@ type Post implements Node & ContentNode & UniformResourceIdentifiable & Database
 
   # Connection between the Post type and the TermNode type
   terms(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostToTermNodeConnectionWhereArgs
@@ -4978,20 +4978,20 @@ interface PostConnectionEdge implements Edge {
 }
 
 # The postFormat type
-type PostFormat implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & MenuItemLinkable {
+type PostFormat implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
   # Connection between the PostFormat type and the ContentNode type
   contentNodes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostFormatToContentNodeConnectionWhereArgs
@@ -5008,32 +5008,32 @@ type PostFormat implements Node & TermNode & UniformResourceIdentifiable & Datab
 
   # Connection between the TermNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedScriptConnection
 
   # Connection between the TermNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedStylesheetConnection
 
   # The unique resource identifier path
@@ -5059,17 +5059,17 @@ type PostFormat implements Node & TermNode & UniformResourceIdentifiable & Datab
 
   # Connection between the PostFormat type and the post type
   posts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: PostFormatToPostConnectionWhereArgs
@@ -5134,7 +5134,7 @@ enum PostFormatIdType {
 }
 
 # Connection between the PostFormat type and the ContentNode type
-type PostFormatToContentNodeConnection implements ContentNodeConnection & Connection {
+type PostFormatToContentNodeConnection implements Connection & ContentNodeConnection {
   # Edges for the PostFormatToContentNodeConnection connection
   edges: [PostFormatToContentNodeConnectionEdge!]!
 
@@ -5212,7 +5212,7 @@ input PostFormatToContentNodeConnectionWhereArgs {
 }
 
 # Connection between the PostFormat type and the post type
-type PostFormatToPostConnection implements PostConnection & Connection {
+type PostFormatToPostConnection implements Connection & PostConnection {
   # Edges for the PostFormatToPostConnection connection
   edges: [PostFormatToPostConnectionEdge!]!
 
@@ -5224,7 +5224,7 @@ type PostFormatToPostConnection implements PostConnection & Connection {
 }
 
 # An edge in a connection
-type PostFormatToPostConnectionEdge implements PostConnectionEdge & Edge {
+type PostFormatToPostConnectionEdge implements Edge & PostConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -5329,7 +5329,7 @@ input PostFormatToPostConnectionWhereArgs {
 }
 
 # Connection between the PostFormat type and the Taxonomy type
-type PostFormatToTaxonomyConnectionEdge implements OneToOneConnection & Edge & TaxonomyConnectionEdge {
+type PostFormatToTaxonomyConnectionEdge implements Edge & OneToOneConnection & TaxonomyConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -5701,7 +5701,7 @@ input PostToCommentConnectionWhereArgs {
 }
 
 # Connection between the Post type and the postFormat type
-type PostToPostFormatConnection implements PostFormatConnection & Connection {
+type PostToPostFormatConnection implements Connection & PostFormatConnection {
   # Edges for the PostToPostFormatConnection connection
   edges: [PostToPostFormatConnectionEdge!]!
 
@@ -5713,7 +5713,7 @@ type PostToPostFormatConnection implements PostFormatConnection & Connection {
 }
 
 # An edge in a connection
-type PostToPostFormatConnectionEdge implements PostFormatConnectionEdge & Edge {
+type PostToPostFormatConnectionEdge implements Edge & PostFormatConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -5791,7 +5791,7 @@ input PostToPostFormatConnectionWhereArgs {
 }
 
 # Connection between the Post type and the post type
-type PostToPreviewConnectionEdge implements OneToOneConnection & Edge & PostConnectionEdge {
+type PostToPreviewConnectionEdge implements Edge & OneToOneConnection & PostConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -5800,7 +5800,7 @@ type PostToPreviewConnectionEdge implements OneToOneConnection & Edge & PostConn
 }
 
 # Connection between the Post type and the post type
-type PostToRevisionConnection implements PostConnection & Connection {
+type PostToRevisionConnection implements Connection & PostConnection {
   # Edges for the PostToRevisionConnection connection
   edges: [PostToRevisionConnectionEdge!]!
 
@@ -5812,7 +5812,7 @@ type PostToRevisionConnection implements PostConnection & Connection {
 }
 
 # An edge in a connection
-type PostToRevisionConnectionEdge implements PostConnectionEdge & Edge {
+type PostToRevisionConnectionEdge implements Edge & PostConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -5917,7 +5917,7 @@ input PostToRevisionConnectionWhereArgs {
 }
 
 # Connection between the Post type and the tag type
-type PostToTagConnection implements TagConnection & Connection {
+type PostToTagConnection implements Connection & TagConnection {
   # Edges for the PostToTagConnection connection
   edges: [PostToTagConnectionEdge!]!
 
@@ -5929,7 +5929,7 @@ type PostToTagConnection implements TagConnection & Connection {
 }
 
 # An edge in a connection
-type PostToTagConnectionEdge implements TagConnectionEdge & Edge {
+type PostToTagConnectionEdge implements Edge & TagConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -6007,7 +6007,7 @@ input PostToTagConnectionWhereArgs {
 }
 
 # Connection between the Post type and the TermNode type
-type PostToTermNodeConnection implements TermNodeConnection & Connection {
+type PostToTermNodeConnection implements Connection & TermNodeConnection {
   # Edges for the PostToTermNodeConnection connection
   edges: [PostToTermNodeConnectionEdge!]!
 
@@ -6019,7 +6019,7 @@ type PostToTermNodeConnection implements TermNodeConnection & Connection {
 }
 
 # An edge in a connection
-type PostToTermNodeConnectionEdge implements TermNodeConnectionEdge & Edge {
+type PostToTermNodeConnectionEdge implements Edge & TermNodeConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -6174,34 +6174,84 @@ type PostTypeLabelDetails {
   viewItems: String
 }
 
+#
 type PostTypeSEO {
+  #
   breadcrumbs: [SEOPostTypeBreadcrumbs]
+
+  #
   canonical: String
+
+  #
   cornerstone: Boolean
+
+  #
   focuskw: String
+
+  #
   fullHead: String
+
+  #
   metaDesc: String
+
+  #
   metaKeywords: String
+
+  #
   metaRobotsNofollow: String
+
+  #
   metaRobotsNoindex: String
+
+  #
   opengraphAuthor: String
+
+  #
   opengraphDescription: String
+
+  #
   opengraphImage: MediaItem
+
+  #
   opengraphModifiedTime: String
+
+  #
   opengraphPublishedTime: String
+
+  #
   opengraphPublisher: String
+
+  #
   opengraphSiteName: String
+
+  #
   opengraphTitle: String
+
+  #
   opengraphType: String
+
+  #
   opengraphUrl: String
+
+  #
   readingTime: Float
+
+  #
   schema: SEOPostTypeSchema
 
   # Yoast SEO Schema
   schemaDetails: String
+
+  #
   title: String
+
+  #
   twitterDescription: String
+
+  #
   twitterImage: MediaItem
+
+  #
   twitterTitle: String
 }
 
@@ -6578,17 +6628,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the category type
   categories(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToCategoryConnectionWhereArgs
@@ -6614,17 +6664,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the Comment type
   comments(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToCommentConnectionWhereArgs
@@ -6632,32 +6682,32 @@ type RootQuery {
 
   # A node used to manage content
   contentNode(
+    # Whether to return the node as a preview instance
+    asPreview: Boolean
+
+    # The content type the node is used for. Required when idType is set to "name" or "slug"
+    contentType: ContentTypeEnum
+
     # Unique identifier for the content node.
     id: ID!
 
     # Type of unique identifier to fetch a content node by. Default is Global ID
     idType: ContentNodeIdTypeEnum
-
-    # The content type the node is used for. Required when idType is set to "name" or "slug"
-    contentType: ContentTypeEnum
-
-    # Whether to return the node as a preview instance
-    asPreview: Boolean
   ): ContentNode
 
   # Connection between the RootQuery type and the ContentNode type
   contentNodes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToContentNodeConnectionWhereArgs
@@ -6674,17 +6724,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the ContentType type
   contentTypes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): RootQueryToContentTypeConnection
 
   # Fields of the &#039;DiscussionSettings&#039; settings group
@@ -6701,14 +6751,14 @@ type RootQuery {
 
   # An object of the mediaItem Type. 
   mediaItem(
+    # Whether to return the node as a preview instance
+    asPreview: Boolean
+
     # The globally unique identifier of the object.
     id: ID!
 
     # Type of unique identifier to fetch by. Default is Global ID
     idType: MediaItemIdType
-
-    # Whether to return the node as a preview instance
-    asPreview: Boolean
   ): MediaItem
 
   # A mediaItem object
@@ -6719,26 +6769,26 @@ type RootQuery {
     # Get the mediaItem by its database ID
     mediaItemId: Int
 
-    # Get the mediaItem by its uri
-    uri: String
-
     # Get the mediaItem by its slug (only available for non-hierarchical types)
     slug: String
+
+    # Get the mediaItem by its uri
+    uri: String
   ): MediaItem @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
 
   # Connection between the RootQuery type and the mediaItem type
   mediaItems(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToMediaItemConnectionWhereArgs
@@ -6764,17 +6814,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the MenuItem type
   menuItems(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToMenuItemConnectionWhereArgs
@@ -6782,17 +6832,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the Menu type
   menus(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToMenuConnectionWhereArgs
@@ -6812,14 +6862,14 @@ type RootQuery {
 
   # An object of the page Type. 
   page(
+    # Whether to return the node as a preview instance
+    asPreview: Boolean
+
     # The globally unique identifier of the object.
     id: ID!
 
     # Type of unique identifier to fetch by. Default is Global ID
     idType: PageIdType
-
-    # Whether to return the node as a preview instance
-    asPreview: Boolean
   ): Page
 
   # A page object
@@ -6836,17 +6886,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the page type
   pages(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToPageConnectionWhereArgs
@@ -6860,17 +6910,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the Plugin type
   plugins(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToPluginConnectionWhereArgs
@@ -6878,14 +6928,14 @@ type RootQuery {
 
   # An object of the post Type. 
   post(
+    # Whether to return the node as a preview instance
+    asPreview: Boolean
+
     # The globally unique identifier of the object.
     id: ID!
 
     # Type of unique identifier to fetch by. Default is Global ID
     idType: PostIdType
-
-    # Whether to return the node as a preview instance
-    asPreview: Boolean
   ): Post
 
   # A post object
@@ -6896,11 +6946,11 @@ type RootQuery {
     # Get the post by its database ID
     postId: Int
 
-    # Get the post by its uri
-    uri: String
-
     # Get the post by its slug (only available for non-hierarchical types)
     slug: String
+
+    # Get the post by its uri
+    uri: String
   ): Post @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
 
   # A 0bject
@@ -6914,17 +6964,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the postFormat type
   postFormats(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToPostFormatConnectionWhereArgs
@@ -6932,17 +6982,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the post type
   posts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToPostConnectionWhereArgs
@@ -6953,47 +7003,47 @@ type RootQuery {
 
   # Connection between the RootQuery type and the EnqueuedScript type
   registeredScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): RootQueryToEnqueuedScriptConnection
 
   # Connection between the RootQuery type and the EnqueuedStylesheet type
   registeredStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): RootQueryToEnqueuedStylesheetConnection
 
   # Connection between the RootQuery type and the ContentNode type
   revisions(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToRevisionsConnectionWhereArgs
@@ -7016,17 +7066,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the tag type
   tags(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToTagConnectionWhereArgs
@@ -7034,17 +7084,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the Taxonomy type
   taxonomies(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): RootQueryToTaxonomyConnection
 
   # Fetch a Taxonomy node by unique Identifier
@@ -7070,17 +7120,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the TermNode type
   terms(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToTermNodeConnectionWhereArgs
@@ -7094,17 +7144,17 @@ type RootQuery {
 
   # Connection between the RootQuery type and the Theme type
   themes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): RootQueryToThemeConnection
 
   # Returns a user
@@ -7124,32 +7174,32 @@ type RootQuery {
 
   # Connection between the RootQuery type and the UserRole type
   userRoles(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): RootQueryToUserRoleConnection
 
   # Connection between the RootQuery type and the User type
   users(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: RootQueryToUserConnectionWhereArgs
@@ -7367,7 +7417,7 @@ input RootQueryToCommentConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the ContentNode type
-type RootQueryToContentNodeConnection implements ContentNodeConnection & Connection {
+type RootQueryToContentNodeConnection implements Connection & ContentNodeConnection {
   # Edges for the RootQueryToContentNodeConnection connection
   edges: [RootQueryToContentNodeConnectionEdge!]!
 
@@ -7445,7 +7495,7 @@ input RootQueryToContentNodeConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the ContentType type
-type RootQueryToContentTypeConnection implements ContentTypeConnection & Connection {
+type RootQueryToContentTypeConnection implements Connection & ContentTypeConnection {
   # Edges for the RootQueryToContentTypeConnection connection
   edges: [RootQueryToContentTypeConnectionEdge!]!
 
@@ -7466,7 +7516,7 @@ type RootQueryToContentTypeConnectionEdge implements ContentTypeConnectionEdge &
 }
 
 # Connection between the RootQuery type and the EnqueuedScript type
-type RootQueryToEnqueuedScriptConnection implements EnqueuedScriptConnection & Connection {
+type RootQueryToEnqueuedScriptConnection implements Connection & EnqueuedScriptConnection {
   # Edges for the RootQueryToEnqueuedScriptConnection connection
   edges: [RootQueryToEnqueuedScriptConnectionEdge!]!
 
@@ -7478,7 +7528,7 @@ type RootQueryToEnqueuedScriptConnection implements EnqueuedScriptConnection & C
 }
 
 # An edge in a connection
-type RootQueryToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnectionEdge & Edge {
+type RootQueryToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7487,7 +7537,7 @@ type RootQueryToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnection
 }
 
 # Connection between the RootQuery type and the EnqueuedStylesheet type
-type RootQueryToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnection & Connection {
+type RootQueryToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the RootQueryToEnqueuedStylesheetConnection connection
   edges: [RootQueryToEnqueuedStylesheetConnectionEdge!]!
 
@@ -7499,7 +7549,7 @@ type RootQueryToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnec
 }
 
 # An edge in a connection
-type RootQueryToEnqueuedStylesheetConnectionEdge implements EnqueuedStylesheetConnectionEdge & Edge {
+type RootQueryToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStylesheetConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7508,7 +7558,7 @@ type RootQueryToEnqueuedStylesheetConnectionEdge implements EnqueuedStylesheetCo
 }
 
 # Connection between the RootQuery type and the mediaItem type
-type RootQueryToMediaItemConnection implements MediaItemConnection & Connection {
+type RootQueryToMediaItemConnection implements Connection & MediaItemConnection {
   # Edges for the RootQueryToMediaItemConnection connection
   edges: [RootQueryToMediaItemConnectionEdge!]!
 
@@ -7520,7 +7570,7 @@ type RootQueryToMediaItemConnection implements MediaItemConnection & Connection 
 }
 
 # An edge in a connection
-type RootQueryToMediaItemConnectionEdge implements MediaItemConnectionEdge & Edge {
+type RootQueryToMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7595,7 +7645,7 @@ input RootQueryToMediaItemConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the Menu type
-type RootQueryToMenuConnection implements MenuConnection & Connection {
+type RootQueryToMenuConnection implements Connection & MenuConnection {
   # Edges for the RootQueryToMenuConnection connection
   edges: [RootQueryToMenuConnectionEdge!]!
 
@@ -7607,7 +7657,7 @@ type RootQueryToMenuConnection implements MenuConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToMenuConnectionEdge implements MenuConnectionEdge & Edge {
+type RootQueryToMenuConnectionEdge implements Edge & MenuConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7628,7 +7678,7 @@ input RootQueryToMenuConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the MenuItem type
-type RootQueryToMenuItemConnection implements MenuItemConnection & Connection {
+type RootQueryToMenuItemConnection implements Connection & MenuItemConnection {
   # Edges for the RootQueryToMenuItemConnection connection
   edges: [RootQueryToMenuItemConnectionEdge!]!
 
@@ -7640,7 +7690,7 @@ type RootQueryToMenuItemConnection implements MenuItemConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToMenuItemConnectionEdge implements MenuItemConnectionEdge & Edge {
+type RootQueryToMenuItemConnectionEdge implements Edge & MenuItemConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7664,7 +7714,7 @@ input RootQueryToMenuItemConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the page type
-type RootQueryToPageConnection implements PageConnection & Connection {
+type RootQueryToPageConnection implements Connection & PageConnection {
   # Edges for the RootQueryToPageConnection connection
   edges: [RootQueryToPageConnectionEdge!]!
 
@@ -7676,7 +7726,7 @@ type RootQueryToPageConnection implements PageConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToPageConnectionEdge implements PageConnectionEdge & Edge {
+type RootQueryToPageConnectionEdge implements Edge & PageConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7751,7 +7801,7 @@ input RootQueryToPageConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the Plugin type
-type RootQueryToPluginConnection implements PluginConnection & Connection {
+type RootQueryToPluginConnection implements Connection & PluginConnection {
   # Edges for the RootQueryToPluginConnection connection
   edges: [RootQueryToPluginConnectionEdge!]!
 
@@ -7763,7 +7813,7 @@ type RootQueryToPluginConnection implements PluginConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToPluginConnectionEdge implements PluginConnectionEdge & Edge {
+type RootQueryToPluginConnectionEdge implements Edge & PluginConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7784,7 +7834,7 @@ input RootQueryToPluginConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the post type
-type RootQueryToPostConnection implements PostConnection & Connection {
+type RootQueryToPostConnection implements Connection & PostConnection {
   # Edges for the RootQueryToPostConnection connection
   edges: [RootQueryToPostConnectionEdge!]!
 
@@ -7796,7 +7846,7 @@ type RootQueryToPostConnection implements PostConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToPostConnectionEdge implements PostConnectionEdge & Edge {
+type RootQueryToPostConnectionEdge implements Edge & PostConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7904,7 +7954,7 @@ input RootQueryToPostConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the postFormat type
-type RootQueryToPostFormatConnection implements PostFormatConnection & Connection {
+type RootQueryToPostFormatConnection implements Connection & PostFormatConnection {
   # Edges for the RootQueryToPostFormatConnection connection
   edges: [RootQueryToPostFormatConnectionEdge!]!
 
@@ -7916,7 +7966,7 @@ type RootQueryToPostFormatConnection implements PostFormatConnection & Connectio
 }
 
 # An edge in a connection
-type RootQueryToPostFormatConnectionEdge implements PostFormatConnectionEdge & Edge {
+type RootQueryToPostFormatConnectionEdge implements Edge & PostFormatConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -7991,7 +8041,7 @@ input RootQueryToPostFormatConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the ContentNode type
-type RootQueryToRevisionsConnection implements ContentNodeConnection & Connection {
+type RootQueryToRevisionsConnection implements Connection & ContentNodeConnection {
   # Edges for the RootQueryToRevisionsConnection connection
   edges: [RootQueryToRevisionsConnectionEdge!]!
 
@@ -8069,7 +8119,7 @@ input RootQueryToRevisionsConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the tag type
-type RootQueryToTagConnection implements TagConnection & Connection {
+type RootQueryToTagConnection implements Connection & TagConnection {
   # Edges for the RootQueryToTagConnection connection
   edges: [RootQueryToTagConnectionEdge!]!
 
@@ -8081,7 +8131,7 @@ type RootQueryToTagConnection implements TagConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToTagConnectionEdge implements TagConnectionEdge & Edge {
+type RootQueryToTagConnectionEdge implements Edge & TagConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -8156,7 +8206,7 @@ input RootQueryToTagConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the Taxonomy type
-type RootQueryToTaxonomyConnection implements TaxonomyConnection & Connection {
+type RootQueryToTaxonomyConnection implements Connection & TaxonomyConnection {
   # Edges for the RootQueryToTaxonomyConnection connection
   edges: [RootQueryToTaxonomyConnectionEdge!]!
 
@@ -8168,7 +8218,7 @@ type RootQueryToTaxonomyConnection implements TaxonomyConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToTaxonomyConnectionEdge implements TaxonomyConnectionEdge & Edge {
+type RootQueryToTaxonomyConnectionEdge implements Edge & TaxonomyConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -8177,7 +8227,7 @@ type RootQueryToTaxonomyConnectionEdge implements TaxonomyConnectionEdge & Edge 
 }
 
 # Connection between the RootQuery type and the TermNode type
-type RootQueryToTermNodeConnection implements TermNodeConnection & Connection {
+type RootQueryToTermNodeConnection implements Connection & TermNodeConnection {
   # Edges for the RootQueryToTermNodeConnection connection
   edges: [RootQueryToTermNodeConnectionEdge!]!
 
@@ -8189,7 +8239,7 @@ type RootQueryToTermNodeConnection implements TermNodeConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToTermNodeConnectionEdge implements TermNodeConnectionEdge & Edge {
+type RootQueryToTermNodeConnectionEdge implements Edge & TermNodeConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -8267,7 +8317,7 @@ input RootQueryToTermNodeConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the Theme type
-type RootQueryToThemeConnection implements ThemeConnection & Connection {
+type RootQueryToThemeConnection implements Connection & ThemeConnection {
   # Edges for the RootQueryToThemeConnection connection
   edges: [RootQueryToThemeConnectionEdge!]!
 
@@ -8279,7 +8329,7 @@ type RootQueryToThemeConnection implements ThemeConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToThemeConnectionEdge implements ThemeConnectionEdge & Edge {
+type RootQueryToThemeConnectionEdge implements Edge & ThemeConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -8288,7 +8338,7 @@ type RootQueryToThemeConnectionEdge implements ThemeConnectionEdge & Edge {
 }
 
 # Connection between the RootQuery type and the User type
-type RootQueryToUserConnection implements UserConnection & Connection {
+type RootQueryToUserConnection implements Connection & UserConnection {
   # Edges for the RootQueryToUserConnection connection
   edges: [RootQueryToUserConnectionEdge!]!
 
@@ -8300,7 +8350,7 @@ type RootQueryToUserConnection implements UserConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToUserConnectionEdge implements UserConnectionEdge & Edge {
+type RootQueryToUserConnectionEdge implements Edge & UserConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -8357,7 +8407,7 @@ input RootQueryToUserConnectionWhereArgs {
 }
 
 # Connection between the RootQuery type and the UserRole type
-type RootQueryToUserRoleConnection implements UserRoleConnection & Connection {
+type RootQueryToUserRoleConnection implements Connection & UserRoleConnection {
   # Edges for the RootQueryToUserRoleConnection connection
   edges: [RootQueryToUserRoleConnectionEdge!]!
 
@@ -8369,7 +8419,7 @@ type RootQueryToUserRoleConnection implements UserRoleConnection & Connection {
 }
 
 # An edge in a connection
-type RootQueryToUserRoleConnectionEdge implements UserRoleConnectionEdge & Edge {
+type RootQueryToUserRoleConnectionEdge implements Edge & UserRoleConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -8379,14 +8429,31 @@ type RootQueryToUserRoleConnectionEdge implements UserRoleConnectionEdge & Edge 
 
 # The Yoast SEO breadcrumb config
 type SEOBreadcrumbs {
+  #
   archivePrefix: String
+
+  #
   boldLast: Boolean
+
+  #
   enabled: Boolean
+
+  #
   homeText: String
+
+  #
   notFoundText: String
+
+  #
   prefix: String
+
+  #
   searchPrefix: String
+
+  #
   separator: String
+
+  #
   showBlogPage: Boolean
 }
 
@@ -8398,197 +8465,388 @@ enum SEOCardType {
 
 # The Yoast SEO site level configuration data
 type SEOConfig {
+  #
   breadcrumbs: SEOBreadcrumbs
+
+  #
   contentTypes: SEOContentTypes
+
+  #
   openGraph: SEOOpenGraph
+
+  #
   redirects: [SEORedirect]
+
+  #
   schema: SEOSchema
+
+  #
   social: SEOSocial
+
+  #
   webmaster: SEOWebmaster
 }
 
 # The Yoast SEO search appearance content types fields
 type SEOContentType {
+  #
   archive: SEOContentTypeArchive
+
+  #
   metaDesc: String
+
+  #
   metaRobotsNoindex: Boolean
+
+  #
   schema: SEOPageInfoSchema
+
+  #
   schemaType: String
+
+  #
   title: String
 }
 
 # he Yoast SEO search appearance content types fields
 type SEOContentTypeArchive {
+  #
   archiveLink: String
+
+  #
   breadcrumbTitle: String
+
+  #
   fullHead: String
+
+  #
   hasArchive: Boolean
+
+  #
   metaDesc: String
+
+  #
   metaRobotsNoindex: Boolean
+
+  #
   title: String
 }
 
 # The Yoast SEO search appearance content types
 type SEOContentTypes {
+  #
   mediaItem: SEOContentType
+
+  #
   page: SEOContentType
+
+  #
   post: SEOContentType
 }
 
 # The Open Graph data
 type SEOOpenGraph {
+  #
   defaultImage: MediaItem
+
+  #
   frontPage: SEOOpenGraphFrontPage
 }
 
 # The Open Graph Front page data
 type SEOOpenGraphFrontPage {
+  #
   description: String
+
+  #
   image: MediaItem
+
+  #
   title: String
 }
 
 # The Schema for post type
 type SEOPageInfoSchema {
+  #
   raw: String
 }
 
+#
 type SEOPostTypeBreadcrumbs {
+  #
   text: String
+
+  #
   url: String
 }
 
 # The page info SEO details
 type SEOPostTypePageInfo {
+  #
   schema: SEOPageInfoSchema
 }
 
 # The Schema types
 type SEOPostTypeSchema {
+  #
   articleType: [String]
+
+  #
   pageType: [String]
+
+  #
   raw: String
 }
 
 # The Yoast redirect data  (Yoast Premium only)
 type SEORedirect {
+  #
   format: String
+
+  #
   origin: String
+
+  #
   target: String
+
+  #
   type: Int
 }
 
 # The Yoast SEO schema data
 type SEOSchema {
+  #
   companyLogo: MediaItem
+
+  #
   companyName: String
+
+  #
   companyOrPerson: String
+
+  #
   homeUrl: String
+
+  #
   inLanguage: String
+
+  #
   logo: MediaItem
+
+  #
   personLogo: MediaItem
+
+  #
   personName: String
+
+  #
   siteName: String
+
+  #
   siteUrl: String
+
+  #
   wordpressSiteName: String
 }
 
 # The Yoast SEO Social media links
 type SEOSocial {
+  #
   facebook: SEOSocialFacebook
+
+  #
   instagram: SEOSocialInstagram
+
+  #
   linkedIn: SEOSocialLinkedIn
+
+  #
   mySpace: SEOSocialMySpace
+
+  #
   pinterest: SEOSocialPinterest
+
+  #
   twitter: SEOSocialTwitter
+
+  #
   wikipedia: SEOSocialWikipedia
+
+  #
   youTube: SEOSocialYoutube
 }
 
+#
 type SEOSocialFacebook {
+  #
   defaultImage: MediaItem
+
+  #
   url: String
 }
 
+#
 type SEOSocialInstagram {
+  #
   url: String
 }
 
+#
 type SEOSocialLinkedIn {
+  #
   url: String
 }
 
+#
 type SEOSocialMySpace {
+  #
   url: String
 }
 
+#
 type SEOSocialPinterest {
+  #
   metaTag: String
+
+  #
   url: String
 }
 
+#
 type SEOSocialTwitter {
+  #
   cardType: SEOCardType
+
+  #
   username: String
 }
 
+#
 type SEOSocialWikipedia {
+  #
   url: String
 }
 
+#
 type SEOSocialYoutube {
+  #
   url: String
 }
 
 # The Schema types for Taxonomy
 type SEOTaxonomySchema {
+  #
   raw: String
 }
 
+#
 type SEOUser {
+  #
   breadcrumbTitle: String
+
+  #
   canonical: String
+
+  #
   fullHead: String
+
+  #
   language: String
+
+  #
   metaDesc: String
+
+  #
   metaRobotsNofollow: String
+
+  #
   metaRobotsNoindex: String
+
+  #
   opengraphDescription: String
+
+  #
   opengraphImage: MediaItem
+
+  #
   opengraphTitle: String
+
+  #
   region: String
+
+  #
   schema: SEOUserSchema
+
+  #
   social: SEOUserSocial
+
+  #
   title: String
+
+  #
   twitterDescription: String
+
+  #
   twitterImage: MediaItem
+
+  #
   twitterTitle: String
 }
 
 # The Schema types for User
 type SEOUserSchema {
+  #
   articleType: [String]
+
+  #
   pageType: [String]
+
+  #
   raw: String
 }
 
+#
 type SEOUserSocial {
+  #
   facebook: String
+
+  #
   instagram: String
+
+  #
   linkedIn: String
+
+  #
   mySpace: String
+
+  #
   pinterest: String
+
+  #
   soundCloud: String
+
+  #
   twitter: String
+
+  #
   wikipedia: String
+
+  #
   youTube: String
 }
 
 # The Yoast SEO  webmaster fields
 type SEOWebmaster {
+  #
   baiduVerify: String
+
+  #
   googleVerify: String
+
+  #
   msVerify: String
+
+  #
   yandexVerify: String
 }
 
@@ -8672,25 +8930,28 @@ type Settings {
 
 # Shipping Zones Type
 type ShippingInfo {
+  #
   shippingZones: String
+
+  #
   storePostCode: Int
 }
 
 # The tag type
-type Tag implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & MenuItemLinkable {
+type Tag implements DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable {
   # Connection between the Tag type and the ContentNode type
   contentNodes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: TagToContentNodeConnectionWhereArgs
@@ -8707,32 +8968,32 @@ type Tag implements Node & TermNode & UniformResourceIdentifiable & DatabaseIden
 
   # Connection between the TermNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedScriptConnection
 
   # Connection between the TermNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedStylesheetConnection
 
   # The unique resource identifier path
@@ -8755,17 +9016,17 @@ type Tag implements Node & TermNode & UniformResourceIdentifiable & DatabaseIden
 
   # Connection between the Tag type and the post type
   posts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: TagToPostConnectionWhereArgs
@@ -8833,7 +9094,7 @@ enum TagIdType {
 }
 
 # Connection between the Tag type and the ContentNode type
-type TagToContentNodeConnection implements ContentNodeConnection & Connection {
+type TagToContentNodeConnection implements Connection & ContentNodeConnection {
   # Edges for the TagToContentNodeConnection connection
   edges: [TagToContentNodeConnectionEdge!]!
 
@@ -8911,7 +9172,7 @@ input TagToContentNodeConnectionWhereArgs {
 }
 
 # Connection between the Tag type and the post type
-type TagToPostConnection implements PostConnection & Connection {
+type TagToPostConnection implements Connection & PostConnection {
   # Edges for the TagToPostConnection connection
   edges: [TagToPostConnectionEdge!]!
 
@@ -8923,7 +9184,7 @@ type TagToPostConnection implements PostConnection & Connection {
 }
 
 # An edge in a connection
-type TagToPostConnectionEdge implements PostConnectionEdge & Edge {
+type TagToPostConnectionEdge implements Edge & PostConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -9028,7 +9289,7 @@ input TagToPostConnectionWhereArgs {
 }
 
 # Connection between the Tag type and the Taxonomy type
-type TagToTaxonomyConnectionEdge implements OneToOneConnection & Edge & TaxonomyConnectionEdge {
+type TagToTaxonomyConnectionEdge implements Edge & OneToOneConnection & TaxonomyConnectionEdge {
   # Opaque reference to the nodes position in the connection. Value can be used with pagination args.
   cursor: String
 
@@ -9040,17 +9301,17 @@ type TagToTaxonomyConnectionEdge implements OneToOneConnection & Edge & Taxonomy
 type Taxonomy implements Node {
   # List of Content Types associated with the Taxonomy
   connectedContentTypes(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TaxonomyToContentTypeConnection
 
   # Description of the taxonomy. This field is equivalent to WP_Taxonomy-&gt;description
@@ -9150,35 +9411,83 @@ enum TaxonomyIdTypeEnum {
   NAME
 }
 
+#
 type TaxonomySEO {
+  #
   breadcrumbs: [SEOPostTypeBreadcrumbs]
+
+  #
   canonical: String
+
+  #
   cornerstone: Boolean
+
+  #
   focuskw: String
+
+  #
   fullHead: String
+
+  #
   metaDesc: String
+
+  #
   metaKeywords: String
+
+  #
   metaRobotsNofollow: String
+
+  #
   metaRobotsNoindex: String
+
+  #
   opengraphAuthor: String
+
+  #
   opengraphDescription: String
+
+  #
   opengraphImage: MediaItem
+
+  #
   opengraphModifiedTime: String
+
+  #
   opengraphPublishedTime: String
+
+  #
   opengraphPublisher: String
+
+  #
   opengraphSiteName: String
+
+  #
   opengraphTitle: String
+
+  #
   opengraphType: String
+
+  #
   opengraphUrl: String
+
+  #
   schema: SEOTaxonomySchema
+
+  #
   title: String
+
+  #
   twitterDescription: String
+
+  #
   twitterImage: MediaItem
+
+  #
   twitterTitle: String
 }
 
 # Connection between the Taxonomy type and the ContentType type
-type TaxonomyToContentTypeConnection implements ContentTypeConnection & Connection {
+type TaxonomyToContentTypeConnection implements Connection & ContentTypeConnection {
   # Edges for the TaxonomyToContentTypeConnection connection
   edges: [TaxonomyToContentTypeConnectionEdge!]!
 
@@ -9211,32 +9520,32 @@ interface TermNode implements Node & UniformResourceIdentifiable {
 
   # Connection between the TermNode type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedScriptConnection
 
   # Connection between the TermNode type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): TermNodeToEnqueuedStylesheetConnection
 
   # The unique resource identifier path
@@ -9310,7 +9619,7 @@ enum TermNodeIdTypeEnum {
 }
 
 # Connection between the TermNode type and the EnqueuedScript type
-type TermNodeToEnqueuedScriptConnection implements EnqueuedScriptConnection & Connection {
+type TermNodeToEnqueuedScriptConnection implements Connection & EnqueuedScriptConnection {
   # Edges for the TermNodeToEnqueuedScriptConnection connection
   edges: [TermNodeToEnqueuedScriptConnectionEdge!]!
 
@@ -9322,7 +9631,7 @@ type TermNodeToEnqueuedScriptConnection implements EnqueuedScriptConnection & Co
 }
 
 # An edge in a connection
-type TermNodeToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnectionEdge & Edge {
+type TermNodeToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -9331,7 +9640,7 @@ type TermNodeToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnectionE
 }
 
 # Connection between the TermNode type and the EnqueuedStylesheet type
-type TermNodeToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnection & Connection {
+type TermNodeToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the TermNodeToEnqueuedStylesheetConnection connection
   edges: [TermNodeToEnqueuedStylesheetConnectionEdge!]!
 
@@ -9343,7 +9652,7 @@ type TermNodeToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnect
 }
 
 # An edge in a connection
-type TermNodeToEnqueuedStylesheetConnectionEdge implements EnqueuedStylesheetConnectionEdge & Edge {
+type TermNodeToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStylesheetConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -9910,17 +10219,17 @@ type UpdateUserPayload {
 }
 
 # A User object
-type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseIdentifier {
+type User implements Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable {
   # Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument.
   avatar(
-    # The size attribute of the avatar field can be used to fetch avatars of different sizes. The value corresponds to the dimension in pixels to fetch. The default is 96 pixels.
-    size: Int = 96
-
     # Whether to always show the default image, never the Gravatar. Default false
     forceDefault: Boolean
 
     # The rating level of the avatar.
     rating: AvatarRatingEnum
+
+    # The size attribute of the avatar field can be used to fetch avatars of different sizes. The value corresponds to the dimension in pixels to fetch. The default is 96 pixels.
+    size: Int = 96
   ): Avatar
 
   # User metadata option name. Usually it will be &quot;wp_capabilities&quot;.
@@ -9931,17 +10240,17 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User type and the Comment type
   comments(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: UserToCommentConnectionWhereArgs
@@ -9958,32 +10267,32 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User type and the EnqueuedScript type
   enqueuedScripts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): UserToEnqueuedScriptConnection
 
   # Connection between the User type and the EnqueuedStylesheet type
   enqueuedStylesheets(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): UserToEnqueuedStylesheetConnection
 
   # A complete list of capabilities including capabilities inherited from a role. This is equivalent to the array keys of WP_User-&gt;allcaps.
@@ -10012,17 +10321,17 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User type and the mediaItem type
   mediaItems(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: UserToMediaItemConnectionWhereArgs
@@ -10039,17 +10348,17 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User type and the page type
   pages(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: UserToPageConnectionWhereArgs
@@ -10057,17 +10366,17 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User type and the post type
   posts(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: UserToPostConnectionWhereArgs
@@ -10078,17 +10387,17 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User and Revisions authored by the user
   revisions(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
 
     # Arguments for filtering the connection
     where: UserToRevisionsConnectionWhereArgs
@@ -10096,17 +10405,17 @@ type User implements Node & UniformResourceIdentifiable & Commenter & DatabaseId
 
   # Connection between the User type and the UserRole type
   roles(
-    # The number of items to return after the referenced "after" cursor
-    first: Int
-
-    # The number of items to return before the referenced "before" cursor
-    last: Int
-
     # Cursor used along with the "first" argument to reference where in the dataset to get data
     after: String
 
     # Cursor used along with the "last" argument to reference where in the dataset to get data
     before: String
+
+    # The number of items to return after the referenced "after" cursor
+    first: Int
+
+    # The number of items to return before the referenced "before" cursor
+    last: Int
   ): UserToUserRoleConnection
 
   # The Yoast SEO data of a user
@@ -10339,7 +10648,7 @@ input UserToCommentConnectionWhereArgs {
 }
 
 # Connection between the User type and the EnqueuedScript type
-type UserToEnqueuedScriptConnection implements EnqueuedScriptConnection & Connection {
+type UserToEnqueuedScriptConnection implements Connection & EnqueuedScriptConnection {
   # Edges for the UserToEnqueuedScriptConnection connection
   edges: [UserToEnqueuedScriptConnectionEdge!]!
 
@@ -10351,7 +10660,7 @@ type UserToEnqueuedScriptConnection implements EnqueuedScriptConnection & Connec
 }
 
 # An edge in a connection
-type UserToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnectionEdge & Edge {
+type UserToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -10360,7 +10669,7 @@ type UserToEnqueuedScriptConnectionEdge implements EnqueuedScriptConnectionEdge 
 }
 
 # Connection between the User type and the EnqueuedStylesheet type
-type UserToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnection & Connection {
+type UserToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the UserToEnqueuedStylesheetConnection connection
   edges: [UserToEnqueuedStylesheetConnectionEdge!]!
 
@@ -10372,7 +10681,7 @@ type UserToEnqueuedStylesheetConnection implements EnqueuedStylesheetConnection 
 }
 
 # An edge in a connection
-type UserToEnqueuedStylesheetConnectionEdge implements EnqueuedStylesheetConnectionEdge & Edge {
+type UserToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStylesheetConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -10381,7 +10690,7 @@ type UserToEnqueuedStylesheetConnectionEdge implements EnqueuedStylesheetConnect
 }
 
 # Connection between the User type and the mediaItem type
-type UserToMediaItemConnection implements MediaItemConnection & Connection {
+type UserToMediaItemConnection implements Connection & MediaItemConnection {
   # Edges for the UserToMediaItemConnection connection
   edges: [UserToMediaItemConnectionEdge!]!
 
@@ -10393,7 +10702,7 @@ type UserToMediaItemConnection implements MediaItemConnection & Connection {
 }
 
 # An edge in a connection
-type UserToMediaItemConnectionEdge implements MediaItemConnectionEdge & Edge {
+type UserToMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -10468,7 +10777,7 @@ input UserToMediaItemConnectionWhereArgs {
 }
 
 # Connection between the User type and the page type
-type UserToPageConnection implements PageConnection & Connection {
+type UserToPageConnection implements Connection & PageConnection {
   # Edges for the UserToPageConnection connection
   edges: [UserToPageConnectionEdge!]!
 
@@ -10480,7 +10789,7 @@ type UserToPageConnection implements PageConnection & Connection {
 }
 
 # An edge in a connection
-type UserToPageConnectionEdge implements PageConnectionEdge & Edge {
+type UserToPageConnectionEdge implements Edge & PageConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -10555,7 +10864,7 @@ input UserToPageConnectionWhereArgs {
 }
 
 # Connection between the User type and the post type
-type UserToPostConnection implements PostConnection & Connection {
+type UserToPostConnection implements Connection & PostConnection {
   # Edges for the UserToPostConnection connection
   edges: [UserToPostConnectionEdge!]!
 
@@ -10567,7 +10876,7 @@ type UserToPostConnection implements PostConnection & Connection {
 }
 
 # An edge in a connection
-type UserToPostConnectionEdge implements PostConnectionEdge & Edge {
+type UserToPostConnectionEdge implements Edge & PostConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -10672,7 +10981,7 @@ input UserToPostConnectionWhereArgs {
 }
 
 # Connection between the User type and the ContentNode type
-type UserToRevisionsConnection implements ContentNodeConnection & Connection {
+type UserToRevisionsConnection implements Connection & ContentNodeConnection {
   # Edges for the UserToRevisionsConnection connection
   edges: [UserToRevisionsConnectionEdge!]!
 
@@ -10750,7 +11059,7 @@ input UserToRevisionsConnectionWhereArgs {
 }
 
 # Connection between the User type and the UserRole type
-type UserToUserRoleConnection implements UserRoleConnection & Connection {
+type UserToUserRoleConnection implements Connection & UserRoleConnection {
   # Edges for the UserToUserRoleConnection connection
   edges: [UserToUserRoleConnectionEdge!]!
 
@@ -10762,7 +11071,7 @@ type UserToUserRoleConnection implements UserRoleConnection & Connection {
 }
 
 # An edge in a connection
-type UserToUserRoleConnectionEdge implements UserRoleConnectionEdge & Edge {
+type UserToUserRoleConnectionEdge implements Edge & UserRoleConnectionEdge {
   # A cursor for use in pagination
   cursor: String
 
@@ -10844,22 +11153,34 @@ type WPPageInfo {
 
 # Countries Type
 type WooCountries {
+  #
   billingCountries: [WooCountry]
+
+  #
   shippingCountries: [WooCountry]
 }
 
+#
 type WooCountry {
+  #
   countryCode: String
+
+  #
   countryName: String
 }
 
+#
 type WooState {
+  #
   stateCode: String
+
+  #
   stateName: String
 }
 
 # States Type
 type WooStates {
+  #
   states: [WooState]
 }
 
