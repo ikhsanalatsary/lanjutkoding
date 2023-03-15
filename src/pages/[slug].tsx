@@ -1,17 +1,19 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useEffect } from 'react';
-import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import Link from 'next/link';
-import dayjs from 'dayjs';
-import Prism from 'prismjs';
+
 import cheerio from 'cheerio';
-import { initializeApollo } from '../lib/apolloClient';
-import { PostDetailDocument, PostDetailQuery, PostDetailQueryVariables, PostSlugsDocument, PostSlugsQuery } from '../lib/graphql';
+import dayjs from 'dayjs';
+import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import Prism from 'prismjs';
+
+import { Footer } from '../components/Footer';
 import { Header, removeSubDomain } from '../components/Header';
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '../components/Icon';
-import { Footer } from '../components/Footer';
-import Image from 'next/image';
+import { initializeApollo } from '../lib/apolloClient';
+import { PostDetailDocument, PostDetailQuery, PostDetailQueryVariables, PostSlugsDocument, PostSlugsQuery } from '../lib/graphql';
 import initializeSupabase from '../lib/supa';
 import { generateCopyRight } from '../lib/utils';
 
@@ -115,7 +117,7 @@ export default function PostDetail({ post, categories, header, menuItems, rootSe
               </div>
               <div className="text-gray-600 text-lg text-center">Ads</div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
-              {affiliates!.map((aff) => (
+              {affiliates?.map((aff) => (
                 <a
                   key={aff.id}
                   href={aff.link}
@@ -165,7 +167,7 @@ export const getStaticProps = async (context: GetStaticPropsContext<PostDetailQu
     // @ts-ignore
     const $ = cheerio.load(result.data.post.content, null, false);
     $('pre').each((i, el) => {
-      let lang = $(el).attr('class')?.split(' ')[1].slice(9) ?? 'javascript';
+      let lang = $(el).attr('class')?.split(' ')[1]?.slice(9) ?? 'javascript';
       let code = $(el).find('code');
       code.replaceWith(Prism.highlight(code.text(), Prism.languages[lang], lang));
     });

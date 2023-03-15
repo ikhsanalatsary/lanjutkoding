@@ -58,7 +58,12 @@ export default function Home({ posts, header, menuItems, seo, footer, categories
                     </header>
 
                     <footer className="flex items-center justify-between leading-none p-2 md:p-4">
-                      <a className="flex items-center no-underline hover:underline text-gray-500" href="#">
+                      <a
+                        className="flex items-center no-underline hover:underline text-gray-500"
+                        href="https://bio.link/ikhsaan"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Image
                           alt={post!.node!.author!.node!.name!}
                           className="block rounded-full"
@@ -98,7 +103,7 @@ export default function Home({ posts, header, menuItems, seo, footer, categories
               </div>
               <div className="text-gray-600 text-lg text-center">Ads</div>
               <div className="h-1 w-10 rounded bg-blue-500 my-3 mx-auto" />
-              {affiliates!.map((aff) => (
+              {affiliates?.map((aff) => (
                 <a
                   key={aff.id}
                   href={aff.link}

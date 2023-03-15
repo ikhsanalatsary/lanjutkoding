@@ -1,11 +1,15 @@
-import React from 'react';
-import { ApolloProvider } from '@apollo/client';
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
-import dayjs from 'dayjs';
-import { useApollo } from '../lib/apolloClient';
 import '../styles/globals.css';
 import 'dayjs/locale/id';
+
+import React from 'react';
+
+import dayjs from 'dayjs';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+
+import { ApolloProvider } from '@apollo/client';
+
+import { useApollo } from '../lib/apolloClient';
 
 dayjs.locale('id');
 
@@ -40,11 +44,11 @@ function MyApp({ Component, pageProps }: Props) {
               src="https://static.cloudflareinsights.com/beacon.min.js"
               data-cf-beacon={`{"token": "15a270292cfc4f5684025d07ab4fc1ab"}`}
             ></script>
-            <script
+            {/* <script
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2154910111615603"
               crossorigin="anonymous"
-            ></script>
+            ></script> */}
           </>
         )}
       </Head>
