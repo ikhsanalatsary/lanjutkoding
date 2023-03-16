@@ -1,3 +1,5 @@
+/* eslint-disable react/default-props-match-prop-types */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
@@ -6,7 +8,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CategoryDetailQuery, HomeQuery, Maybe, PostDetailQuery } from '../lib/graphql';
+import { CategoryDetailQuery, HomeQuery, Maybe, MediaDetails, PostDetailQuery } from '../lib/graphql';
 
 type RootSeoType = Pick<HomeQuery, 'seo'>['seo'];
 // ref: https://www.typescriptlang.org/docs/handbook/utility-types.html#nonnullabletype
@@ -25,6 +27,7 @@ type Props = Partial<{
   siteDesc?: Maybe<string>;
   menuItems: MenuItemType;
 }>;
+const defaultAuthor = 'Abdul Fattah Ikhsan';
 function getRelativeImage(targetUrl: string): string {
   try {
     let image = new URL(targetUrl);
@@ -36,126 +39,69 @@ function getRelativeImage(targetUrl: string): string {
 export function removeSubDomain(target?: Maybe<string>) {
   return target?.includes('yuk') ? target?.replace(/yuk./, '') : target;
 }
-export function Header(props: Props) {
+export function Header({ siteTitle, rootSeo, seo, title: pageTitle, logo, siteDesc, menuItems }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let additionalMetaProps: { [key: string]: any } = {};
-  let siteUrl = removeSubDomain(props.rootSeo!.schema!.siteUrl!)!;
-  if (props.seo?.metaKeywords) {
+  let siteUrl = removeSubDomain(rootSeo?.schema?.siteUrl) ?? '';
+  if (seo?.metaKeywords) {
     additionalMetaProps.additionalMetaTags = [];
     additionalMetaProps.additionalMetaTags.push({
       name: 'keywords',
-      content: props.seo?.metaKeywords,
+      content: seo?.metaKeywords,
     });
   }
-  let imageUrl = `${siteUrl}${
-    props.seo?.opengraphImage?.mediaDetails?.file?.slice(7) ||
-    props.rootSeo?.openGraph?.frontPage?.image?.mediaDetails?.file?.slice(7) ||
-    props.rootSeo?.openGraph?.defaultImage?.mediaDetails?.file?.slice(7) ||
-    '/raycast-untitled-32.png'
-  }`;
-  let title = `${props.title || props.siteTitle || 'Lanjut Koding'} - ${props.siteDesc || 'Yuk lanjut kodingnya!'}`;
+  const opengraphImage =
+    seo?.opengraphImage ?? rootSeo?.openGraph?.frontPage?.image ?? rootSeo?.openGraph?.defaultImage ?? ({} as { mediaDetails: Maybe<MediaDetails> });
+  const imageUrl = `${siteUrl}${opengraphImage.mediaDetails?.file?.slice(7) || '/raycast-untitled-32.png'}`;
+  let title = `${pageTitle || siteTitle} - ${siteDesc}`;
   return (
     <>
       <Head>
         <title>{title}</title>
-        {props.rootSeo?.webmaster?.googleVerify && <meta name="google-site-verification" content={props.rootSeo.webmaster.googleVerify} />}
+        {rootSeo?.webmaster?.googleVerify && <meta name="google-site-verification" content={rootSeo.webmaster.googleVerify} />}
       </Head>
       <NextSeo
         defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
         title={title}
-        description={
-          props.seo?.metaDesc ||
-          props.siteDesc ||
-          props.seo?.opengraphDescription ||
-          props.rootSeo?.openGraph?.frontPage?.description ||
-          'Yuk lanjut kodingnya!'
-        }
-        canonical={removeSubDomain(props.seo?.canonical) || process.env.NEXT_PUBLIC_SITE_URL}
+        description={seo?.metaDesc || siteDesc || seo?.opengraphDescription || rootSeo?.openGraph?.frontPage?.description || 'Yuk lanjut kodingnya!'}
+        canonical={removeSubDomain(seo?.canonical) || process.env.NEXT_PUBLIC_SITE_URL}
         openGraph={{
-          url: removeSubDomain(props.seo?.opengraphUrl) || process.env.NEXT_PUBLIC_SITE_URL,
-          title: props.seo?.opengraphTitle || props.rootSeo?.openGraph?.frontPage?.title || props.siteTitle || 'Lanjut Koding',
-          description: props.seo?.opengraphDescription || props.rootSeo?.openGraph?.frontPage?.description || 'Yuk lanjut kodingnya!',
+          url: removeSubDomain(seo?.opengraphUrl) || process.env.NEXT_PUBLIC_SITE_URL,
+          title: seo?.opengraphTitle || rootSeo?.openGraph?.frontPage?.title || siteTitle || 'Lanjut Koding',
+          description: seo?.opengraphDescription || rootSeo?.openGraph?.frontPage?.description || 'Yuk lanjut kodingnya!',
           images: [
             {
               url: imageUrl,
-              alt: props.seo?.opengraphImage?.altText || props.rootSeo?.openGraph?.frontPage?.image?.altText || undefined,
+              alt: seo?.opengraphImage?.altText || rootSeo?.openGraph?.frontPage?.image?.altText || undefined,
             },
           ],
-          site_name:
-            props.seo?.opengraphSiteName || props.rootSeo?.openGraph?.frontPage?.title || props.rootSeo?.schema?.siteName || 'lanjutkoding.com',
-          type: props.seo?.opengraphType ?? undefined,
+          site_name: seo?.opengraphSiteName || rootSeo?.openGraph?.frontPage?.title || rootSeo?.schema?.siteName || 'lanjutkoding.com',
+          type: seo?.opengraphType ?? undefined,
           article: {
-            authors: [props.seo?.opengraphAuthor || 'Abdul Fattah Ikhsan'],
-            modifiedTime: props.seo?.opengraphModifiedTime ?? '',
-            publishedTime: props.seo?.opengraphPublishedTime ?? '',
+            authors: [seo?.opengraphAuthor || defaultAuthor],
+            modifiedTime: seo?.opengraphModifiedTime ?? '',
+            publishedTime: seo?.opengraphPublishedTime ?? '',
           },
-          locale: props.rootSeo?.schema?.inLanguage ?? process.env.NEXT_PUBLIC_LOCALE,
+          locale: rootSeo?.schema?.inLanguage ?? process.env.NEXT_PUBLIC_LOCALE,
         }}
         twitter={{
-          site: props.rootSeo?.social?.twitter?.username ?? '@houseofcoder1',
-          cardType: props.rootSeo?.social?.twitter?.cardType ?? 'summary_large_image',
+          site: rootSeo?.social?.twitter?.username ?? '@houseofcoder1',
+          cardType: rootSeo?.social?.twitter?.cardType ?? 'summary_large_image',
         }}
-        nofollow={props.seo?.metaRobotsNofollow != null && props.seo?.metaRobotsNofollow !== 'follow'}
-        noindex={props.seo?.metaRobotsNoindex != null && props.seo.metaRobotsNoindex !== 'index'}
+        nofollow={seo?.metaRobotsNofollow != null && seo?.metaRobotsNofollow !== 'follow'}
+        noindex={seo?.metaRobotsNoindex != null && seo.metaRobotsNoindex !== 'index'}
         {...additionalMetaProps}
       />
-      {props.seo && (
-        <ArticleJsonLd
-          url={removeSubDomain(props.seo.opengraphUrl!)!}
-          title={props.seo.title!}
-          images={[imageUrl]}
-          datePublished={props.seo.opengraphPublishedTime ?? ''}
-          dateModified={props.seo.opengraphModifiedTime ?? ''}
-          authorName={[props.seo.opengraphAuthor || 'Abdul Fattah Ikhsan']}
-          publisherName={props.seo.opengraphPublisher || 'Abdul Fattah Ikhsan'}
-          publisherLogo={process.env.NEXT_PUBLIC_DEFAULT_GRAVATAR ?? ''}
-          description={(props.seo.metaDesc || props.seo.opengraphDescription) ?? ''}
-        />
-      )}
-      {props.seo && props.seo.breadcrumbs?.length && (
-        <BreadcrumbJsonLd
-          itemListElements={props.seo.breadcrumbs.map((breadcrumb, index) => ({
-            position: index + 1,
-            name: breadcrumb?.text ?? '',
-            item: removeSubDomain(breadcrumb?.url) ?? '',
-          }))}
-        />
-      )}
-      {props.rootSeo && (
-        <SiteLinksSearchBoxJsonLd
-          url={siteUrl}
-          potentialActions={[
-            {
-              target: `${siteUrl}/search?q`,
-              queryInput: 'search_term_string',
-            },
-          ]}
-        />
-      )}
-      {props.rootSeo?.schema && (
-        <SocialProfileJsonLd
-          type={props.rootSeo.schema.companyOrPerson && props.rootSeo.schema.companyOrPerson === 'company' ? 'Organization' : 'Person'}
-          name={
-            props.rootSeo.schema.companyOrPerson && props.rootSeo.schema.companyOrPerson === 'company'
-              ? props.rootSeo.schema.companyName ?? ''
-              : props.rootSeo.schema.personName ?? ''
-          }
-          url={removeSubDomain(props.rootSeo.schema.siteUrl) || (process.env.NEXT_PUBLIC_SITE_URL as string)}
-          sameAs={[
-            props.rootSeo.social!.facebook!.url!,
-            props.rootSeo.social!.instagram!.url!,
-            `https://twitter.com/${props.rootSeo.social!.twitter!.username!}`,
-          ]}
-        />
-      )}
+      {seo && <HeaderJsonLd imageUrl={imageUrl} {...seo} />}
+      {rootSeo && <RootSeo siteUrl={siteUrl} {...rootSeo} />}
       <div className="max-w-screen-xl flex flex-wrap justify-between items-baseline py-2 pl-3 mx-auto">
         <div className="font-bold text-lg">
           <Link href="/">
             <a className="text-gray-800">
               <span className="inline">
-                {props.logo && <Image src={getRelativeImage(props.logo)} layout="intrinsic" width={36} height={36} alt="logo lanjutkoding.com" />}
+                {logo && <Image src={getRelativeImage(logo)} layout="intrinsic" width={36} height={36} alt="logo lanjutkoding.com" />}
                 <span className="align-text-middle ml-2" translate="no">
-                  {props.siteTitle ?? 'Lanjutkoding.com'}
+                  {siteTitle ?? 'Lanjutkoding.com'}
                 </span>
               </span>
             </a>
@@ -163,7 +109,7 @@ export function Header(props: Props) {
         </div>
         <nav>
           <ul className="flex items-center font-extrabold">
-            {props.menuItems?.nodes?.map((menu) => {
+            {menuItems?.nodes?.map((menu) => {
               return (
                 <li className="mr-3" key={menu?.id}>
                   <Link href={menu!.path!}>
@@ -175,6 +121,81 @@ export function Header(props: Props) {
           </ul>
         </nav>
       </div>
+    </>
+  );
+}
+Header.defaultProps = {
+  siteTitle: 'Lanjut Koding',
+  siteDesc: 'Yuk lanjut kodingnya!',
+};
+
+type JsonLdProps = Partial<NonNullable<SeoType>> & {
+  imageUrl: string;
+  publisherLogo?: string;
+  breadcrumbs: Pick<NonNullable<SeoType>, 'breadcrumbs'>['breadcrumbs'];
+};
+
+function HeaderJsonLd(props: JsonLdProps) {
+  return (
+    <>
+      <ArticleJsonLd
+        url={removeSubDomain(props.opengraphUrl!)!}
+        title={props.title!}
+        images={[props.imageUrl]}
+        datePublished={props.opengraphPublishedTime!}
+        dateModified={props.opengraphModifiedTime!}
+        authorName={[props.opengraphAuthor]}
+        publisherName={props.opengraphPublisher!}
+        publisherLogo={props.publisherLogo!}
+        description={props.metaDesc || props.opengraphDescription!}
+      />
+      {props && props.breadcrumbs?.length && (
+        <BreadcrumbJsonLd
+          itemListElements={props.breadcrumbs.map((breadcrumb, index) => ({
+            position: index + 1,
+            name: breadcrumb?.text ?? '',
+            item: removeSubDomain(breadcrumb?.url) ?? '',
+          }))}
+        />
+      )}
+    </>
+  );
+}
+
+HeaderJsonLd.defaultProps = {
+  opengraphAuthor: defaultAuthor,
+  opengraphPublisher: defaultAuthor,
+  metaDesc: '',
+  opengraphDescription: '',
+  opengraphPublishedTime: '',
+  opengraphModifiedTime: '',
+  publisherLogo: process.env.NEXT_PUBLIC_DEFAULT_GRAVATAR ?? '',
+};
+
+function RootSeo(props: Partial<NonNullable<RootSeoType>> & { siteUrl: string }) {
+  return (
+    <>
+      <SiteLinksSearchBoxJsonLd
+        url={props.siteUrl}
+        potentialActions={[
+          {
+            target: `${props.siteUrl}/search?q`,
+            queryInput: 'search_term_string',
+          },
+        ]}
+      />
+      {props.schema && (
+        <SocialProfileJsonLd
+          type={props.schema.companyOrPerson && props.schema.companyOrPerson === 'company' ? 'Organization' : 'Person'}
+          name={
+            props.schema.companyOrPerson && props.schema.companyOrPerson === 'company'
+              ? props.schema.companyName ?? ''
+              : props.schema.personName ?? ''
+          }
+          url={removeSubDomain(props.schema.siteUrl) || (process.env.NEXT_PUBLIC_SITE_URL as string)}
+          sameAs={[props.social!.facebook!.url!, props.social!.instagram!.url!, `https://twitter.com/${props.social!.twitter!.username!}`]}
+        />
+      )}
     </>
   );
 }
