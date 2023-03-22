@@ -128,7 +128,12 @@ export default function Home({ posts, header, menuItems, seo, footer, categories
               ))}
             </div>
           </div>
-          <Pagination currentPage={page} totalItems={total} itemsPerPage={PER_PAGE} renderPageLink={(page) => `/halaman/${page}`} />
+          <Pagination
+            currentPage={page}
+            totalItems={total}
+            itemsPerPage={PER_PAGE}
+            renderPageLink={(page) => (page === 1 ? '/' : `/halaman/${page}`)}
+          />
         </div>
       </div>
       <Footer copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`} socialLinks={footer!.socialLinks!} />
@@ -172,15 +177,6 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     };
   }
 
-  // Redirect the first page to `/category` to avoid duplicated content
-  if (page === 1) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
   let supabase = initializeSupabase();
   const { data, error } = await supabase.from('affiliate_links').select('name, image, link, id').order('name', { ascending: false }).limit(2);
 

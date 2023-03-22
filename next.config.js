@@ -15,4 +15,22 @@ module.exports = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/halaman/1',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/halaman/1',
+        has: [{ type: 'query', key: 'page', value: '1' }],
+        destination: '/',
+      },
+    ];
+  },
 };
