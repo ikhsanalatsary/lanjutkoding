@@ -87,6 +87,6 @@ export const getStaticProps = async () => {
         copyrightText: generateCopyRight(result.data.getFooter?.copyrightText),
       },
     },
-    revalidate: 1,
+    revalidate: 86400,
   };
 };

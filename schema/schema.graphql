@@ -11149,6 +11149,9 @@ type WPPageInfo {
 
   # When paginating backwards, the cursor to continue.
   startCursor: String
+
+  #
+  total: Int
 }
 
 # Countries Type

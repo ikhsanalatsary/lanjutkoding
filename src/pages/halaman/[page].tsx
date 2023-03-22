@@ -2,24 +2,31 @@
 import React from 'react';
 
 import dayjs from 'dayjs';
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { initializeApollo } from '../lib/apolloClient';
-import { HomeDocument, HomeQuery } from '../lib/graphql';
-import initializeSupabase from '../lib/supa';
-import { generateCopyRight } from '../lib/utils';
-import Pagination from '../components/Pagination';
-import { PER_PAGE } from '../constants/PageConstant';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+import { initializeApollo } from '../../lib/apolloClient';
+import { HomeDocument, HomeQuery, TotalPostDocument, TotalPostQuery } from '../../lib/graphql';
+import initializeSupabase from '../../lib/supa';
+import { generateCopyRight } from '../../lib/utils';
+import Pagination from '../../components/Pagination';
+import { PER_PAGE } from '../../constants/PageConstant';
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Home({ posts, header, menuItems, seo, footer, categories, affiliates, total }: Props) {
+export default function Home({ posts, header, menuItems, seo, footer, categories, affiliates, page, total }: Props) {
   return (
     <>
-      <Header siteTitle={header?.siteTitle} siteDesc={header?.siteTagLine} rootSeo={seo} logo={header?.siteLogoUrl} menuItems={menuItems} />
+      <Header
+        siteTitle={header?.siteTitle}
+        siteDesc={header?.siteTagLine}
+        rootSeo={seo}
+        logo={header?.siteLogoUrl}
+        menuItems={menuItems}
+        canonicalUrl={`${process.env.NEXT_PUBLIC_SITE_URL}halaman/${page}`}
+      />
       <header className="max-w-screen-xl text-center pt-4 pb-4 px-3 mx-auto">
         <h1 className="text-2xl md:text-4xl text-gray-800 font-semibold" translate="no">
           {header?.siteTitle}
@@ -121,7 +128,7 @@ export default function Home({ posts, header, menuItems, seo, footer, categories
               ))}
             </div>
           </div>
-          <Pagination currentPage={1} totalItems={total} itemsPerPage={PER_PAGE} renderPageLink={(page) => `/halaman/${page}`} />
+          <Pagination currentPage={page} totalItems={total} itemsPerPage={PER_PAGE} renderPageLink={(page) => `/halaman/${page}`} />
         </div>
       </div>
       <Footer copyRightText={`${footer!.copyrightText!} ${header!.siteTitle!}`} socialLinks={footer!.socialLinks!} />
@@ -129,13 +136,51 @@ export default function Home({ posts, header, menuItems, seo, footer, categories
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const getStaticProps = async (_context: GetStaticPropsContext) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   let client = initializeApollo();
+  let result = await client.query<TotalPostQuery>({
+    query: TotalPostDocument,
+  });
+
+  // Get the paths we want to pre-render based on posts
+  let totalPage = Math.ceil((result.data.posts?.pageInfo?.total ?? 0) / PER_PAGE);
+  const paths = Array.from({ length: totalPage }).map((_, index) => ({
+    params: { page: String(index + 1) },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: 'blocking' } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: 'blocking' };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  const page = Number(params?.page) || 1;
+  let client = initializeApollo();
+  let resultTotal = await client.query<TotalPostQuery>({
+    query: TotalPostDocument,
+  });
+  let endCursor = page > 1 ? resultTotal.data.posts?.edges[resultTotal.data.posts.pageInfo?.total - 1 - PER_PAGE].cursor : null;
   let result = await client.query<HomeQuery>({
     query: HomeDocument,
-    // variables: {}
+    variables: { first: PER_PAGE, after: endCursor },
   });
+  if (result.data.posts?.edges?.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  // Redirect the first page to `/category` to avoid duplicated content
+  if (page === 1) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
   let supabase = initializeSupabase();
   const { data, error } = await supabase.from('affiliate_links').select('name, image, link, id').order('name', { ascending: false }).limit(2);
 
@@ -151,8 +196,9 @@ export const getStaticProps = async (_context: GetStaticPropsContext) => {
         ...result.data.getFooter,
         copyrightText: generateCopyRight(result.data.getFooter?.copyrightText),
       },
-      total: result.data.posts?.pageInfo?.total ?? 0,
+      total: resultTotal.data.posts?.pageInfo?.total ?? 0,
+      page,
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 };

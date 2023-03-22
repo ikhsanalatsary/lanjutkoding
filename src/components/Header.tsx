@@ -26,6 +26,7 @@ type Props = Partial<{
   logo: Maybe<string>;
   siteDesc?: Maybe<string>;
   menuItems: MenuItemType;
+  canonicalUrl?: string;
 }>;
 const defaultAuthor = 'Abdul Fattah Ikhsan';
 function getRelativeImage(targetUrl: string): string {
@@ -39,7 +40,7 @@ function getRelativeImage(targetUrl: string): string {
 export function removeSubDomain(target?: Maybe<string>) {
   return target?.includes('yuk') ? target?.replace(/yuk./, '') : target;
 }
-export function Header({ siteTitle, rootSeo, seo, title: pageTitle, logo, siteDesc, menuItems }: Props) {
+export function Header({ siteTitle, rootSeo, seo, title: pageTitle, logo, siteDesc, menuItems, canonicalUrl }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let additionalMetaProps: { [key: string]: any } = {};
   let siteUrl = removeSubDomain(rootSeo?.schema?.siteUrl) ?? '';
@@ -64,9 +65,9 @@ export function Header({ siteTitle, rootSeo, seo, title: pageTitle, logo, siteDe
         defaultTitle="Lanjutkoding.com - Yuk lanjut kodingnya!"
         title={title}
         description={seo?.metaDesc || siteDesc || seo?.opengraphDescription || rootSeo?.openGraph?.frontPage?.description || 'Yuk lanjut kodingnya!'}
-        canonical={removeSubDomain(seo?.canonical) || process.env.NEXT_PUBLIC_SITE_URL}
+        canonical={removeSubDomain(seo?.canonical) || canonicalUrl || process.env.NEXT_PUBLIC_SITE_URL}
         openGraph={{
-          url: removeSubDomain(seo?.opengraphUrl) || process.env.NEXT_PUBLIC_SITE_URL,
+          url: removeSubDomain(seo?.opengraphUrl) || canonicalUrl || process.env.NEXT_PUBLIC_SITE_URL,
           title: seo?.opengraphTitle || rootSeo?.openGraph?.frontPage?.title || siteTitle || 'Lanjut Koding',
           description: seo?.opengraphDescription || rootSeo?.openGraph?.frontPage?.description || 'Yuk lanjut kodingnya!',
           images: [
@@ -93,7 +94,7 @@ export function Header({ siteTitle, rootSeo, seo, title: pageTitle, logo, siteDe
         {...additionalMetaProps}
       />
       {seo && <HeaderJsonLd imageUrl={imageUrl} {...seo} />}
-      {rootSeo && <RootSeo siteUrl={siteUrl} {...rootSeo} />}
+      {rootSeo && <RootSeo siteUrl={siteUrl} canonicalUrl={canonicalUrl} {...rootSeo} />}
       <div className="max-w-screen-xl flex flex-wrap justify-between items-baseline py-2 pl-3 mx-auto">
         <div className="font-bold text-lg">
           <Link href="/">
@@ -172,7 +173,7 @@ HeaderJsonLd.defaultProps = {
   publisherLogo: process.env.NEXT_PUBLIC_DEFAULT_GRAVATAR ?? '',
 };
 
-function RootSeo(props: Partial<NonNullable<RootSeoType>> & { siteUrl: string }) {
+function RootSeo(props: Partial<NonNullable<RootSeoType>> & { siteUrl: string; canonicalUrl?: string }) {
   return (
     <>
       <SiteLinksSearchBoxJsonLd
@@ -192,7 +193,7 @@ function RootSeo(props: Partial<NonNullable<RootSeoType>> & { siteUrl: string })
               ? props.schema.companyName ?? ''
               : props.schema.personName ?? ''
           }
-          url={removeSubDomain(props.schema.siteUrl) || (process.env.NEXT_PUBLIC_SITE_URL as string)}
+          url={props.canonicalUrl || removeSubDomain(props.schema.siteUrl) || (process.env.NEXT_PUBLIC_SITE_URL as string)}
           sameAs={[props.social!.facebook!.url!, props.social!.instagram!.url!, `https://twitter.com/${props.social!.twitter!.username!}`]}
         />
       )}

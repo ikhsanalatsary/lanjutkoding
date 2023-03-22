@@ -5410,6 +5410,7 @@ export type WpPageInfo = {
   hasPreviousPage: Scalars['Boolean'];
   seo: Maybe<SeoPostTypePageInfo>;
   startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type WooCountries = {
@@ -5444,10 +5445,18 @@ export type WritingSettings = {
 
 export type RootSeoFragmentFragment = { __typename?: 'RootQuery', seo: { __typename?: 'SEOConfig', openGraph: { __typename?: 'SEOOpenGraph', defaultImage: { __typename?: 'MediaItem', altText: string | null | undefined, title: string | null | undefined, uri: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined, frontPage: { __typename?: 'SEOOpenGraphFrontPage', description: string | null | undefined, title: string | null | undefined, image: { __typename?: 'MediaItem', uri: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined } | null | undefined } | null | undefined, webmaster: { __typename?: 'SEOWebmaster', baiduVerify: string | null | undefined, googleVerify: string | null | undefined, msVerify: string | null | undefined, yandexVerify: string | null | undefined } | null | undefined, social: { __typename?: 'SEOSocial', facebook: { __typename?: 'SEOSocialFacebook', url: string | null | undefined } | null | undefined, instagram: { __typename?: 'SEOSocialInstagram', url: string | null | undefined } | null | undefined, twitter: { __typename?: 'SEOSocialTwitter', username: string | null | undefined, cardType: SeoCardType | null | undefined } | null | undefined } | null | undefined, schema: { __typename?: 'SEOSchema', siteName: string | null | undefined, siteUrl: string | null | undefined, wordpressSiteName: string | null | undefined, personName: string | null | undefined, companyOrPerson: string | null | undefined, companyName: string | null | undefined, inLanguage: string | null | undefined } | null | undefined } | null | undefined };
 
-export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
+export type TotalPostQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined, node: { __typename?: 'Post', slug: string | null | undefined, title: string | null | undefined, date: string | null | undefined, uri: string | null | undefined, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } } | null | undefined, author: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', slug: string | null | undefined, name: string | null | undefined, avatar: { __typename?: 'Avatar', url: string | null | undefined } | null | undefined } } | null | undefined, tags: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name: string | null | undefined }> } | null | undefined } }> } | null | undefined, categories: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<{ __typename?: 'Category', id: string, slug: string | null | undefined, name: string | null | undefined, uri: string | null | undefined }> } | null | undefined, getHeader: { __typename?: 'HCMSHeader', siteTitle: string | null | undefined, siteLogoUrl: string | null | undefined, siteTagLine: string | null | undefined } | null | undefined, getFooter: { __typename?: 'HCMSFooter', copyrightText: string | null | undefined, socialLinks: Array<{ __typename?: 'HCMSSocialLinks', iconName: string | null | undefined, iconUrl: string | null | undefined } | null | undefined> | null | undefined } | null | undefined, menuItems: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, label: string | null | undefined, path: string | null | undefined }> } | null | undefined, seo: { __typename?: 'SEOConfig', openGraph: { __typename?: 'SEOOpenGraph', defaultImage: { __typename?: 'MediaItem', altText: string | null | undefined, title: string | null | undefined, uri: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined, frontPage: { __typename?: 'SEOOpenGraphFrontPage', description: string | null | undefined, title: string | null | undefined, image: { __typename?: 'MediaItem', uri: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined } | null | undefined } | null | undefined, webmaster: { __typename?: 'SEOWebmaster', baiduVerify: string | null | undefined, googleVerify: string | null | undefined, msVerify: string | null | undefined, yandexVerify: string | null | undefined } | null | undefined, social: { __typename?: 'SEOSocial', facebook: { __typename?: 'SEOSocialFacebook', url: string | null | undefined } | null | undefined, instagram: { __typename?: 'SEOSocialInstagram', url: string | null | undefined } | null | undefined, twitter: { __typename?: 'SEOSocialTwitter', username: string | null | undefined, cardType: SeoCardType | null | undefined } | null | undefined } | null | undefined, schema: { __typename?: 'SEOSchema', siteName: string | null | undefined, siteUrl: string | null | undefined, wordpressSiteName: string | null | undefined, personName: string | null | undefined, companyOrPerson: string | null | undefined, companyName: string | null | undefined, inLanguage: string | null | undefined } | null | undefined } | null | undefined };
+export type TotalPostQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'WPPageInfo', total: number | null | undefined, hasNextPage: boolean, endCursor: string | null | undefined } | null | undefined, edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined }> } | null | undefined };
+
+export type HomeQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']>;
+  after: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type HomeQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'WPPageInfo', total: number | null | undefined, hasNextPage: boolean, endCursor: string | null | undefined } | null | undefined, edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined, node: { __typename?: 'Post', slug: string | null | undefined, title: string | null | undefined, date: string | null | undefined, uri: string | null | undefined, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } } | null | undefined, author: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', slug: string | null | undefined, name: string | null | undefined, avatar: { __typename?: 'Avatar', url: string | null | undefined } | null | undefined } } | null | undefined, tags: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name: string | null | undefined }> } | null | undefined } }> } | null | undefined, categories: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<{ __typename?: 'Category', id: string, slug: string | null | undefined, name: string | null | undefined, uri: string | null | undefined }> } | null | undefined, getHeader: { __typename?: 'HCMSHeader', siteTitle: string | null | undefined, siteLogoUrl: string | null | undefined, siteTagLine: string | null | undefined } | null | undefined, getFooter: { __typename?: 'HCMSFooter', copyrightText: string | null | undefined, socialLinks: Array<{ __typename?: 'HCMSSocialLinks', iconName: string | null | undefined, iconUrl: string | null | undefined } | null | undefined> | null | undefined } | null | undefined, menuItems: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, label: string | null | undefined, path: string | null | undefined }> } | null | undefined, seo: { __typename?: 'SEOConfig', openGraph: { __typename?: 'SEOOpenGraph', defaultImage: { __typename?: 'MediaItem', altText: string | null | undefined, title: string | null | undefined, uri: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined, frontPage: { __typename?: 'SEOOpenGraphFrontPage', description: string | null | undefined, title: string | null | undefined, image: { __typename?: 'MediaItem', uri: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined } | null | undefined } | null | undefined, webmaster: { __typename?: 'SEOWebmaster', baiduVerify: string | null | undefined, googleVerify: string | null | undefined, msVerify: string | null | undefined, yandexVerify: string | null | undefined } | null | undefined, social: { __typename?: 'SEOSocial', facebook: { __typename?: 'SEOSocialFacebook', url: string | null | undefined } | null | undefined, instagram: { __typename?: 'SEOSocialInstagram', url: string | null | undefined } | null | undefined, twitter: { __typename?: 'SEOSocialTwitter', username: string | null | undefined, cardType: SeoCardType | null | undefined } | null | undefined } | null | undefined, schema: { __typename?: 'SEOSchema', siteName: string | null | undefined, siteUrl: string | null | undefined, wordpressSiteName: string | null | undefined, personName: string | null | undefined, companyOrPerson: string | null | undefined, companyName: string | null | undefined, inLanguage: string | null | undefined } | null | undefined } | null | undefined };
 
 export type PostDetailQueryVariables = Exact<{
   slug: Scalars['ID'];
@@ -5538,9 +5547,29 @@ export const RootSeoFragmentFragmentDoc = gql`
   }
 }
     `;
-export const HomeDocument = gql`
-    query Home {
+export const TotalPostDocument = gql`
+    query TotalPost {
   posts {
+    pageInfo {
+      total
+      hasNextPage
+      endCursor
+    }
+    edges {
+      cursor
+    }
+  }
+}
+    `;
+export type TotalPostQueryResult = Apollo.QueryResult<TotalPostQuery, TotalPostQueryVariables>;
+export const HomeDocument = gql`
+    query Home($first: Int = 5, $after: String) {
+  posts(first: $first, after: $after) {
+    pageInfo {
+      total
+      hasNextPage
+      endCursor
+    }
     edges {
       cursor
       node {

@@ -151,7 +151,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         params: { slug: node!.slug! },
       };
     }),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
@@ -197,6 +197,6 @@ export const getStaticProps = async (context: GetStaticPropsContext<PostDetailQu
         copyrightText: generateCopyRight(result.data.getFooter?.copyrightText),
       },
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 };

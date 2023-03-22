@@ -51,8 +51,26 @@ fragment RootSEOFragment on RootQuery {
   }
 }
 
-query Home {
+query TotalPost {
   posts {
+    pageInfo {
+      total
+      hasNextPage
+      endCursor
+    }
+    edges {
+      cursor
+    }
+  }
+}
+
+query Home($first: Int = 5, $after: String) {
+  posts(first: $first, after: $after) {
+    pageInfo {
+      total
+      hasNextPage
+      endCursor
+    }
     edges {
       cursor
       node {
