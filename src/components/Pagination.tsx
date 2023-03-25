@@ -18,14 +18,14 @@ const Pagination = ({ totalItems, currentPage, itemsPerPage = 10, renderPageLink
       <nav aria-label="Pagination">
         <ul className="flex list-style-none">
           <li>
-            <p className="pointer-events-none relative block rounded bg-transparent py-1.5 px-3 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400">
+            <p className="pointer-events-none relative block rounded bg-transparent py-1.5 px-3 text-base text-neutral-500 transition-all duration-300 dark:text-neutral-400">
               Halaman:
             </p>
           </li>
           {pages.map((pageNumber, i) =>
             pageNumber === dotts ? (
               <li>
-                <span key={i} className="px-4 py-1.5 rounded-full text-sm font-semibold text-black">
+                <span key={i} className="px-4 py-1.5 rounded-full text-base font-semibold text-black">
                   {pageNumber}
                 </span>
               </li>
@@ -35,7 +35,7 @@ const Pagination = ({ totalItems, currentPage, itemsPerPage = 10, renderPageLink
                   <a
                     className={`${
                       pageNumber === currentPage ? 'text-blue-800' : 'text-black'
-                    } relative block rounded p py-1.5 px-3 text-sm font-medium`}
+                    } relative block rounded p py-1.5 px-3 text-base font-medium`}
                   >
                     {pageNumber}
                   </a>

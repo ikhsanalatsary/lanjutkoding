@@ -250,6 +250,9 @@ interface CategoryConnection implements Connection {
 
   # A list of connected category Nodes
   nodes: [Category!]!
+
+  # Information about pagination in a connection.
+  pageInfo: CategoryConnectionPageInfo!
 }
 
 # Edge between a Node and a connected category
@@ -259,6 +262,27 @@ interface CategoryConnectionEdge implements Edge {
 
   # The connected category Node
   node: Category!
+}
+
+# Page Info on the connected CategoryConnectionEdge
+interface CategoryConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is ID.
@@ -288,7 +312,7 @@ type CategoryToAncestorsCategoryConnection implements CategoryConnection & Conne
   nodes: [Category!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: CategoryToAncestorsCategoryConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -300,6 +324,27 @@ type CategoryToAncestorsCategoryConnectionEdge implements CategoryConnectionEdge
   node: Category!
 }
 
+# Page Info on the &quot;CategoryToAncestorsCategoryConnection&quot;
+type CategoryToAncestorsCategoryConnectionPageInfo implements CategoryConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the Category type and the category type
 type CategoryToCategoryConnection implements CategoryConnection & Connection {
   # Edges for the CategoryToCategoryConnection connection
@@ -309,7 +354,7 @@ type CategoryToCategoryConnection implements CategoryConnection & Connection {
   nodes: [Category!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: CategoryToCategoryConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -319,6 +364,27 @@ type CategoryToCategoryConnectionEdge implements CategoryConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Category!
+}
+
+# Page Info on the &quot;CategoryToCategoryConnection&quot;
+type CategoryToCategoryConnectionPageInfo implements CategoryConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the CategoryToCategoryConnection connection
@@ -396,7 +462,7 @@ type CategoryToContentNodeConnection implements Connection & ContentNodeConnecti
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: CategoryToContentNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -406,6 +472,27 @@ type CategoryToContentNodeConnectionEdge implements ContentNodeConnectionEdge & 
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;CategoryToContentNodeConnection&quot;
+type CategoryToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the CategoryToContentNodeConnection connection
@@ -483,7 +570,7 @@ type CategoryToPostConnection implements Connection & PostConnection {
   nodes: [Post!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: CategoryToPostConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -493,6 +580,27 @@ type CategoryToPostConnectionEdge implements Edge & PostConnectionEdge {
 
   # The item at the end of the edge
   node: Post!
+}
+
+# Page Info on the &quot;CategoryToPostConnection&quot;
+type CategoryToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the CategoryToPostConnection connection
@@ -721,6 +829,9 @@ interface CommentConnection implements Connection {
 
   # A list of connected Comment Nodes
   nodes: [Comment!]!
+
+  # Information about pagination in a connection.
+  pageInfo: CommentConnectionPageInfo!
 }
 
 # Edge between a Node and a connected Comment
@@ -730,6 +841,27 @@ interface CommentConnectionEdge implements Edge {
 
   # The connected Comment Node
   node: Comment!
+}
+
+# Page Info on the connected CommentConnectionEdge
+interface CommentConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single comment node. Default is "ID". To be used along with the "id" field.
@@ -765,7 +897,7 @@ type CommentToCommentConnection implements CommentConnection & Connection {
   nodes: [Comment!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: CommentToCommentConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -775,6 +907,27 @@ type CommentToCommentConnectionEdge implements CommentConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Comment!
+}
+
+# Page Info on the &quot;CommentToCommentConnection&quot;
+type CommentToCommentConnectionPageInfo implements CommentConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the CommentToCommentConnection connection
@@ -1075,6 +1228,9 @@ interface Connection {
 
   # A list of connected nodes
   nodes: [Node!]!
+
+  # Information about pagination in a connection.
+  pageInfo: PageInfo!
 }
 
 # Nodes used to manage content
@@ -1192,6 +1348,9 @@ interface ContentNodeConnection implements Connection {
 
   # A list of connected ContentNode Nodes
   nodes: [ContentNode!]!
+
+  # Information about pagination in a connection.
+  pageInfo: ContentNodeConnectionPageInfo!
 }
 
 # Edge between a Node and a connected ContentNode
@@ -1201,6 +1360,27 @@ interface ContentNodeConnectionEdge implements Edge {
 
   # The connected ContentNode Node
   node: ContentNode!
+}
+
+# Page Info on the connected ContentNodeConnectionEdge
+interface ContentNodeConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is ID.
@@ -1254,7 +1434,7 @@ type ContentNodeToEnqueuedScriptConnection implements Connection & EnqueuedScrip
   nodes: [EnqueuedScript!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: ContentNodeToEnqueuedScriptConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -1266,6 +1446,27 @@ type ContentNodeToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptC
   node: EnqueuedScript!
 }
 
+# Page Info on the &quot;ContentNodeToEnqueuedScriptConnection&quot;
+type ContentNodeToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the ContentNode type and the EnqueuedStylesheet type
 type ContentNodeToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the ContentNodeToEnqueuedStylesheetConnection connection
@@ -1275,7 +1476,7 @@ type ContentNodeToEnqueuedStylesheetConnection implements Connection & EnqueuedS
   nodes: [EnqueuedStylesheet!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: ContentNodeToEnqueuedStylesheetConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -1285,6 +1486,27 @@ type ContentNodeToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedSty
 
   # The item at the end of the edge
   node: EnqueuedStylesheet!
+}
+
+# Page Info on the &quot;ContentNodeToEnqueuedStylesheetConnection&quot;
+type ContentNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The template assigned to a node of content
@@ -1426,6 +1648,9 @@ interface ContentTypeConnection implements Connection {
 
   # A list of connected ContentType Nodes
   nodes: [ContentType!]!
+
+  # Information about pagination in a connection.
+  pageInfo: ContentTypeConnectionPageInfo!
 }
 
 # Edge between a Node and a connected ContentType
@@ -1435,6 +1660,27 @@ interface ContentTypeConnectionEdge implements Edge {
 
   # The connected ContentType Node
   node: ContentType!
+}
+
+# Page Info on the connected ContentTypeConnectionEdge
+interface ContentTypeConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Allowed Content Types
@@ -1467,7 +1713,7 @@ type ContentTypeToContentNodeConnection implements Connection & ContentNodeConne
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: ContentTypeToContentNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -1477,6 +1723,27 @@ type ContentTypeToContentNodeConnectionEdge implements ContentNodeConnectionEdge
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;ContentTypeToContentNodeConnection&quot;
+type ContentTypeToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the ContentTypeToContentNodeConnection connection
@@ -1545,7 +1812,7 @@ type ContentTypeToTaxonomyConnection implements Connection & TaxonomyConnection 
   nodes: [Taxonomy!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: ContentTypeToTaxonomyConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -1555,6 +1822,27 @@ type ContentTypeToTaxonomyConnectionEdge implements Edge & TaxonomyConnectionEdg
 
   # The item at the end of the edge
   node: Taxonomy!
+}
+
+# Page Info on the &quot;ContentTypeToTaxonomyConnection&quot;
+type ContentTypeToTaxonomyConnectionPageInfo implements PageInfo & TaxonomyConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Allowed Content Types of the Category taxonomy.
@@ -2083,6 +2371,9 @@ input DeletePageInput {
 
   # The ID of the page to delete
   id: ID!
+
+  # Override the edit lock when another user is editing the post
+  ignoreEditLock: Boolean
 }
 
 # The payload for the deletePage mutation.
@@ -2128,6 +2419,9 @@ input DeletePostInput {
 
   # The ID of the post to delete
   id: ID!
+
+  # Override the edit lock when another user is editing the post
+  ignoreEditLock: Boolean
 }
 
 # The payload for the deletePost mutation.
@@ -2260,6 +2554,9 @@ interface EnqueuedScriptConnection implements Connection {
 
   # A list of connected EnqueuedScript Nodes
   nodes: [EnqueuedScript!]!
+
+  # Information about pagination in a connection.
+  pageInfo: EnqueuedScriptConnectionPageInfo!
 }
 
 # Edge between a Node and a connected EnqueuedScript
@@ -2269,6 +2566,27 @@ interface EnqueuedScriptConnectionEdge implements Edge {
 
   # The connected EnqueuedScript Node
   node: EnqueuedScript!
+}
+
+# Page Info on the connected EnqueuedScriptConnectionEdge
+interface EnqueuedScriptConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Stylesheet enqueued by the CMS
@@ -2302,6 +2620,9 @@ interface EnqueuedStylesheetConnection implements Connection {
 
   # A list of connected EnqueuedStylesheet Nodes
   nodes: [EnqueuedStylesheet!]!
+
+  # Information about pagination in a connection.
+  pageInfo: EnqueuedStylesheetConnectionPageInfo!
 }
 
 # Edge between a Node and a connected EnqueuedStylesheet
@@ -2311,6 +2632,27 @@ interface EnqueuedStylesheetConnectionEdge implements Edge {
 
   # The connected EnqueuedStylesheet Node
   node: EnqueuedStylesheet!
+}
+
+# Page Info on the connected EnqueuedStylesheetConnectionEdge
+interface EnqueuedStylesheetConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The general setting type
@@ -2544,7 +2886,7 @@ type HierarchicalContentNodeToContentNodeAncestorsConnection implements Connecti
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -2554,6 +2896,27 @@ type HierarchicalContentNodeToContentNodeAncestorsConnectionEdge implements Cont
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;HierarchicalContentNodeToContentNodeAncestorsConnection&quot;
+type HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the HierarchicalContentNodeToContentNodeAncestorsConnection connection
@@ -2622,7 +2985,7 @@ type HierarchicalContentNodeToContentNodeChildrenConnection implements Connectio
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -2632,6 +2995,27 @@ type HierarchicalContentNodeToContentNodeChildrenConnectionEdge implements Conte
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;HierarchicalContentNodeToContentNodeChildrenConnection&quot;
+type HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the HierarchicalContentNodeToContentNodeChildrenConnection connection
@@ -3073,6 +3457,9 @@ interface MediaItemConnection implements Connection {
 
   # A list of connected mediaItem Nodes
   nodes: [MediaItem!]!
+
+  # Information about pagination in a connection.
+  pageInfo: MediaItemConnectionPageInfo!
 }
 
 # Edge between a Node and a connected mediaItem
@@ -3082,6 +3469,27 @@ interface MediaItemConnectionEdge implements Edge {
 
   # The connected mediaItem Node
   node: MediaItem!
+}
+
+# Page Info on the connected MediaItemConnectionEdge
+interface MediaItemConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is ID.
@@ -3189,7 +3597,7 @@ type MediaItemToCommentConnection implements CommentConnection & Connection {
   nodes: [Comment!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: MediaItemToCommentConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -3199,6 +3607,27 @@ type MediaItemToCommentConnectionEdge implements CommentConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Comment!
+}
+
+# Page Info on the &quot;MediaItemToCommentConnection&quot;
+type MediaItemToCommentConnectionPageInfo implements CommentConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the MediaItemToCommentConnection connection
@@ -3367,6 +3796,9 @@ interface MenuConnection implements Connection {
 
   # A list of connected Menu Nodes
   nodes: [Menu!]!
+
+  # Information about pagination in a connection.
+  pageInfo: MenuConnectionPageInfo!
 }
 
 # Edge between a Node and a connected Menu
@@ -3376,6 +3808,27 @@ interface MenuConnectionEdge implements Edge {
 
   # The connected Menu Node
   node: Menu!
+}
+
+# Page Info on the connected MenuConnectionEdge
+interface MenuConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu.
@@ -3466,6 +3919,9 @@ interface MenuItemConnection implements Connection {
 
   # A list of connected MenuItem Nodes
   nodes: [MenuItem!]!
+
+  # Information about pagination in a connection.
+  pageInfo: MenuItemConnectionPageInfo!
 }
 
 # Edge between a Node and a connected MenuItem
@@ -3475,6 +3931,27 @@ interface MenuItemConnectionEdge implements Edge {
 
   # The connected MenuItem Node
   node: MenuItem!
+}
+
+# Page Info on the connected MenuItemConnectionEdge
+interface MenuItemConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Nodes that can be linked to as Menu Items
@@ -3534,7 +4011,7 @@ type MenuItemToMenuItemConnection implements Connection & MenuItemConnection {
   nodes: [MenuItem!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: MenuItemToMenuItemConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -3544,6 +4021,27 @@ type MenuItemToMenuItemConnectionEdge implements Edge & MenuItemConnectionEdge {
 
   # The item at the end of the edge
   node: MenuItem!
+}
+
+# Page Info on the &quot;MenuItemToMenuItemConnection&quot;
+type MenuItemToMenuItemConnectionPageInfo implements MenuItemConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the MenuItemToMenuItemConnection connection
@@ -3612,7 +4110,7 @@ type MenuToMenuItemConnection implements Connection & MenuItemConnection {
   nodes: [MenuItem!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: MenuToMenuItemConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -3622,6 +4120,27 @@ type MenuToMenuItemConnectionEdge implements Edge & MenuItemConnectionEdge {
 
   # The item at the end of the edge
   node: MenuItem!
+}
+
+# Page Info on the &quot;MenuToMenuItemConnection&quot;
+type MenuToMenuItemConnectionPageInfo implements MenuItemConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the MenuToMenuItemConnection connection
@@ -4345,6 +4864,9 @@ interface PageConnection implements Connection {
 
   # A list of connected page Nodes
   nodes: [Page!]!
+
+  # Information about pagination in a connection.
+  pageInfo: PageConnectionPageInfo!
 }
 
 # Edge between a Node and a connected page
@@ -4354,6 +4876,27 @@ interface PageConnectionEdge implements Edge {
 
   # The connected page Node
   node: Page!
+}
+
+# Page Info on the connected PageConnectionEdge
+interface PageConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is ID.
@@ -4368,6 +4911,21 @@ enum PageIdType {
   URI
 }
 
+# Information about pagination in a connection.
+interface PageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+}
+
 # Connection between the Page type and the Comment type
 type PageToCommentConnection implements CommentConnection & Connection {
   # Edges for the PageToCommentConnection connection
@@ -4377,7 +4935,7 @@ type PageToCommentConnection implements CommentConnection & Connection {
   nodes: [Comment!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PageToCommentConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -4387,6 +4945,27 @@ type PageToCommentConnectionEdge implements CommentConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Comment!
+}
+
+# Page Info on the &quot;PageToCommentConnection&quot;
+type PageToCommentConnectionPageInfo implements CommentConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PageToCommentConnection connection
@@ -4497,7 +5076,7 @@ type PageToRevisionConnection implements Connection & PageConnection {
   nodes: [Page!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PageToRevisionConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -4507,6 +5086,27 @@ type PageToRevisionConnectionEdge implements Edge & PageConnectionEdge {
 
   # The item at the end of the edge
   node: Page!
+}
+
+# Page Info on the &quot;PageToRevisionConnection&quot;
+type PageToRevisionConnectionPageInfo implements PageConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PageToRevisionConnection connection
@@ -4612,6 +5212,9 @@ interface PluginConnection implements Connection {
 
   # A list of connected Plugin Nodes
   nodes: [Plugin!]!
+
+  # Information about pagination in a connection.
+  pageInfo: PluginConnectionPageInfo!
 }
 
 # Edge between a Node and a connected Plugin
@@ -4621,6 +5224,27 @@ interface PluginConnectionEdge implements Edge {
 
   # The connected Plugin Node
   node: Plugin!
+}
+
+# Page Info on the connected PluginConnectionEdge
+interface PluginConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The status of the WordPress plugin.
@@ -4966,6 +5590,9 @@ interface PostConnection implements Connection {
 
   # A list of connected post Nodes
   nodes: [Post!]!
+
+  # Information about pagination in a connection.
+  pageInfo: PostConnectionPageInfo!
 }
 
 # Edge between a Node and a connected post
@@ -4975,6 +5602,27 @@ interface PostConnectionEdge implements Edge {
 
   # The connected post Node
   node: Post!
+}
+
+# Page Info on the connected PostConnectionEdge
+interface PostConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The postFormat type
@@ -5104,6 +5752,9 @@ interface PostFormatConnection implements Connection {
 
   # A list of connected postFormat Nodes
   nodes: [PostFormat!]!
+
+  # Information about pagination in a connection.
+  pageInfo: PostFormatConnectionPageInfo!
 }
 
 # Edge between a Node and a connected postFormat
@@ -5113,6 +5764,27 @@ interface PostFormatConnectionEdge implements Edge {
 
   # The connected postFormat Node
   node: PostFormat!
+}
+
+# Page Info on the connected PostFormatConnectionEdge
+interface PostFormatConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is ID.
@@ -5142,7 +5814,7 @@ type PostFormatToContentNodeConnection implements Connection & ContentNodeConnec
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostFormatToContentNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5152,6 +5824,27 @@ type PostFormatToContentNodeConnectionEdge implements ContentNodeConnectionEdge 
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;PostFormatToContentNodeConnection&quot;
+type PostFormatToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostFormatToContentNodeConnection connection
@@ -5220,7 +5913,7 @@ type PostFormatToPostConnection implements Connection & PostConnection {
   nodes: [Post!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostFormatToPostConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5230,6 +5923,27 @@ type PostFormatToPostConnectionEdge implements Edge & PostConnectionEdge {
 
   # The item at the end of the edge
   node: Post!
+}
+
+# Page Info on the &quot;PostFormatToPostConnection&quot;
+type PostFormatToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostFormatToPostConnection connection
@@ -5508,7 +6222,7 @@ type PostToCategoryConnection implements CategoryConnection & Connection {
   nodes: [Category!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostToCategoryConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5521,6 +6235,27 @@ type PostToCategoryConnectionEdge implements CategoryConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Category!
+}
+
+# Page Info on the &quot;PostToCategoryConnection&quot;
+type PostToCategoryConnectionPageInfo implements CategoryConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostToCategoryConnection connection
@@ -5598,7 +6333,7 @@ type PostToCommentConnection implements CommentConnection & Connection {
   nodes: [Comment!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostToCommentConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5608,6 +6343,27 @@ type PostToCommentConnectionEdge implements CommentConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Comment!
+}
+
+# Page Info on the &quot;PostToCommentConnection&quot;
+type PostToCommentConnectionPageInfo implements CommentConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostToCommentConnection connection
@@ -5709,7 +6465,7 @@ type PostToPostFormatConnection implements Connection & PostFormatConnection {
   nodes: [PostFormat!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostToPostFormatConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5722,6 +6478,27 @@ type PostToPostFormatConnectionEdge implements Edge & PostFormatConnectionEdge {
 
   # The item at the end of the edge
   node: PostFormat!
+}
+
+# Page Info on the &quot;PostToPostFormatConnection&quot;
+type PostToPostFormatConnectionPageInfo implements PageInfo & PostFormatConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostToPostFormatConnection connection
@@ -5808,7 +6585,7 @@ type PostToRevisionConnection implements Connection & PostConnection {
   nodes: [Post!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostToRevisionConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5818,6 +6595,27 @@ type PostToRevisionConnectionEdge implements Edge & PostConnectionEdge {
 
   # The item at the end of the edge
   node: Post!
+}
+
+# Page Info on the &quot;PostToRevisionConnection&quot;
+type PostToRevisionConnectionPageInfo implements PageInfo & PostConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostToRevisionConnection connection
@@ -5925,7 +6723,7 @@ type PostToTagConnection implements Connection & TagConnection {
   nodes: [Tag!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostToTagConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -5938,6 +6736,27 @@ type PostToTagConnectionEdge implements Edge & TagConnectionEdge {
 
   # The item at the end of the edge
   node: Tag!
+}
+
+# Page Info on the &quot;PostToTagConnection&quot;
+type PostToTagConnectionPageInfo implements PageInfo & TagConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostToTagConnection connection
@@ -6015,7 +6834,7 @@ type PostToTermNodeConnection implements Connection & TermNodeConnection {
   nodes: [TermNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: PostToTermNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -6025,6 +6844,27 @@ type PostToTermNodeConnectionEdge implements Edge & TermNodeConnectionEdge {
 
   # The item at the end of the edge
   node: TermNode!
+}
+
+# Page Info on the &quot;PostToTermNodeConnection&quot;
+type PostToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the PostToTermNodeConnection connection
@@ -7227,7 +8067,7 @@ type RootQueryToCategoryConnection implements CategoryConnection & Connection {
   nodes: [Category!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToCategoryConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7237,6 +8077,27 @@ type RootQueryToCategoryConnectionEdge implements CategoryConnectionEdge & Edge 
 
   # The item at the end of the edge
   node: Category!
+}
+
+# Page Info on the &quot;RootQueryToCategoryConnection&quot;
+type RootQueryToCategoryConnectionPageInfo implements CategoryConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToCategoryConnection connection
@@ -7314,7 +8175,7 @@ type RootQueryToCommentConnection implements CommentConnection & Connection {
   nodes: [Comment!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToCommentConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7324,6 +8185,27 @@ type RootQueryToCommentConnectionEdge implements CommentConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Comment!
+}
+
+# Page Info on the &quot;RootQueryToCommentConnection&quot;
+type RootQueryToCommentConnectionPageInfo implements CommentConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToCommentConnection connection
@@ -7425,7 +8307,7 @@ type RootQueryToContentNodeConnection implements Connection & ContentNodeConnect
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToContentNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7435,6 +8317,27 @@ type RootQueryToContentNodeConnectionEdge implements ContentNodeConnectionEdge &
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;RootQueryToContentNodeConnection&quot;
+type RootQueryToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToContentNodeConnection connection
@@ -7503,7 +8406,7 @@ type RootQueryToContentTypeConnection implements Connection & ContentTypeConnect
   nodes: [ContentType!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToContentTypeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7515,6 +8418,27 @@ type RootQueryToContentTypeConnectionEdge implements ContentTypeConnectionEdge &
   node: ContentType!
 }
 
+# Page Info on the &quot;RootQueryToContentTypeConnection&quot;
+type RootQueryToContentTypeConnectionPageInfo implements ContentTypeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the RootQuery type and the EnqueuedScript type
 type RootQueryToEnqueuedScriptConnection implements Connection & EnqueuedScriptConnection {
   # Edges for the RootQueryToEnqueuedScriptConnection connection
@@ -7524,7 +8448,7 @@ type RootQueryToEnqueuedScriptConnection implements Connection & EnqueuedScriptC
   nodes: [EnqueuedScript!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToEnqueuedScriptConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7536,6 +8460,27 @@ type RootQueryToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptCon
   node: EnqueuedScript!
 }
 
+# Page Info on the &quot;RootQueryToEnqueuedScriptConnection&quot;
+type RootQueryToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the RootQuery type and the EnqueuedStylesheet type
 type RootQueryToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the RootQueryToEnqueuedStylesheetConnection connection
@@ -7545,7 +8490,7 @@ type RootQueryToEnqueuedStylesheetConnection implements Connection & EnqueuedSty
   nodes: [EnqueuedStylesheet!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToEnqueuedStylesheetConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7557,6 +8502,27 @@ type RootQueryToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStyle
   node: EnqueuedStylesheet!
 }
 
+# Page Info on the &quot;RootQueryToEnqueuedStylesheetConnection&quot;
+type RootQueryToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the RootQuery type and the mediaItem type
 type RootQueryToMediaItemConnection implements Connection & MediaItemConnection {
   # Edges for the RootQueryToMediaItemConnection connection
@@ -7566,7 +8532,7 @@ type RootQueryToMediaItemConnection implements Connection & MediaItemConnection 
   nodes: [MediaItem!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToMediaItemConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7576,6 +8542,27 @@ type RootQueryToMediaItemConnectionEdge implements Edge & MediaItemConnectionEdg
 
   # The item at the end of the edge
   node: MediaItem!
+}
+
+# Page Info on the &quot;RootQueryToMediaItemConnection&quot;
+type RootQueryToMediaItemConnectionPageInfo implements MediaItemConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToMediaItemConnection connection
@@ -7653,7 +8640,7 @@ type RootQueryToMenuConnection implements Connection & MenuConnection {
   nodes: [Menu!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToMenuConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7663,6 +8650,27 @@ type RootQueryToMenuConnectionEdge implements Edge & MenuConnectionEdge {
 
   # The item at the end of the edge
   node: Menu!
+}
+
+# Page Info on the &quot;RootQueryToMenuConnection&quot;
+type RootQueryToMenuConnectionPageInfo implements MenuConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToMenuConnection connection
@@ -7686,7 +8694,7 @@ type RootQueryToMenuItemConnection implements Connection & MenuItemConnection {
   nodes: [MenuItem!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToMenuItemConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7696,6 +8704,27 @@ type RootQueryToMenuItemConnectionEdge implements Edge & MenuItemConnectionEdge 
 
   # The item at the end of the edge
   node: MenuItem!
+}
+
+# Page Info on the &quot;RootQueryToMenuItemConnection&quot;
+type RootQueryToMenuItemConnectionPageInfo implements MenuItemConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToMenuItemConnection connection
@@ -7722,7 +8751,7 @@ type RootQueryToPageConnection implements Connection & PageConnection {
   nodes: [Page!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToPageConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7732,6 +8761,27 @@ type RootQueryToPageConnectionEdge implements Edge & PageConnectionEdge {
 
   # The item at the end of the edge
   node: Page!
+}
+
+# Page Info on the &quot;RootQueryToPageConnection&quot;
+type RootQueryToPageConnectionPageInfo implements PageConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToPageConnection connection
@@ -7809,7 +8859,7 @@ type RootQueryToPluginConnection implements Connection & PluginConnection {
   nodes: [Plugin!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToPluginConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7819,6 +8869,27 @@ type RootQueryToPluginConnectionEdge implements Edge & PluginConnectionEdge {
 
   # The item at the end of the edge
   node: Plugin!
+}
+
+# Page Info on the &quot;RootQueryToPluginConnection&quot;
+type RootQueryToPluginConnectionPageInfo implements PageInfo & PluginConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToPluginConnection connection
@@ -7842,7 +8913,7 @@ type RootQueryToPostConnection implements Connection & PostConnection {
   nodes: [Post!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToPostConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7852,6 +8923,27 @@ type RootQueryToPostConnectionEdge implements Edge & PostConnectionEdge {
 
   # The item at the end of the edge
   node: Post!
+}
+
+# Page Info on the &quot;RootQueryToPostConnection&quot;
+type RootQueryToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToPostConnection connection
@@ -7962,7 +9054,7 @@ type RootQueryToPostFormatConnection implements Connection & PostFormatConnectio
   nodes: [PostFormat!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToPostFormatConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -7972,6 +9064,27 @@ type RootQueryToPostFormatConnectionEdge implements Edge & PostFormatConnectionE
 
   # The item at the end of the edge
   node: PostFormat!
+}
+
+# Page Info on the &quot;RootQueryToPostFormatConnection&quot;
+type RootQueryToPostFormatConnectionPageInfo implements PageInfo & PostFormatConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToPostFormatConnection connection
@@ -8049,7 +9162,7 @@ type RootQueryToRevisionsConnection implements Connection & ContentNodeConnectio
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToRevisionsConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8059,6 +9172,27 @@ type RootQueryToRevisionsConnectionEdge implements ContentNodeConnectionEdge & E
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;RootQueryToRevisionsConnection&quot;
+type RootQueryToRevisionsConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToRevisionsConnection connection
@@ -8127,7 +9261,7 @@ type RootQueryToTagConnection implements Connection & TagConnection {
   nodes: [Tag!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToTagConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8137,6 +9271,27 @@ type RootQueryToTagConnectionEdge implements Edge & TagConnectionEdge {
 
   # The item at the end of the edge
   node: Tag!
+}
+
+# Page Info on the &quot;RootQueryToTagConnection&quot;
+type RootQueryToTagConnectionPageInfo implements PageInfo & TagConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToTagConnection connection
@@ -8214,7 +9369,7 @@ type RootQueryToTaxonomyConnection implements Connection & TaxonomyConnection {
   nodes: [Taxonomy!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToTaxonomyConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8226,6 +9381,27 @@ type RootQueryToTaxonomyConnectionEdge implements Edge & TaxonomyConnectionEdge 
   node: Taxonomy!
 }
 
+# Page Info on the &quot;RootQueryToTaxonomyConnection&quot;
+type RootQueryToTaxonomyConnectionPageInfo implements PageInfo & TaxonomyConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the RootQuery type and the TermNode type
 type RootQueryToTermNodeConnection implements Connection & TermNodeConnection {
   # Edges for the RootQueryToTermNodeConnection connection
@@ -8235,7 +9411,7 @@ type RootQueryToTermNodeConnection implements Connection & TermNodeConnection {
   nodes: [TermNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToTermNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8245,6 +9421,27 @@ type RootQueryToTermNodeConnectionEdge implements Edge & TermNodeConnectionEdge 
 
   # The item at the end of the edge
   node: TermNode!
+}
+
+# Page Info on the &quot;RootQueryToTermNodeConnection&quot;
+type RootQueryToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToTermNodeConnection connection
@@ -8325,7 +9522,7 @@ type RootQueryToThemeConnection implements Connection & ThemeConnection {
   nodes: [Theme!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToThemeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8337,6 +9534,27 @@ type RootQueryToThemeConnectionEdge implements Edge & ThemeConnectionEdge {
   node: Theme!
 }
 
+# Page Info on the &quot;RootQueryToThemeConnection&quot;
+type RootQueryToThemeConnectionPageInfo implements PageInfo & ThemeConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the RootQuery type and the User type
 type RootQueryToUserConnection implements Connection & UserConnection {
   # Edges for the RootQueryToUserConnection connection
@@ -8346,7 +9564,7 @@ type RootQueryToUserConnection implements Connection & UserConnection {
   nodes: [User!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToUserConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8356,6 +9574,27 @@ type RootQueryToUserConnectionEdge implements Edge & UserConnectionEdge {
 
   # The item at the end of the edge
   node: User!
+}
+
+# Page Info on the &quot;RootQueryToUserConnection&quot;
+type RootQueryToUserConnectionPageInfo implements PageInfo & UserConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the RootQueryToUserConnection connection
@@ -8415,7 +9654,7 @@ type RootQueryToUserRoleConnection implements Connection & UserRoleConnection {
   nodes: [UserRole!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: RootQueryToUserRoleConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -8425,6 +9664,27 @@ type RootQueryToUserRoleConnectionEdge implements Edge & UserRoleConnectionEdge 
 
   # The item at the end of the edge
   node: UserRole!
+}
+
+# Page Info on the &quot;RootQueryToUserRoleConnection&quot;
+type RootQueryToUserRoleConnectionPageInfo implements PageInfo & UserRoleConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Yoast SEO breadcrumb config
@@ -8472,6 +9732,9 @@ type SEOConfig {
   contentTypes: SEOContentTypes
 
   #
+  meta: SEOGlobalMeta
+
+  #
   openGraph: SEOOpenGraph
 
   #
@@ -8508,7 +9771,7 @@ type SEOContentType {
   title: String
 }
 
-# he Yoast SEO search appearance content types fields
+# The Yoast SEO search appearance content types fields
 type SEOContentTypeArchive {
   #
   archiveLink: String
@@ -8524,6 +9787,15 @@ type SEOContentTypeArchive {
 
   #
   metaDesc: String
+
+  #
+  metaRobotsFollow: String
+
+  #
+  metaRobotsIndex: String
+
+  #
+  metaRobotsNofollow: Boolean
 
   #
   metaRobotsNoindex: Boolean
@@ -8542,6 +9814,66 @@ type SEOContentTypes {
 
   #
   post: SEOContentType
+}
+
+# The Yoast SEO meta data
+type SEOGlobalMeta {
+  #
+  author: SEOGlobalMetaAuthor
+
+  #
+  config: SEOGlobalMetaConfig
+
+  #
+  date: SEOGlobalMetaDate
+
+  #
+  homepage: SEOGlobalMetaHome
+
+  #
+  notFound: SEOGlobalMeta404
+}
+
+# The Yoast SEO meta 404 data
+type SEOGlobalMeta404 {
+  #
+  breadcrumb: String
+
+  #
+  title: String
+}
+
+# The Yoast SEO Author data
+type SEOGlobalMetaAuthor {
+  #
+  description: String
+
+  #
+  title: String
+}
+
+# The Yoast SEO meta config data
+type SEOGlobalMetaConfig {
+  #
+  separator: String
+}
+
+# The Yoast SEO Date data
+type SEOGlobalMetaDate {
+  #
+  description: String
+
+  #
+  title: String
+}
+
+# The Yoast SEO homepage data
+type SEOGlobalMetaHome {
+  #
+  description: String
+
+  #
+  title: String
 }
 
 # The Open Graph data
@@ -8662,6 +9994,9 @@ type SEOSocial {
 
   #
   mySpace: SEOSocialMySpace
+
+  #
+  otherSocials: [String]
 
   #
   pinterest: SEOSocialPinterest
@@ -9064,6 +10399,9 @@ interface TagConnection implements Connection {
 
   # A list of connected tag Nodes
   nodes: [Tag!]!
+
+  # Information about pagination in a connection.
+  pageInfo: TagConnectionPageInfo!
 }
 
 # Edge between a Node and a connected tag
@@ -9073,6 +10411,27 @@ interface TagConnectionEdge implements Edge {
 
   # The connected tag Node
   node: Tag!
+}
+
+# Page Info on the connected TagConnectionEdge
+interface TagConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is ID.
@@ -9102,7 +10461,7 @@ type TagToContentNodeConnection implements Connection & ContentNodeConnection {
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: TagToContentNodeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -9112,6 +10471,27 @@ type TagToContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge 
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;TagToContentNodeConnection&quot;
+type TagToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the TagToContentNodeConnection connection
@@ -9180,7 +10560,7 @@ type TagToPostConnection implements Connection & PostConnection {
   nodes: [Post!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: TagToPostConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -9190,6 +10570,27 @@ type TagToPostConnectionEdge implements Edge & PostConnectionEdge {
 
   # The item at the end of the edge
   node: Post!
+}
+
+# Page Info on the &quot;TagToPostConnection&quot;
+type TagToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the TagToPostConnection connection
@@ -9379,6 +10780,9 @@ interface TaxonomyConnection implements Connection {
 
   # A list of connected Taxonomy Nodes
   nodes: [Taxonomy!]!
+
+  # Information about pagination in a connection.
+  pageInfo: TaxonomyConnectionPageInfo!
 }
 
 # Edge between a Node and a connected Taxonomy
@@ -9388,6 +10792,27 @@ interface TaxonomyConnectionEdge implements Edge {
 
   # The connected Taxonomy Node
   node: Taxonomy!
+}
+
+# Page Info on the connected TaxonomyConnectionEdge
+interface TaxonomyConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Allowed taxonomies
@@ -9495,7 +10920,7 @@ type TaxonomyToContentTypeConnection implements Connection & ContentTypeConnecti
   nodes: [ContentType!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: TaxonomyToContentTypeConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -9505,6 +10930,27 @@ type TaxonomyToContentTypeConnectionEdge implements ContentTypeConnectionEdge & 
 
   # The item at the end of the edge
   node: ContentType!
+}
+
+# Page Info on the &quot;TaxonomyToContentTypeConnection&quot;
+type TaxonomyToContentTypeConnectionPageInfo implements ContentTypeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Terms are nodes within a Taxonomy, used to group and relate other nodes.
@@ -9589,6 +11035,9 @@ interface TermNodeConnection implements Connection {
 
   # A list of connected TermNode Nodes
   nodes: [TermNode!]!
+
+  # Information about pagination in a connection.
+  pageInfo: TermNodeConnectionPageInfo!
 }
 
 # Edge between a Node and a connected TermNode
@@ -9598,6 +11047,27 @@ interface TermNodeConnectionEdge implements Edge {
 
   # The connected TermNode Node
   node: TermNode!
+}
+
+# Page Info on the connected TermNodeConnectionEdge
+interface TermNodeConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single resource. Default is "ID". To be used along with the "id" field.
@@ -9627,7 +11097,7 @@ type TermNodeToEnqueuedScriptConnection implements Connection & EnqueuedScriptCo
   nodes: [EnqueuedScript!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: TermNodeToEnqueuedScriptConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -9639,6 +11109,27 @@ type TermNodeToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptConn
   node: EnqueuedScript!
 }
 
+# Page Info on the &quot;TermNodeToEnqueuedScriptConnection&quot;
+type TermNodeToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the TermNode type and the EnqueuedStylesheet type
 type TermNodeToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the TermNodeToEnqueuedStylesheetConnection connection
@@ -9648,7 +11139,7 @@ type TermNodeToEnqueuedStylesheetConnection implements Connection & EnqueuedStyl
   nodes: [EnqueuedStylesheet!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: TermNodeToEnqueuedStylesheetConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -9658,6 +11149,27 @@ type TermNodeToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStyles
 
   # The item at the end of the edge
   node: EnqueuedStylesheet!
+}
+
+# Page Info on the &quot;TermNodeToEnqueuedStylesheetConnection&quot;
+type TermNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Options for ordering the connection by
@@ -9727,6 +11239,9 @@ interface ThemeConnection implements Connection {
 
   # A list of connected Theme Nodes
   nodes: [Theme!]!
+
+  # Information about pagination in a connection.
+  pageInfo: ThemeConnectionPageInfo!
 }
 
 # Edge between a Node and a connected Theme
@@ -9736,6 +11251,27 @@ interface ThemeConnectionEdge implements Edge {
 
   # The connected Theme Node
   node: Theme!
+}
+
+# Page Info on the connected ThemeConnectionEdge
+interface ThemeConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Any node that has a URI
@@ -9917,6 +11453,9 @@ input UpdatePageInput {
   # The ID of the page object
   id: ID!
 
+  # Override the edit lock when another user is editing the post
+  ignoreEditLock: Boolean
+
   # A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   menuOrder: Int
 
@@ -10000,6 +11539,9 @@ input UpdatePostInput {
 
   # The ID of the post object
   id: ID!
+
+  # Override the edit lock when another user is editing the post
+  ignoreEditLock: Boolean
 
   # A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
   menuOrder: Int
@@ -10444,6 +11986,9 @@ interface UserConnection implements Connection {
 
   # A list of connected User Nodes
   nodes: [User!]!
+
+  # Information about pagination in a connection.
+  pageInfo: UserConnectionPageInfo!
 }
 
 # Edge between a Node and a connected User
@@ -10453,6 +11998,27 @@ interface UserConnectionEdge implements Edge {
 
   # The connected User Node
   node: User!
+}
+
+# Page Info on the connected UserConnectionEdge
+interface UserConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # The Type of Identifier used to fetch a single User node. To be used along with the "id" field. Default is "ID".
@@ -10501,6 +12067,9 @@ interface UserRoleConnection implements Connection {
 
   # A list of connected UserRole Nodes
   nodes: [UserRole!]!
+
+  # Information about pagination in a connection.
+  pageInfo: UserRoleConnectionPageInfo!
 }
 
 # Edge between a Node and a connected UserRole
@@ -10510,6 +12079,27 @@ interface UserRoleConnectionEdge implements Edge {
 
   # The connected UserRole Node
   node: UserRole!
+}
+
+# Page Info on the connected UserRoleConnectionEdge
+interface UserRoleConnectionPageInfo implements PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Names of available user roles
@@ -10545,7 +12135,7 @@ type UserToCommentConnection implements CommentConnection & Connection {
   nodes: [Comment!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToCommentConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10555,6 +12145,27 @@ type UserToCommentConnectionEdge implements CommentConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: Comment!
+}
+
+# Page Info on the &quot;UserToCommentConnection&quot;
+type UserToCommentConnectionPageInfo implements CommentConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the UserToCommentConnection connection
@@ -10656,7 +12267,7 @@ type UserToEnqueuedScriptConnection implements Connection & EnqueuedScriptConnec
   nodes: [EnqueuedScript!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToEnqueuedScriptConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10668,6 +12279,27 @@ type UserToEnqueuedScriptConnectionEdge implements Edge & EnqueuedScriptConnecti
   node: EnqueuedScript!
 }
 
+# Page Info on the &quot;UserToEnqueuedScriptConnection&quot;
+type UserToEnqueuedScriptConnectionPageInfo implements EnqueuedScriptConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the User type and the EnqueuedStylesheet type
 type UserToEnqueuedStylesheetConnection implements Connection & EnqueuedStylesheetConnection {
   # Edges for the UserToEnqueuedStylesheetConnection connection
@@ -10677,7 +12309,7 @@ type UserToEnqueuedStylesheetConnection implements Connection & EnqueuedStyleshe
   nodes: [EnqueuedStylesheet!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToEnqueuedStylesheetConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10689,6 +12321,27 @@ type UserToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStylesheet
   node: EnqueuedStylesheet!
 }
 
+# Page Info on the &quot;UserToEnqueuedStylesheetConnection&quot;
+type UserToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
+}
+
 # Connection between the User type and the mediaItem type
 type UserToMediaItemConnection implements Connection & MediaItemConnection {
   # Edges for the UserToMediaItemConnection connection
@@ -10698,7 +12351,7 @@ type UserToMediaItemConnection implements Connection & MediaItemConnection {
   nodes: [MediaItem!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToMediaItemConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10708,6 +12361,27 @@ type UserToMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge {
 
   # The item at the end of the edge
   node: MediaItem!
+}
+
+# Page Info on the &quot;UserToMediaItemConnection&quot;
+type UserToMediaItemConnectionPageInfo implements MediaItemConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the UserToMediaItemConnection connection
@@ -10785,7 +12459,7 @@ type UserToPageConnection implements Connection & PageConnection {
   nodes: [Page!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToPageConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10795,6 +12469,27 @@ type UserToPageConnectionEdge implements Edge & PageConnectionEdge {
 
   # The item at the end of the edge
   node: Page!
+}
+
+# Page Info on the &quot;UserToPageConnection&quot;
+type UserToPageConnectionPageInfo implements PageConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the UserToPageConnection connection
@@ -10872,7 +12567,7 @@ type UserToPostConnection implements Connection & PostConnection {
   nodes: [Post!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToPostConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10882,6 +12577,27 @@ type UserToPostConnectionEdge implements Edge & PostConnectionEdge {
 
   # The item at the end of the edge
   node: Post!
+}
+
+# Page Info on the &quot;UserToPostConnection&quot;
+type UserToPostConnectionPageInfo implements PageInfo & PostConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the UserToPostConnection connection
@@ -10989,7 +12705,7 @@ type UserToRevisionsConnection implements Connection & ContentNodeConnection {
   nodes: [ContentNode!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToRevisionsConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -10999,6 +12715,27 @@ type UserToRevisionsConnectionEdge implements ContentNodeConnectionEdge & Edge {
 
   # The item at the end of the edge
   node: ContentNode!
+}
+
+# Page Info on the &quot;UserToRevisionsConnection&quot;
+type UserToRevisionsConnectionPageInfo implements ContentNodeConnectionPageInfo & PageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Arguments for filtering the UserToRevisionsConnection connection
@@ -11067,7 +12804,7 @@ type UserToUserRoleConnection implements Connection & UserRoleConnection {
   nodes: [UserRole!]!
 
   # Information about pagination in a connection.
-  pageInfo: WPPageInfo
+  pageInfo: UserToUserRoleConnectionPageInfo!
 }
 
 # An edge in a connection
@@ -11077,6 +12814,27 @@ type UserToUserRoleConnectionEdge implements Edge & UserRoleConnectionEdge {
 
   # The item at the end of the edge
   node: UserRole!
+}
+
+# Page Info on the &quot;UserToUserRoleConnection&quot;
+type UserToUserRoleConnectionPageInfo implements PageInfo & UserRoleConnectionPageInfo & WPPageInfo {
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # Raw schema for page
+  seo: SEOPostTypePageInfo
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  #
+  total: Int
 }
 
 # Field to order the connection by
@@ -11129,12 +12887,12 @@ enum UsersConnectionSearchColumnEnum {
   # A URL-friendly name for the user. The default is the user's username.
   NICENAME
 
-  # The URL of the user\s website.
+  # The URL of the user's website.
   URL
 }
 
 # Information about pagination in a connection.
-type WPPageInfo {
+interface WPPageInfo implements PageInfo {
   # When paginating forwards, the cursor to continue.
   endCursor: String
 

@@ -51,8 +51,8 @@ fragment RootSEOFragment on RootQuery {
   }
 }
 
-query TotalPost {
-  posts {
+query TotalPost($first: Int = 10000) {
+  posts(first: $first) {
     pageInfo {
       total
       hasNextPage

@@ -135,11 +135,21 @@ export type CategoryPostsArgs = {
 export type CategoryConnection = {
   edges: Array<CategoryConnectionEdge>;
   nodes: Array<Category>;
+  pageInfo: CategoryConnectionPageInfo;
 };
 
 export type CategoryConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Category;
+};
+
+export type CategoryConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum CategoryIdType {
@@ -154,7 +164,7 @@ export type CategoryToAncestorsCategoryConnection = CategoryConnection & Connect
   __typename?: 'CategoryToAncestorsCategoryConnection';
   edges: Array<CategoryToAncestorsCategoryConnectionEdge>;
   nodes: Array<Category>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: CategoryToAncestorsCategoryConnectionPageInfo;
 };
 
 export type CategoryToAncestorsCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
@@ -163,17 +173,37 @@ export type CategoryToAncestorsCategoryConnectionEdge = CategoryConnectionEdge &
   node: Category;
 };
 
+export type CategoryToAncestorsCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'CategoryToAncestorsCategoryConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type CategoryToCategoryConnection = CategoryConnection & Connection & {
   __typename?: 'CategoryToCategoryConnection';
   edges: Array<CategoryToCategoryConnectionEdge>;
   nodes: Array<Category>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: CategoryToCategoryConnectionPageInfo;
 };
 
 export type CategoryToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
   __typename?: 'CategoryToCategoryConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Category;
+};
+
+export type CategoryToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'CategoryToCategoryConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type CategoryToCategoryConnectionWhereArgs = {
@@ -204,13 +234,23 @@ export type CategoryToContentNodeConnection = Connection & ContentNodeConnection
   __typename?: 'CategoryToContentNodeConnection';
   edges: Array<CategoryToContentNodeConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: CategoryToContentNodeConnectionPageInfo;
 };
 
 export type CategoryToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'CategoryToContentNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type CategoryToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'CategoryToContentNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type CategoryToContentNodeConnectionWhereArgs = {
@@ -244,13 +284,23 @@ export type CategoryToPostConnection = Connection & PostConnection & {
   __typename?: 'CategoryToPostConnection';
   edges: Array<CategoryToPostConnectionEdge>;
   nodes: Array<Post>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: CategoryToPostConnectionPageInfo;
 };
 
 export type CategoryToPostConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'CategoryToPostConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type CategoryToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'CategoryToPostConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type CategoryToPostConnectionWhereArgs = {
@@ -358,11 +408,21 @@ export type CommentAuthorAvatarArgs = {
 export type CommentConnection = {
   edges: Array<CommentConnectionEdge>;
   nodes: Array<Comment>;
+  pageInfo: CommentConnectionPageInfo;
 };
 
 export type CommentConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type CommentConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum CommentNodeIdTypeEnum {
@@ -381,13 +441,23 @@ export type CommentToCommentConnection = CommentConnection & Connection & {
   __typename?: 'CommentToCommentConnection';
   edges: Array<CommentToCommentConnectionEdge>;
   nodes: Array<Comment>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: CommentToCommentConnectionPageInfo;
 };
 
 export type CommentToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   __typename?: 'CommentToCommentConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type CommentToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'CommentToCommentConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type CommentToCommentConnectionWhereArgs = {
@@ -509,6 +579,7 @@ export enum CommentsConnectionOrderbyEnum {
 export type Connection = {
   edges: Array<Edge>;
   nodes: Array<Node>;
+  pageInfo: PageInfo;
 };
 
 export type ContentNode = {
@@ -560,11 +631,21 @@ export type ContentNodeEnqueuedStylesheetsArgs = {
 export type ContentNodeConnection = {
   edges: Array<ContentNodeConnectionEdge>;
   nodes: Array<ContentNode>;
+  pageInfo: ContentNodeConnectionPageInfo;
 };
 
 export type ContentNodeConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type ContentNodeConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum ContentNodeIdTypeEnum {
@@ -596,7 +677,7 @@ export type ContentNodeToEnqueuedScriptConnection = Connection & EnqueuedScriptC
   __typename?: 'ContentNodeToEnqueuedScriptConnection';
   edges: Array<ContentNodeToEnqueuedScriptConnectionEdge>;
   nodes: Array<EnqueuedScript>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: ContentNodeToEnqueuedScriptConnectionPageInfo;
 };
 
 export type ContentNodeToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnectionEdge & {
@@ -605,17 +686,37 @@ export type ContentNodeToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptCon
   node: EnqueuedScript;
 };
 
+export type ContentNodeToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ContentNodeToEnqueuedScriptConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type ContentNodeToEnqueuedStylesheetConnection = Connection & EnqueuedStylesheetConnection & {
   __typename?: 'ContentNodeToEnqueuedStylesheetConnection';
   edges: Array<ContentNodeToEnqueuedStylesheetConnectionEdge>;
   nodes: Array<EnqueuedStylesheet>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: ContentNodeToEnqueuedStylesheetConnectionPageInfo;
 };
 
 export type ContentNodeToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesheetConnectionEdge & {
   __typename?: 'ContentNodeToEnqueuedStylesheetConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: EnqueuedStylesheet;
+};
+
+export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ContentNodeToEnqueuedStylesheetConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type ContentTemplate = {
@@ -678,11 +779,21 @@ export type ContentTypeContentNodesArgs = {
 export type ContentTypeConnection = {
   edges: Array<ContentTypeConnectionEdge>;
   nodes: Array<ContentType>;
+  pageInfo: ContentTypeConnectionPageInfo;
 };
 
 export type ContentTypeConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: ContentType;
+};
+
+export type ContentTypeConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum ContentTypeEnum {
@@ -700,13 +811,23 @@ export type ContentTypeToContentNodeConnection = Connection & ContentNodeConnect
   __typename?: 'ContentTypeToContentNodeConnection';
   edges: Array<ContentTypeToContentNodeConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: ContentTypeToContentNodeConnectionPageInfo;
 };
 
 export type ContentTypeToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'ContentTypeToContentNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type ContentTypeToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'ContentTypeToContentNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type ContentTypeToContentNodeConnectionWhereArgs = {
@@ -734,13 +855,23 @@ export type ContentTypeToTaxonomyConnection = Connection & TaxonomyConnection & 
   __typename?: 'ContentTypeToTaxonomyConnection';
   edges: Array<ContentTypeToTaxonomyConnectionEdge>;
   nodes: Array<Taxonomy>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: ContentTypeToTaxonomyConnectionPageInfo;
 };
 
 export type ContentTypeToTaxonomyConnectionEdge = Edge & TaxonomyConnectionEdge & {
   __typename?: 'ContentTypeToTaxonomyConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Taxonomy;
+};
+
+export type ContentTypeToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnectionPageInfo & WpPageInfo & {
+  __typename?: 'ContentTypeToTaxonomyConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum ContentTypesOfCategoryEnum {
@@ -989,6 +1120,7 @@ export type DeletePageInput = {
   clientMutationId: InputMaybe<Scalars['String']>;
   forceDelete: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
+  ignoreEditLock: InputMaybe<Scalars['Boolean']>;
 };
 
 export type DeletePagePayload = {
@@ -1014,6 +1146,7 @@ export type DeletePostInput = {
   clientMutationId: InputMaybe<Scalars['String']>;
   forceDelete: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
+  ignoreEditLock: InputMaybe<Scalars['Boolean']>;
 };
 
 export type DeletePostPayload = {
@@ -1083,11 +1216,21 @@ export type EnqueuedScript = EnqueuedAsset & Node & {
 export type EnqueuedScriptConnection = {
   edges: Array<EnqueuedScriptConnectionEdge>;
   nodes: Array<EnqueuedScript>;
+  pageInfo: EnqueuedScriptConnectionPageInfo;
 };
 
 export type EnqueuedScriptConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: EnqueuedScript;
+};
+
+export type EnqueuedScriptConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type EnqueuedStylesheet = EnqueuedAsset & Node & {
@@ -1104,11 +1247,21 @@ export type EnqueuedStylesheet = EnqueuedAsset & Node & {
 export type EnqueuedStylesheetConnection = {
   edges: Array<EnqueuedStylesheetConnectionEdge>;
   nodes: Array<EnqueuedStylesheet>;
+  pageInfo: EnqueuedStylesheetConnectionPageInfo;
 };
 
 export type EnqueuedStylesheetConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: EnqueuedStylesheet;
+};
+
+export type EnqueuedStylesheetConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type GeneralSettings = {
@@ -1219,13 +1372,23 @@ export type HierarchicalContentNodeToContentNodeAncestorsConnection = Connection
   __typename?: 'HierarchicalContentNodeToContentNodeAncestorsConnection';
   edges: Array<HierarchicalContentNodeToContentNodeAncestorsConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo;
 };
 
 export type HierarchicalContentNodeToContentNodeAncestorsConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'HierarchicalContentNodeToContentNodeAncestorsConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'HierarchicalContentNodeToContentNodeAncestorsConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs = {
@@ -1253,13 +1416,23 @@ export type HierarchicalContentNodeToContentNodeChildrenConnection = Connection 
   __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnection';
   edges: Array<HierarchicalContentNodeToContentNodeChildrenConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo;
 };
 
 export type HierarchicalContentNodeToContentNodeChildrenConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs = {
@@ -1485,11 +1658,21 @@ export type MediaItemTitleArgs = {
 export type MediaItemConnection = {
   edges: Array<MediaItemConnectionEdge>;
   nodes: Array<MediaItem>;
+  pageInfo: MediaItemConnectionPageInfo;
 };
 
 export type MediaItemConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: MediaItem;
+};
+
+export type MediaItemConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum MediaItemIdType {
@@ -1537,13 +1720,23 @@ export type MediaItemToCommentConnection = CommentConnection & Connection & {
   __typename?: 'MediaItemToCommentConnection';
   edges: Array<MediaItemToCommentConnectionEdge>;
   nodes: Array<Comment>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: MediaItemToCommentConnectionPageInfo;
 };
 
 export type MediaItemToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   __typename?: 'MediaItemToCommentConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type MediaItemToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'MediaItemToCommentConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type MediaItemToCommentConnectionWhereArgs = {
@@ -1615,11 +1808,21 @@ export type MenuMenuItemsArgs = {
 export type MenuConnection = {
   edges: Array<MenuConnectionEdge>;
   nodes: Array<Menu>;
+  pageInfo: MenuConnectionPageInfo;
 };
 
 export type MenuConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Menu;
+};
+
+export type MenuConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type MenuItem = DatabaseIdentifier & Node & {
@@ -1661,11 +1864,21 @@ export type MenuItemChildItemsArgs = {
 export type MenuItemConnection = {
   edges: Array<MenuItemConnectionEdge>;
   nodes: Array<MenuItem>;
+  pageInfo: MenuItemConnectionPageInfo;
 };
 
 export type MenuItemConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: MenuItem;
+};
+
+export type MenuItemConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type MenuItemLinkable = {
@@ -1698,13 +1911,23 @@ export type MenuItemToMenuItemConnection = Connection & MenuItemConnection & {
   __typename?: 'MenuItemToMenuItemConnection';
   edges: Array<MenuItemToMenuItemConnectionEdge>;
   nodes: Array<MenuItem>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: MenuItemToMenuItemConnectionPageInfo;
 };
 
 export type MenuItemToMenuItemConnectionEdge = Edge & MenuItemConnectionEdge & {
   __typename?: 'MenuItemToMenuItemConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: MenuItem;
+};
+
+export type MenuItemToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'MenuItemToMenuItemConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type MenuItemToMenuItemConnectionWhereArgs = {
@@ -1739,13 +1962,23 @@ export type MenuToMenuItemConnection = Connection & MenuItemConnection & {
   __typename?: 'MenuToMenuItemConnection';
   edges: Array<MenuToMenuItemConnectionEdge>;
   nodes: Array<MenuItem>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: MenuToMenuItemConnectionPageInfo;
 };
 
 export type MenuToMenuItemConnectionEdge = Edge & MenuItemConnectionEdge & {
   __typename?: 'MenuToMenuItemConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: MenuItem;
+};
+
+export type MenuToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'MenuToMenuItemConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type MenuToMenuItemConnectionWhereArgs = {
@@ -2076,11 +2309,21 @@ export type PageTitleArgs = {
 export type PageConnection = {
   edges: Array<PageConnectionEdge>;
   nodes: Array<Page>;
+  pageInfo: PageConnectionPageInfo;
 };
 
 export type PageConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Page;
+};
+
+export type PageConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum PageIdType {
@@ -2089,17 +2332,34 @@ export enum PageIdType {
   Uri = 'URI'
 }
 
+export type PageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  startCursor: Maybe<Scalars['String']>;
+};
+
 export type PageToCommentConnection = CommentConnection & Connection & {
   __typename?: 'PageToCommentConnection';
   edges: Array<PageToCommentConnectionEdge>;
   nodes: Array<Comment>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PageToCommentConnectionPageInfo;
 };
 
 export type PageToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   __typename?: 'PageToCommentConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type PageToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'PageToCommentConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PageToCommentConnectionWhereArgs = {
@@ -2144,13 +2404,23 @@ export type PageToRevisionConnection = Connection & PageConnection & {
   __typename?: 'PageToRevisionConnection';
   edges: Array<PageToRevisionConnectionEdge>;
   nodes: Array<Page>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PageToRevisionConnectionPageInfo;
 };
 
 export type PageToRevisionConnectionEdge = Edge & PageConnectionEdge & {
   __typename?: 'PageToRevisionConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Page;
+};
+
+export type PageToRevisionConnectionPageInfo = PageConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'PageToRevisionConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PageToRevisionConnectionWhereArgs = {
@@ -2193,11 +2463,21 @@ export type Plugin = Node & {
 export type PluginConnection = {
   edges: Array<PluginConnectionEdge>;
   nodes: Array<Plugin>;
+  pageInfo: PluginConnectionPageInfo;
 };
 
 export type PluginConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Plugin;
+};
+
+export type PluginConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum PluginStatusEnum {
@@ -2369,11 +2649,21 @@ export type PostCategoriesNodeInput = {
 export type PostConnection = {
   edges: Array<PostConnectionEdge>;
   nodes: Array<Post>;
+  pageInfo: PostConnectionPageInfo;
 };
 
 export type PostConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type PostConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostFormat = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
@@ -2439,11 +2729,21 @@ export type PostFormatPostsArgs = {
 export type PostFormatConnection = {
   edges: Array<PostFormatConnectionEdge>;
   nodes: Array<PostFormat>;
+  pageInfo: PostFormatConnectionPageInfo;
 };
 
 export type PostFormatConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: PostFormat;
+};
+
+export type PostFormatConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum PostFormatIdType {
@@ -2458,13 +2758,23 @@ export type PostFormatToContentNodeConnection = Connection & ContentNodeConnecti
   __typename?: 'PostFormatToContentNodeConnection';
   edges: Array<PostFormatToContentNodeConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostFormatToContentNodeConnectionPageInfo;
 };
 
 export type PostFormatToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'PostFormatToContentNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type PostFormatToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'PostFormatToContentNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostFormatToContentNodeConnectionWhereArgs = {
@@ -2492,13 +2802,23 @@ export type PostFormatToPostConnection = Connection & PostConnection & {
   __typename?: 'PostFormatToPostConnection';
   edges: Array<PostFormatToPostConnectionEdge>;
   nodes: Array<Post>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostFormatToPostConnectionPageInfo;
 };
 
 export type PostFormatToPostConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'PostFormatToPostConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type PostFormatToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PostFormatToPostConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostFormatToPostConnectionWhereArgs = {
@@ -2619,7 +2939,7 @@ export type PostToCategoryConnection = CategoryConnection & Connection & {
   __typename?: 'PostToCategoryConnection';
   edges: Array<PostToCategoryConnectionEdge>;
   nodes: Array<Category>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostToCategoryConnectionPageInfo;
 };
 
 export type PostToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
@@ -2627,6 +2947,16 @@ export type PostToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
   cursor: Maybe<Scalars['String']>;
   isPrimary: Maybe<Scalars['Boolean']>;
   node: Category;
+};
+
+export type PostToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'PostToCategoryConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostToCategoryConnectionWhereArgs = {
@@ -2657,13 +2987,23 @@ export type PostToCommentConnection = CommentConnection & Connection & {
   __typename?: 'PostToCommentConnection';
   edges: Array<PostToCommentConnectionEdge>;
   nodes: Array<Comment>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostToCommentConnectionPageInfo;
 };
 
 export type PostToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   __typename?: 'PostToCommentConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type PostToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'PostToCommentConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostToCommentConnectionWhereArgs = {
@@ -2702,7 +3042,7 @@ export type PostToPostFormatConnection = Connection & PostFormatConnection & {
   __typename?: 'PostToPostFormatConnection';
   edges: Array<PostToPostFormatConnectionEdge>;
   nodes: Array<PostFormat>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostToPostFormatConnectionPageInfo;
 };
 
 export type PostToPostFormatConnectionEdge = Edge & PostFormatConnectionEdge & {
@@ -2710,6 +3050,16 @@ export type PostToPostFormatConnectionEdge = Edge & PostFormatConnectionEdge & {
   cursor: Maybe<Scalars['String']>;
   isPrimary: Maybe<Scalars['Boolean']>;
   node: PostFormat;
+};
+
+export type PostToPostFormatConnectionPageInfo = PageInfo & PostFormatConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PostToPostFormatConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostToPostFormatConnectionWhereArgs = {
@@ -2746,13 +3096,23 @@ export type PostToRevisionConnection = Connection & PostConnection & {
   __typename?: 'PostToRevisionConnection';
   edges: Array<PostToRevisionConnectionEdge>;
   nodes: Array<Post>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostToRevisionConnectionPageInfo;
 };
 
 export type PostToRevisionConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'PostToRevisionConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type PostToRevisionConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PostToRevisionConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostToRevisionConnectionWhereArgs = {
@@ -2793,7 +3153,7 @@ export type PostToTagConnection = Connection & TagConnection & {
   __typename?: 'PostToTagConnection';
   edges: Array<PostToTagConnectionEdge>;
   nodes: Array<Tag>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostToTagConnectionPageInfo;
 };
 
 export type PostToTagConnectionEdge = Edge & TagConnectionEdge & {
@@ -2801,6 +3161,16 @@ export type PostToTagConnectionEdge = Edge & TagConnectionEdge & {
   cursor: Maybe<Scalars['String']>;
   isPrimary: Maybe<Scalars['Boolean']>;
   node: Tag;
+};
+
+export type PostToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PostToTagConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostToTagConnectionWhereArgs = {
@@ -2831,13 +3201,23 @@ export type PostToTermNodeConnection = Connection & TermNodeConnection & {
   __typename?: 'PostToTermNodeConnection';
   edges: Array<PostToTermNodeConnectionEdge>;
   nodes: Array<TermNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: PostToTermNodeConnectionPageInfo;
 };
 
 export type PostToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
   __typename?: 'PostToTermNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: TermNode;
+};
+
+export type PostToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
+  __typename?: 'PostToTermNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type PostToTermNodeConnectionWhereArgs = {
@@ -3586,13 +3966,23 @@ export type RootQueryToCategoryConnection = CategoryConnection & Connection & {
   __typename?: 'RootQueryToCategoryConnection';
   edges: Array<RootQueryToCategoryConnectionEdge>;
   nodes: Array<Category>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToCategoryConnectionPageInfo;
 };
 
 export type RootQueryToCategoryConnectionEdge = CategoryConnectionEdge & Edge & {
   __typename?: 'RootQueryToCategoryConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Category;
+};
+
+export type RootQueryToCategoryConnectionPageInfo = CategoryConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToCategoryConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToCategoryConnectionWhereArgs = {
@@ -3623,13 +4013,23 @@ export type RootQueryToCommentConnection = CommentConnection & Connection & {
   __typename?: 'RootQueryToCommentConnection';
   edges: Array<RootQueryToCommentConnectionEdge>;
   nodes: Array<Comment>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToCommentConnectionPageInfo;
 };
 
 export type RootQueryToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   __typename?: 'RootQueryToCommentConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type RootQueryToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToCommentConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToCommentConnectionWhereArgs = {
@@ -3668,13 +4068,23 @@ export type RootQueryToContentNodeConnection = Connection & ContentNodeConnectio
   __typename?: 'RootQueryToContentNodeConnection';
   edges: Array<RootQueryToContentNodeConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToContentNodeConnectionPageInfo;
 };
 
 export type RootQueryToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'RootQueryToContentNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type RootQueryToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToContentNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToContentNodeConnectionWhereArgs = {
@@ -3702,7 +4112,7 @@ export type RootQueryToContentTypeConnection = Connection & ContentTypeConnectio
   __typename?: 'RootQueryToContentTypeConnection';
   edges: Array<RootQueryToContentTypeConnectionEdge>;
   nodes: Array<ContentType>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToContentTypeConnectionPageInfo;
 };
 
 export type RootQueryToContentTypeConnectionEdge = ContentTypeConnectionEdge & Edge & {
@@ -3711,11 +4121,21 @@ export type RootQueryToContentTypeConnectionEdge = ContentTypeConnectionEdge & E
   node: ContentType;
 };
 
+export type RootQueryToContentTypeConnectionPageInfo = ContentTypeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToContentTypeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type RootQueryToEnqueuedScriptConnection = Connection & EnqueuedScriptConnection & {
   __typename?: 'RootQueryToEnqueuedScriptConnection';
   edges: Array<RootQueryToEnqueuedScriptConnectionEdge>;
   nodes: Array<EnqueuedScript>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToEnqueuedScriptConnectionPageInfo;
 };
 
 export type RootQueryToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnectionEdge & {
@@ -3724,11 +4144,21 @@ export type RootQueryToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConne
   node: EnqueuedScript;
 };
 
+export type RootQueryToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToEnqueuedScriptConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type RootQueryToEnqueuedStylesheetConnection = Connection & EnqueuedStylesheetConnection & {
   __typename?: 'RootQueryToEnqueuedStylesheetConnection';
   edges: Array<RootQueryToEnqueuedStylesheetConnectionEdge>;
   nodes: Array<EnqueuedStylesheet>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToEnqueuedStylesheetConnectionPageInfo;
 };
 
 export type RootQueryToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesheetConnectionEdge & {
@@ -3737,17 +4167,37 @@ export type RootQueryToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesh
   node: EnqueuedStylesheet;
 };
 
+export type RootQueryToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToEnqueuedStylesheetConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type RootQueryToMediaItemConnection = Connection & MediaItemConnection & {
   __typename?: 'RootQueryToMediaItemConnection';
   edges: Array<RootQueryToMediaItemConnectionEdge>;
   nodes: Array<MediaItem>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToMediaItemConnectionPageInfo;
 };
 
 export type RootQueryToMediaItemConnectionEdge = Edge & MediaItemConnectionEdge & {
   __typename?: 'RootQueryToMediaItemConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: MediaItem;
+};
+
+export type RootQueryToMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToMediaItemConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToMediaItemConnectionWhereArgs = {
@@ -3778,13 +4228,23 @@ export type RootQueryToMenuConnection = Connection & MenuConnection & {
   __typename?: 'RootQueryToMenuConnection';
   edges: Array<RootQueryToMenuConnectionEdge>;
   nodes: Array<Menu>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToMenuConnectionPageInfo;
 };
 
 export type RootQueryToMenuConnectionEdge = Edge & MenuConnectionEdge & {
   __typename?: 'RootQueryToMenuConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Menu;
+};
+
+export type RootQueryToMenuConnectionPageInfo = MenuConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToMenuConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToMenuConnectionWhereArgs = {
@@ -3797,13 +4257,23 @@ export type RootQueryToMenuItemConnection = Connection & MenuItemConnection & {
   __typename?: 'RootQueryToMenuItemConnection';
   edges: Array<RootQueryToMenuItemConnectionEdge>;
   nodes: Array<MenuItem>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToMenuItemConnectionPageInfo;
 };
 
 export type RootQueryToMenuItemConnectionEdge = Edge & MenuItemConnectionEdge & {
   __typename?: 'RootQueryToMenuItemConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: MenuItem;
+};
+
+export type RootQueryToMenuItemConnectionPageInfo = MenuItemConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToMenuItemConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToMenuItemConnectionWhereArgs = {
@@ -3817,13 +4287,23 @@ export type RootQueryToPageConnection = Connection & PageConnection & {
   __typename?: 'RootQueryToPageConnection';
   edges: Array<RootQueryToPageConnectionEdge>;
   nodes: Array<Page>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToPageConnectionPageInfo;
 };
 
 export type RootQueryToPageConnectionEdge = Edge & PageConnectionEdge & {
   __typename?: 'RootQueryToPageConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Page;
+};
+
+export type RootQueryToPageConnectionPageInfo = PageConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToPageConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToPageConnectionWhereArgs = {
@@ -3854,13 +4334,23 @@ export type RootQueryToPluginConnection = Connection & PluginConnection & {
   __typename?: 'RootQueryToPluginConnection';
   edges: Array<RootQueryToPluginConnectionEdge>;
   nodes: Array<Plugin>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToPluginConnectionPageInfo;
 };
 
 export type RootQueryToPluginConnectionEdge = Edge & PluginConnectionEdge & {
   __typename?: 'RootQueryToPluginConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Plugin;
+};
+
+export type RootQueryToPluginConnectionPageInfo = PageInfo & PluginConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToPluginConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToPluginConnectionWhereArgs = {
@@ -3873,13 +4363,23 @@ export type RootQueryToPostConnection = Connection & PostConnection & {
   __typename?: 'RootQueryToPostConnection';
   edges: Array<RootQueryToPostConnectionEdge>;
   nodes: Array<Post>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToPostConnectionPageInfo;
 };
 
 export type RootQueryToPostConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'RootQueryToPostConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type RootQueryToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToPostConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToPostConnectionWhereArgs = {
@@ -3921,13 +4421,23 @@ export type RootQueryToPostFormatConnection = Connection & PostFormatConnection 
   __typename?: 'RootQueryToPostFormatConnection';
   edges: Array<RootQueryToPostFormatConnectionEdge>;
   nodes: Array<PostFormat>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToPostFormatConnectionPageInfo;
 };
 
 export type RootQueryToPostFormatConnectionEdge = Edge & PostFormatConnectionEdge & {
   __typename?: 'RootQueryToPostFormatConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: PostFormat;
+};
+
+export type RootQueryToPostFormatConnectionPageInfo = PageInfo & PostFormatConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToPostFormatConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToPostFormatConnectionWhereArgs = {
@@ -3958,13 +4468,23 @@ export type RootQueryToRevisionsConnection = Connection & ContentNodeConnection 
   __typename?: 'RootQueryToRevisionsConnection';
   edges: Array<RootQueryToRevisionsConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToRevisionsConnectionPageInfo;
 };
 
 export type RootQueryToRevisionsConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'RootQueryToRevisionsConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type RootQueryToRevisionsConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToRevisionsConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToRevisionsConnectionWhereArgs = {
@@ -3992,13 +4512,23 @@ export type RootQueryToTagConnection = Connection & TagConnection & {
   __typename?: 'RootQueryToTagConnection';
   edges: Array<RootQueryToTagConnectionEdge>;
   nodes: Array<Tag>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToTagConnectionPageInfo;
 };
 
 export type RootQueryToTagConnectionEdge = Edge & TagConnectionEdge & {
   __typename?: 'RootQueryToTagConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Tag;
+};
+
+export type RootQueryToTagConnectionPageInfo = PageInfo & TagConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToTagConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToTagConnectionWhereArgs = {
@@ -4029,7 +4559,7 @@ export type RootQueryToTaxonomyConnection = Connection & TaxonomyConnection & {
   __typename?: 'RootQueryToTaxonomyConnection';
   edges: Array<RootQueryToTaxonomyConnectionEdge>;
   nodes: Array<Taxonomy>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToTaxonomyConnectionPageInfo;
 };
 
 export type RootQueryToTaxonomyConnectionEdge = Edge & TaxonomyConnectionEdge & {
@@ -4038,17 +4568,37 @@ export type RootQueryToTaxonomyConnectionEdge = Edge & TaxonomyConnectionEdge & 
   node: Taxonomy;
 };
 
+export type RootQueryToTaxonomyConnectionPageInfo = PageInfo & TaxonomyConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToTaxonomyConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type RootQueryToTermNodeConnection = Connection & TermNodeConnection & {
   __typename?: 'RootQueryToTermNodeConnection';
   edges: Array<RootQueryToTermNodeConnectionEdge>;
   nodes: Array<TermNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToTermNodeConnectionPageInfo;
 };
 
 export type RootQueryToTermNodeConnectionEdge = Edge & TermNodeConnectionEdge & {
   __typename?: 'RootQueryToTermNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: TermNode;
+};
+
+export type RootQueryToTermNodeConnectionPageInfo = PageInfo & TermNodeConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToTermNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToTermNodeConnectionWhereArgs = {
@@ -4080,7 +4630,7 @@ export type RootQueryToThemeConnection = Connection & ThemeConnection & {
   __typename?: 'RootQueryToThemeConnection';
   edges: Array<RootQueryToThemeConnectionEdge>;
   nodes: Array<Theme>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToThemeConnectionPageInfo;
 };
 
 export type RootQueryToThemeConnectionEdge = Edge & ThemeConnectionEdge & {
@@ -4089,17 +4639,37 @@ export type RootQueryToThemeConnectionEdge = Edge & ThemeConnectionEdge & {
   node: Theme;
 };
 
+export type RootQueryToThemeConnectionPageInfo = PageInfo & ThemeConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToThemeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type RootQueryToUserConnection = Connection & UserConnection & {
   __typename?: 'RootQueryToUserConnection';
   edges: Array<RootQueryToUserConnectionEdge>;
   nodes: Array<User>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToUserConnectionPageInfo;
 };
 
 export type RootQueryToUserConnectionEdge = Edge & UserConnectionEdge & {
   __typename?: 'RootQueryToUserConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: User;
+};
+
+export type RootQueryToUserConnectionPageInfo = PageInfo & UserConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToUserConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type RootQueryToUserConnectionWhereArgs = {
@@ -4124,13 +4694,23 @@ export type RootQueryToUserRoleConnection = Connection & UserRoleConnection & {
   __typename?: 'RootQueryToUserRoleConnection';
   edges: Array<RootQueryToUserRoleConnectionEdge>;
   nodes: Array<UserRole>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: RootQueryToUserRoleConnectionPageInfo;
 };
 
 export type RootQueryToUserRoleConnectionEdge = Edge & UserRoleConnectionEdge & {
   __typename?: 'RootQueryToUserRoleConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: UserRole;
+};
+
+export type RootQueryToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPageInfo & WpPageInfo & {
+  __typename?: 'RootQueryToUserRoleConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type SeoBreadcrumbs = {
@@ -4155,6 +4735,7 @@ export type SeoConfig = {
   __typename?: 'SEOConfig';
   breadcrumbs: Maybe<SeoBreadcrumbs>;
   contentTypes: Maybe<SeoContentTypes>;
+  meta: Maybe<SeoGlobalMeta>;
   openGraph: Maybe<SeoOpenGraph>;
   redirects: Maybe<Array<Maybe<SeoRedirect>>>;
   schema: Maybe<SeoSchema>;
@@ -4179,6 +4760,9 @@ export type SeoContentTypeArchive = {
   fullHead: Maybe<Scalars['String']>;
   hasArchive: Maybe<Scalars['Boolean']>;
   metaDesc: Maybe<Scalars['String']>;
+  metaRobotsFollow: Maybe<Scalars['String']>;
+  metaRobotsIndex: Maybe<Scalars['String']>;
+  metaRobotsNofollow: Maybe<Scalars['Boolean']>;
   metaRobotsNoindex: Maybe<Scalars['Boolean']>;
   title: Maybe<Scalars['String']>;
 };
@@ -4188,6 +4772,44 @@ export type SeoContentTypes = {
   mediaItem: Maybe<SeoContentType>;
   page: Maybe<SeoContentType>;
   post: Maybe<SeoContentType>;
+};
+
+export type SeoGlobalMeta = {
+  __typename?: 'SEOGlobalMeta';
+  author: Maybe<SeoGlobalMetaAuthor>;
+  config: Maybe<SeoGlobalMetaConfig>;
+  date: Maybe<SeoGlobalMetaDate>;
+  homepage: Maybe<SeoGlobalMetaHome>;
+  notFound: Maybe<SeoGlobalMeta404>;
+};
+
+export type SeoGlobalMeta404 = {
+  __typename?: 'SEOGlobalMeta404';
+  breadcrumb: Maybe<Scalars['String']>;
+  title: Maybe<Scalars['String']>;
+};
+
+export type SeoGlobalMetaAuthor = {
+  __typename?: 'SEOGlobalMetaAuthor';
+  description: Maybe<Scalars['String']>;
+  title: Maybe<Scalars['String']>;
+};
+
+export type SeoGlobalMetaConfig = {
+  __typename?: 'SEOGlobalMetaConfig';
+  separator: Maybe<Scalars['String']>;
+};
+
+export type SeoGlobalMetaDate = {
+  __typename?: 'SEOGlobalMetaDate';
+  description: Maybe<Scalars['String']>;
+  title: Maybe<Scalars['String']>;
+};
+
+export type SeoGlobalMetaHome = {
+  __typename?: 'SEOGlobalMetaHome';
+  description: Maybe<Scalars['String']>;
+  title: Maybe<Scalars['String']>;
 };
 
 export type SeoOpenGraph = {
@@ -4255,6 +4877,7 @@ export type SeoSocial = {
   instagram: Maybe<SeoSocialInstagram>;
   linkedIn: Maybe<SeoSocialLinkedIn>;
   mySpace: Maybe<SeoSocialMySpace>;
+  otherSocials: Maybe<Array<Maybe<Scalars['String']>>>;
   pinterest: Maybe<SeoSocialPinterest>;
   twitter: Maybe<SeoSocialTwitter>;
   wikipedia: Maybe<SeoSocialWikipedia>;
@@ -4462,11 +5085,21 @@ export type TagPostsArgs = {
 export type TagConnection = {
   edges: Array<TagConnectionEdge>;
   nodes: Array<Tag>;
+  pageInfo: TagConnectionPageInfo;
 };
 
 export type TagConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Tag;
+};
+
+export type TagConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum TagIdType {
@@ -4481,13 +5114,23 @@ export type TagToContentNodeConnection = Connection & ContentNodeConnection & {
   __typename?: 'TagToContentNodeConnection';
   edges: Array<TagToContentNodeConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: TagToContentNodeConnectionPageInfo;
 };
 
 export type TagToContentNodeConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'TagToContentNodeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type TagToContentNodeConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'TagToContentNodeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type TagToContentNodeConnectionWhereArgs = {
@@ -4515,13 +5158,23 @@ export type TagToPostConnection = Connection & PostConnection & {
   __typename?: 'TagToPostConnection';
   edges: Array<TagToPostConnectionEdge>;
   nodes: Array<Post>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: TagToPostConnectionPageInfo;
 };
 
 export type TagToPostConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'TagToPostConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type TagToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'TagToPostConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type TagToPostConnectionWhereArgs = {
@@ -4599,11 +5252,21 @@ export type TaxonomyConnectedContentTypesArgs = {
 export type TaxonomyConnection = {
   edges: Array<TaxonomyConnectionEdge>;
   nodes: Array<Taxonomy>;
+  pageInfo: TaxonomyConnectionPageInfo;
 };
 
 export type TaxonomyConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Taxonomy;
+};
+
+export type TaxonomyConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum TaxonomyEnum {
@@ -4649,13 +5312,23 @@ export type TaxonomyToContentTypeConnection = Connection & ContentTypeConnection
   __typename?: 'TaxonomyToContentTypeConnection';
   edges: Array<TaxonomyToContentTypeConnectionEdge>;
   nodes: Array<ContentType>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: TaxonomyToContentTypeConnectionPageInfo;
 };
 
 export type TaxonomyToContentTypeConnectionEdge = ContentTypeConnectionEdge & Edge & {
   __typename?: 'TaxonomyToContentTypeConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentType;
+};
+
+export type TaxonomyToContentTypeConnectionPageInfo = ContentTypeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'TaxonomyToContentTypeConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type TermNode = {
@@ -4696,11 +5369,21 @@ export type TermNodeEnqueuedStylesheetsArgs = {
 export type TermNodeConnection = {
   edges: Array<TermNodeConnectionEdge>;
   nodes: Array<TermNode>;
+  pageInfo: TermNodeConnectionPageInfo;
 };
 
 export type TermNodeConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: TermNode;
+};
+
+export type TermNodeConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum TermNodeIdTypeEnum {
@@ -4715,7 +5398,7 @@ export type TermNodeToEnqueuedScriptConnection = Connection & EnqueuedScriptConn
   __typename?: 'TermNodeToEnqueuedScriptConnection';
   edges: Array<TermNodeToEnqueuedScriptConnectionEdge>;
   nodes: Array<EnqueuedScript>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: TermNodeToEnqueuedScriptConnectionPageInfo;
 };
 
 export type TermNodeToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnectionEdge & {
@@ -4724,17 +5407,37 @@ export type TermNodeToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnec
   node: EnqueuedScript;
 };
 
+export type TermNodeToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'TermNodeToEnqueuedScriptConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type TermNodeToEnqueuedStylesheetConnection = Connection & EnqueuedStylesheetConnection & {
   __typename?: 'TermNodeToEnqueuedStylesheetConnection';
   edges: Array<TermNodeToEnqueuedStylesheetConnectionEdge>;
   nodes: Array<EnqueuedStylesheet>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: TermNodeToEnqueuedStylesheetConnectionPageInfo;
 };
 
 export type TermNodeToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesheetConnectionEdge & {
   __typename?: 'TermNodeToEnqueuedStylesheetConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: EnqueuedStylesheet;
+};
+
+export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'TermNodeToEnqueuedStylesheetConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum TermObjectsConnectionOrderbyEnum {
@@ -4765,11 +5468,21 @@ export type Theme = Node & {
 export type ThemeConnection = {
   edges: Array<ThemeConnectionEdge>;
   nodes: Array<Theme>;
+  pageInfo: ThemeConnectionPageInfo;
 };
 
 export type ThemeConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: Theme;
+};
+
+export type ThemeConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type UniformResourceIdentifiable = {
@@ -4849,6 +5562,7 @@ export type UpdatePageInput = {
   content: InputMaybe<Scalars['String']>;
   date: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
+  ignoreEditLock: InputMaybe<Scalars['Boolean']>;
   menuOrder: InputMaybe<Scalars['Int']>;
   parentId: InputMaybe<Scalars['ID']>;
   password: InputMaybe<Scalars['String']>;
@@ -4887,6 +5601,7 @@ export type UpdatePostInput = {
   date: InputMaybe<Scalars['String']>;
   excerpt: InputMaybe<Scalars['String']>;
   id: Scalars['ID'];
+  ignoreEditLock: InputMaybe<Scalars['Boolean']>;
   menuOrder: InputMaybe<Scalars['Int']>;
   password: InputMaybe<Scalars['String']>;
   pingStatus: InputMaybe<Scalars['String']>;
@@ -5095,11 +5810,21 @@ export type UserRolesArgs = {
 export type UserConnection = {
   edges: Array<UserConnectionEdge>;
   nodes: Array<User>;
+  pageInfo: UserConnectionPageInfo;
 };
 
 export type UserConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: User;
+};
+
+export type UserConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum UserNodeIdTypeEnum {
@@ -5123,11 +5848,21 @@ export type UserRole = Node & {
 export type UserRoleConnection = {
   edges: Array<UserRoleConnectionEdge>;
   nodes: Array<UserRole>;
+  pageInfo: UserRoleConnectionPageInfo;
 };
 
 export type UserRoleConnectionEdge = {
   cursor: Maybe<Scalars['String']>;
   node: UserRole;
+};
+
+export type UserRoleConnectionPageInfo = {
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum UserRoleEnum {
@@ -5144,13 +5879,23 @@ export type UserToCommentConnection = CommentConnection & Connection & {
   __typename?: 'UserToCommentConnection';
   edges: Array<UserToCommentConnectionEdge>;
   nodes: Array<Comment>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToCommentConnectionPageInfo;
 };
 
 export type UserToCommentConnectionEdge = CommentConnectionEdge & Edge & {
   __typename?: 'UserToCommentConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Comment;
+};
+
+export type UserToCommentConnectionPageInfo = CommentConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'UserToCommentConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type UserToCommentConnectionWhereArgs = {
@@ -5189,7 +5934,7 @@ export type UserToEnqueuedScriptConnection = Connection & EnqueuedScriptConnecti
   __typename?: 'UserToEnqueuedScriptConnection';
   edges: Array<UserToEnqueuedScriptConnectionEdge>;
   nodes: Array<EnqueuedScript>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToEnqueuedScriptConnectionPageInfo;
 };
 
 export type UserToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnectionEdge & {
@@ -5198,11 +5943,21 @@ export type UserToEnqueuedScriptConnectionEdge = Edge & EnqueuedScriptConnection
   node: EnqueuedScript;
 };
 
+export type UserToEnqueuedScriptConnectionPageInfo = EnqueuedScriptConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'UserToEnqueuedScriptConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type UserToEnqueuedStylesheetConnection = Connection & EnqueuedStylesheetConnection & {
   __typename?: 'UserToEnqueuedStylesheetConnection';
   edges: Array<UserToEnqueuedStylesheetConnectionEdge>;
   nodes: Array<EnqueuedStylesheet>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToEnqueuedStylesheetConnectionPageInfo;
 };
 
 export type UserToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesheetConnectionEdge & {
@@ -5211,17 +5966,37 @@ export type UserToEnqueuedStylesheetConnectionEdge = Edge & EnqueuedStylesheetCo
   node: EnqueuedStylesheet;
 };
 
+export type UserToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'UserToEnqueuedStylesheetConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
+};
+
 export type UserToMediaItemConnection = Connection & MediaItemConnection & {
   __typename?: 'UserToMediaItemConnection';
   edges: Array<UserToMediaItemConnectionEdge>;
   nodes: Array<MediaItem>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToMediaItemConnectionPageInfo;
 };
 
 export type UserToMediaItemConnectionEdge = Edge & MediaItemConnectionEdge & {
   __typename?: 'UserToMediaItemConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: MediaItem;
+};
+
+export type UserToMediaItemConnectionPageInfo = MediaItemConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'UserToMediaItemConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type UserToMediaItemConnectionWhereArgs = {
@@ -5252,13 +6027,23 @@ export type UserToPageConnection = Connection & PageConnection & {
   __typename?: 'UserToPageConnection';
   edges: Array<UserToPageConnectionEdge>;
   nodes: Array<Page>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToPageConnectionPageInfo;
 };
 
 export type UserToPageConnectionEdge = Edge & PageConnectionEdge & {
   __typename?: 'UserToPageConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Page;
+};
+
+export type UserToPageConnectionPageInfo = PageConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'UserToPageConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type UserToPageConnectionWhereArgs = {
@@ -5289,13 +6074,23 @@ export type UserToPostConnection = Connection & PostConnection & {
   __typename?: 'UserToPostConnection';
   edges: Array<UserToPostConnectionEdge>;
   nodes: Array<Post>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToPostConnectionPageInfo;
 };
 
 export type UserToPostConnectionEdge = Edge & PostConnectionEdge & {
   __typename?: 'UserToPostConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: Post;
+};
+
+export type UserToPostConnectionPageInfo = PageInfo & PostConnectionPageInfo & WpPageInfo & {
+  __typename?: 'UserToPostConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type UserToPostConnectionWhereArgs = {
@@ -5336,13 +6131,23 @@ export type UserToRevisionsConnection = Connection & ContentNodeConnection & {
   __typename?: 'UserToRevisionsConnection';
   edges: Array<UserToRevisionsConnectionEdge>;
   nodes: Array<ContentNode>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToRevisionsConnectionPageInfo;
 };
 
 export type UserToRevisionsConnectionEdge = ContentNodeConnectionEdge & Edge & {
   __typename?: 'UserToRevisionsConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: ContentNode;
+};
+
+export type UserToRevisionsConnectionPageInfo = ContentNodeConnectionPageInfo & PageInfo & WpPageInfo & {
+  __typename?: 'UserToRevisionsConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export type UserToRevisionsConnectionWhereArgs = {
@@ -5370,13 +6175,23 @@ export type UserToUserRoleConnection = Connection & UserRoleConnection & {
   __typename?: 'UserToUserRoleConnection';
   edges: Array<UserToUserRoleConnectionEdge>;
   nodes: Array<UserRole>;
-  pageInfo: Maybe<WpPageInfo>;
+  pageInfo: UserToUserRoleConnectionPageInfo;
 };
 
 export type UserToUserRoleConnectionEdge = Edge & UserRoleConnectionEdge & {
   __typename?: 'UserToUserRoleConnectionEdge';
   cursor: Maybe<Scalars['String']>;
   node: UserRole;
+};
+
+export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPageInfo & WpPageInfo & {
+  __typename?: 'UserToUserRoleConnectionPageInfo';
+  endCursor: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  seo: Maybe<SeoPostTypePageInfo>;
+  startCursor: Maybe<Scalars['String']>;
+  total: Maybe<Scalars['Int']>;
 };
 
 export enum UsersConnectionOrderbyEnum {
@@ -5404,7 +6219,6 @@ export enum UsersConnectionSearchColumnEnum {
 }
 
 export type WpPageInfo = {
-  __typename?: 'WPPageInfo';
   endCursor: Maybe<Scalars['String']>;
   hasNextPage: Scalars['Boolean'];
   hasPreviousPage: Scalars['Boolean'];
@@ -5445,10 +6259,12 @@ export type WritingSettings = {
 
 export type RootSeoFragmentFragment = { __typename?: 'RootQuery', seo: { __typename?: 'SEOConfig', openGraph: { __typename?: 'SEOOpenGraph', defaultImage: { __typename?: 'MediaItem', altText: string | null | undefined, title: string | null | undefined, uri: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined, frontPage: { __typename?: 'SEOOpenGraphFrontPage', description: string | null | undefined, title: string | null | undefined, image: { __typename?: 'MediaItem', uri: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined } | null | undefined } | null | undefined, webmaster: { __typename?: 'SEOWebmaster', baiduVerify: string | null | undefined, googleVerify: string | null | undefined, msVerify: string | null | undefined, yandexVerify: string | null | undefined } | null | undefined, social: { __typename?: 'SEOSocial', facebook: { __typename?: 'SEOSocialFacebook', url: string | null | undefined } | null | undefined, instagram: { __typename?: 'SEOSocialInstagram', url: string | null | undefined } | null | undefined, twitter: { __typename?: 'SEOSocialTwitter', username: string | null | undefined, cardType: SeoCardType | null | undefined } | null | undefined } | null | undefined, schema: { __typename?: 'SEOSchema', siteName: string | null | undefined, siteUrl: string | null | undefined, wordpressSiteName: string | null | undefined, personName: string | null | undefined, companyOrPerson: string | null | undefined, companyName: string | null | undefined, inLanguage: string | null | undefined } | null | undefined } | null | undefined };
 
-export type TotalPostQueryVariables = Exact<{ [key: string]: never; }>;
+export type TotalPostQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']>;
+}>;
 
 
-export type TotalPostQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'WPPageInfo', total: number | null | undefined, hasNextPage: boolean, endCursor: string | null | undefined } | null | undefined, edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined }> } | null | undefined };
+export type TotalPostQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', total: number | null | undefined, hasNextPage: boolean, endCursor: string | null | undefined }, edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined }> } | null | undefined };
 
 export type HomeQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
@@ -5456,7 +6272,7 @@ export type HomeQueryVariables = Exact<{
 }>;
 
 
-export type HomeQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'WPPageInfo', total: number | null | undefined, hasNextPage: boolean, endCursor: string | null | undefined } | null | undefined, edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined, node: { __typename?: 'Post', slug: string | null | undefined, title: string | null | undefined, date: string | null | undefined, uri: string | null | undefined, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } } | null | undefined, author: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', slug: string | null | undefined, name: string | null | undefined, avatar: { __typename?: 'Avatar', url: string | null | undefined } | null | undefined } } | null | undefined, tags: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name: string | null | undefined }> } | null | undefined } }> } | null | undefined, categories: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<{ __typename?: 'Category', id: string, slug: string | null | undefined, name: string | null | undefined, uri: string | null | undefined }> } | null | undefined, getHeader: { __typename?: 'HCMSHeader', siteTitle: string | null | undefined, siteLogoUrl: string | null | undefined, siteTagLine: string | null | undefined } | null | undefined, getFooter: { __typename?: 'HCMSFooter', copyrightText: string | null | undefined, socialLinks: Array<{ __typename?: 'HCMSSocialLinks', iconName: string | null | undefined, iconUrl: string | null | undefined } | null | undefined> | null | undefined } | null | undefined, menuItems: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, label: string | null | undefined, path: string | null | undefined }> } | null | undefined, seo: { __typename?: 'SEOConfig', openGraph: { __typename?: 'SEOOpenGraph', defaultImage: { __typename?: 'MediaItem', altText: string | null | undefined, title: string | null | undefined, uri: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined, frontPage: { __typename?: 'SEOOpenGraphFrontPage', description: string | null | undefined, title: string | null | undefined, image: { __typename?: 'MediaItem', uri: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined } | null | undefined } | null | undefined, webmaster: { __typename?: 'SEOWebmaster', baiduVerify: string | null | undefined, googleVerify: string | null | undefined, msVerify: string | null | undefined, yandexVerify: string | null | undefined } | null | undefined, social: { __typename?: 'SEOSocial', facebook: { __typename?: 'SEOSocialFacebook', url: string | null | undefined } | null | undefined, instagram: { __typename?: 'SEOSocialInstagram', url: string | null | undefined } | null | undefined, twitter: { __typename?: 'SEOSocialTwitter', username: string | null | undefined, cardType: SeoCardType | null | undefined } | null | undefined } | null | undefined, schema: { __typename?: 'SEOSchema', siteName: string | null | undefined, siteUrl: string | null | undefined, wordpressSiteName: string | null | undefined, personName: string | null | undefined, companyOrPerson: string | null | undefined, companyName: string | null | undefined, inLanguage: string | null | undefined } | null | undefined } | null | undefined };
+export type HomeQuery = { __typename?: 'RootQuery', posts: { __typename?: 'RootQueryToPostConnection', pageInfo: { __typename?: 'RootQueryToPostConnectionPageInfo', total: number | null | undefined, hasNextPage: boolean, endCursor: string | null | undefined }, edges: Array<{ __typename?: 'RootQueryToPostConnectionEdge', cursor: string | null | undefined, node: { __typename?: 'Post', slug: string | null | undefined, title: string | null | undefined, date: string | null | undefined, uri: string | null | undefined, featuredImage: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } } | null | undefined, author: { __typename?: 'NodeWithAuthorToUserConnectionEdge', node: { __typename?: 'User', slug: string | null | undefined, name: string | null | undefined, avatar: { __typename?: 'Avatar', url: string | null | undefined } | null | undefined } } | null | undefined, tags: { __typename?: 'PostToTagConnection', nodes: Array<{ __typename?: 'Tag', id: string, name: string | null | undefined }> } | null | undefined } }> } | null | undefined, categories: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<{ __typename?: 'Category', id: string, slug: string | null | undefined, name: string | null | undefined, uri: string | null | undefined }> } | null | undefined, getHeader: { __typename?: 'HCMSHeader', siteTitle: string | null | undefined, siteLogoUrl: string | null | undefined, siteTagLine: string | null | undefined } | null | undefined, getFooter: { __typename?: 'HCMSFooter', copyrightText: string | null | undefined, socialLinks: Array<{ __typename?: 'HCMSSocialLinks', iconName: string | null | undefined, iconUrl: string | null | undefined } | null | undefined> | null | undefined } | null | undefined, menuItems: { __typename?: 'RootQueryToMenuItemConnection', nodes: Array<{ __typename?: 'MenuItem', id: string, label: string | null | undefined, path: string | null | undefined }> } | null | undefined, seo: { __typename?: 'SEOConfig', openGraph: { __typename?: 'SEOOpenGraph', defaultImage: { __typename?: 'MediaItem', altText: string | null | undefined, title: string | null | undefined, uri: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined, frontPage: { __typename?: 'SEOOpenGraphFrontPage', description: string | null | undefined, title: string | null | undefined, image: { __typename?: 'MediaItem', uri: string | null | undefined, altText: string | null | undefined, mediaDetails: { __typename?: 'MediaDetails', file: string | null | undefined } | null | undefined } | null | undefined } | null | undefined } | null | undefined, webmaster: { __typename?: 'SEOWebmaster', baiduVerify: string | null | undefined, googleVerify: string | null | undefined, msVerify: string | null | undefined, yandexVerify: string | null | undefined } | null | undefined, social: { __typename?: 'SEOSocial', facebook: { __typename?: 'SEOSocialFacebook', url: string | null | undefined } | null | undefined, instagram: { __typename?: 'SEOSocialInstagram', url: string | null | undefined } | null | undefined, twitter: { __typename?: 'SEOSocialTwitter', username: string | null | undefined, cardType: SeoCardType | null | undefined } | null | undefined } | null | undefined, schema: { __typename?: 'SEOSchema', siteName: string | null | undefined, siteUrl: string | null | undefined, wordpressSiteName: string | null | undefined, personName: string | null | undefined, companyOrPerson: string | null | undefined, companyName: string | null | undefined, inLanguage: string | null | undefined } | null | undefined } | null | undefined };
 
 export type PostDetailQueryVariables = Exact<{
   slug: Scalars['ID'];
@@ -5548,8 +6364,8 @@ export const RootSeoFragmentFragmentDoc = gql`
 }
     `;
 export const TotalPostDocument = gql`
-    query TotalPost {
-  posts {
+    query TotalPost($first: Int = 10000) {
+  posts(first: $first) {
     pageInfo {
       total
       hasNextPage

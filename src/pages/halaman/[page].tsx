@@ -166,7 +166,13 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   let resultTotal = await client.query<TotalPostQuery>({
     query: TotalPostDocument,
   });
-  let endCursor = page > 1 ? resultTotal.data.posts?.edges[resultTotal.data.posts.pageInfo?.total - 1 - PER_PAGE].cursor : null;
+  let endCursor = null;
+  if (page > 1) {
+    let startIndex = (page - 1) * PER_PAGE;
+    let endIndex = page * PER_PAGE;
+    let subsetData = resultTotal.data.posts!.edges.slice(startIndex, endIndex);
+    endCursor = resultTotal.data.posts?.edges[resultTotal.data.posts?.edges.indexOf(subsetData[0]) - 1].cursor;
+  }
   let result = await client.query<HomeQuery>({
     query: HomeDocument,
     variables: { first: PER_PAGE, after: endCursor },
